@@ -67,14 +67,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TestData\IncorrectProductNumber\IncorrectPrdouctCode.csv" />
-    <None Include="TestData\IncorrectProductNumber\MissingProductCode.csv" />
-    <None Include="TestData\NoHeader\NuORDER_Orders_Export_approved_AUD_02_01_2018_83009970.csv" />
-    <None Include="TestData\NoLines\NuORDER_Orders_Export_approved_AUD_02_03_2018_3783489.csv" />
-    <None Include="TestData\Empty\NuORDER_Orders_Export_approved_AUD_02_02_2018_21891892.csv" />
-    <None Include="TestData\NuORDER_Orders_Export_approved_AUD_02_01_2018_83009970.csv" />
-    <None Include="TestData\NuORDER_Orders_Export_approved_AUD_02_02_2018_21891892.csv" />
-    <None Include="TestData\NuORDER_Orders_Export_approved_AUD_02_03_2018_3783489.csv" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Evolution.DAL\Evolution.DAL.csproj">
@@ -114,7 +106,12 @@
       <Name>CommonTest</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TestData\Empty\" />
+    <Folder Include="TestData\IncorrectProductNumber\" />
+    <Folder Include="TestData\NoHeader\" />
+    <Folder Include="TestData\NoLines\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

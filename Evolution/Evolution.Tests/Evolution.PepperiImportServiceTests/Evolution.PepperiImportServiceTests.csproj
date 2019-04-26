@@ -115,9 +115,6 @@
   <ItemGroup>
     <Content Include="TestData\ErrorFile1.xml" />
     <Content Include="TestData\ErrorFile2.xml" />
-    <Content Include="TestData\O_Sales Order_43487378_636531276536343437.txt" />
-    <Content Include="TestData\O_Sales Order_43489072_636531324274595689.txt" />
-    <Content Include="TestData\O_Sales Order_43489543_636531344056555684.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

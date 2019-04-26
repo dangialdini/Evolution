@@ -80,7 +80,6 @@
   <ItemGroup>
     <None Include="..\Common\App.config" />
     <None Include="packages.config" />
-    <None Include="TestData\Products2.zip" />
     <None Include="TestData\Products.csv" />
     <None Include="TestData\Products2.csv" />
   </ItemGroup>

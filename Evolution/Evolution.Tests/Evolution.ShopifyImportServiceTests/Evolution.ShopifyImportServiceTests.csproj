@@ -107,21 +107,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\AllFields.xml" />
-    <Content Include="TestData\Empty\Empty.xml" />
-    <Content Include="TestData\Empty\Empty_DataNoOrder.xml" />
-    <Content Include="TestData\Empty\Empty_DataOrder.xml" />
-    <Content Include="TestData\IncorrectProductNumber\StandardMultiOrder_IncorrectProductNumber.xml" />
-    <Content Include="TestData\MissingOrderHeader\StandardSingleOrder_MissingOrderHeader.xml" />
-    <Content Include="TestData\MissingOrderLines\StandardSingleOrder_MissingSalesOrderItemsSalesOrderItemNodeDetailsNodes.xml" />
-    <Content Include="TestData\MissingOrderLines\StandardSingleOrder_MissingSalesOrderItemsSalesOrderItemNode.xml" />
-    <Content Include="TestData\MissingOrderLines\StandardSingleOrder_MissingSalesOrderItemsNode.xml" />
-    <Content Include="TestData\MissingOrderNumber\StandardSingleOrder_MissingOrderNumber.xml" />
-    <Content Include="TestData\StandardMultiOrder.xml" />
-    <Content Include="TestData\StandardMultiOrder_Discount_Shipping.xml" />
-    <Content Include="TestData\StandardSingleOrder_eBay.xml" />
+    <Folder Include="TestData\Empty\" />
+    <Folder Include="TestData\IncorrectProductNumber\" />
+    <Folder Include="TestData\MissingOrderHeader\" />
+    <Folder Include="TestData\MissingOrderLines\" />
+    <Folder Include="TestData\MissingOrderNumber\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
