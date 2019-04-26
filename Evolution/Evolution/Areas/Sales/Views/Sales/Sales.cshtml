@@ -1,0 +1,74 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="sales" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'sales',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [{ caption: '', type: 'dropdownlist', id: 'ddlSOStatus', width: '200px', datasourceurl: '@Url.Action("GetSOStatusList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlSalesPerson', width: '200px', datasourceurl: '@Url.Action("GetSalesPersonList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlRegion', width: '200px', datasourceurl: '@Url.Action("GetRegionList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlCountry', width: '200px', datasourceurl: '@Url.Action("GetCountryList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlBrandCategory', width: '200px', datasourceurl: '@Url.Action("GetBrandCategoryList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlLocation', width: '200px', datasourceurl: '@Url.Action("GetLocationList")', defaultvalue: '' }
+                          ],
+            keyfield: 'Id',
+            sortcolumns: ['CustomerName', 'OrderNumberUrl', 'CustPO', 'OrderTypeText', 'SalesPersonName', 'OrderDateISO', 'DeliveryWindowOpenISO', 'DeliveryWindowCloseISO', 'NextActionText'],
+            sortcolumn: 'OrderNumber',
+            sortorder: 1,
+            datasourceurl: '@Url.Action("GetSales")?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&salesperson={ddlSalesPerson}&region={ddlRegion}&country={ddlCountry}&location={ddlLocation}&sostatus={ddlSOStatus}&brandcategory={ddlBrandCategory}',
+            addurl: '@Url.Action("Add")',
+            addtext: 'Add Sale',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '120px', class: '', fields: [{ type: 'field', field: 'OrderNumberUrl', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerPO', width: '', class: '', fields: [{ type: 'field', field: 'CustPO', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderType', width: '', class: '', fields: [{ type: 'field', field: 'SOStatusText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderStatus', width: '', class: '', fields: [{ type: 'field', field: 'SOSubStatusText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesPerson', width: '', class: '', fields: [{ type: 'field', field: 'SalesPersonName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderDate', width: '80px', class: '', fields: [{ type: 'isodate', field: 'OrderDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowOpen', width: '100px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowOpenISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowClose', width: '100px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowCloseISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblNextAction', width: '', class: '', fields: [{ type: 'field', field: 'NextActionText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblRegion', width: '100px', class: '', fields: [{ type: 'field', field: 'RegionText', format: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCountry', width: '100px', class: '', fields: [{ type: 'field', field: 'CountryText', format: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblBrandCategory', width: '100px', class: '', fields: [{ type: 'field', field: 'BrandCategoryText', format: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLocation', width: '100px', class: '', fields: [{ type: 'field', field: 'LocationText', format: '', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '90px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'button', text: 'Copy', url: '@Url.Action("CopyOrder")?id={KEYFIELD}', class: '', icon: 'duplicate' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+</script>

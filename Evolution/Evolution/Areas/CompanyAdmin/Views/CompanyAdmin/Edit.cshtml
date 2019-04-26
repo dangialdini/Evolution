@@ -1,0 +1,411 @@
+﻿@model Evolution.Models.ViewModels.EditCompanyViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CompanyAdmin", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Company.Id)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.PageTitle
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divCompanyDetails" aria-expanded="false" aria-controls="divCompanyDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divCompanyDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCompanyName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.CompanyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFriendlyName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.FriendlyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblABN
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.ABN, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "16" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCompanyAddress
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Company.CompanyAddress, new { @class = "form-control", style = "width:100%; height:120px", maxlength = "255" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhoneNumber
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "15" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFaxNumber
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.FaxNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "15" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblWebsite
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.Website, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "64" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblShippingAddress
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Company.ShippingAddress, new { @class = "form-control", style = "width:100%; height:120px", maxlength = 255 })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMarginLogo
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.MarginLogo,
+                                                new SelectList(Model.LogoList, "Id", "Text"),
+                                                new { @class = "form-control", style = "width:100%" })
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @EvolutionResources.lblMarginLogoTip
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFormLogo
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.FormLogo,
+                                                new SelectList(Model.LogoList, "Id", "Text"),
+                                                new { @class = "form-control", style = "width:100%" })
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @EvolutionResources.lblFormLogoTip
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblIsParentCompany
+                </div>
+                <div class="col-sm-6 cellpadding">
+                    @Html.CheckBoxFor(m => m.Company.IsParentCompany)
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrBankingDetails
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divBankingDetails" aria-expanded="false" aria-controls="divBankingDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divBankingDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBankName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.BankName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "64" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAccountName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.AccountName, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAccountNumber
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.AccountNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "16" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSwift
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.Swift, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "20" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBranch
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.Branch, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBranchAddress
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.BranchAddress, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAccountBSB
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.AccountBSB, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAmexSurcharge
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.AmexSurcharge, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblVisaSurcharge
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.VisaSurcharge, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMCSurcharge
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.MCSurcharge, new { htmlAttributes = new { @class = "form-control", @style = "width:30%", @maxlength = "7" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrStatementDetails
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divStatementDetails" aria-expanded="false" aria-controls="divStatementDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divStatementDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblStatementBody
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Company.StatementBody, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 8192 })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCancelMessage
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Company.CancelMessage, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 8192 })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblRoutingNo
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.RoutingNo, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrEMailAddresses
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divEMailAddresses" aria-expanded="false" aria-controls="divEMailAddresses"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divEMailAddresses" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmailAddressPurchasing
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.EmailAddressPurchasing, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmailAddressSales
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.EmailAddressSales, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmailAddressAccounts
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.EmailAddressAccounts, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmailAddressBCC
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Company.EmailAddressBCC, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrTemplates
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divTemplates" aria-expanded="false" aria-controls="divTemplates"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divTemplates" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendPOtoWarehouse
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.POWarehouseTemplateId,
+                                                new SelectList(Model.WarehouseTemplateList, "Id", "Text"),
+                                                new { @class = "form-control", @tyle = "width:100%" })                 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendPOtoSupplier
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.POSupplierTemplateId,
+                                                new SelectList(Model.SupplierTemplateList, "Id", "Text"),
+                                                new { @class = "form-control", @tyle = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendPOtoFreightForwarder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.POFreightForwarderTemplateId,
+                                                new SelectList(Model.FreightForwarderTemplateList, "Id", "Text"),
+                                                new { @class = "form-control", @tyle = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrRegionalSettings
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divRegionalSettings" aria-expanded="false" aria-controls="divRegionalSettings"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divRegionalSettings" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDefaultLocationID
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.DefaultLocationID,
+                                                new SelectList(Model.LocationList, "Id", "Text"),
+                                                new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDefaultCountryID
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.DefaultCountryID,
+                                                new SelectList(Model.CountryList, "Id", "Text"),
+                                                new { @class = "form-control", style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDefaultCurrencyID
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.DefaultCurrencyID,
+                                                new SelectList(Model.CurrencyList, "Id", "Text"),
+                                                new { @class = "form-control", style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDateFormat
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @Html.DropDownListFor(m => m.Company.DateFormat,
+                                                new SelectList(Model.DateFormatList, "Id", "Text"),
+                                                new { @class = "form-control", @tyle = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblUnitOfMeasure
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @Html.DropDownListFor(m => m.Company.UnitOfMeasure,
+                                                new SelectList(Model.UnitOfMeasureList, "Id", "Text"),
+                                                new { @class = "form-control", @tyle = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrMisc
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divMisc" aria-expanded="false" aria-controls="divMisc"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divMisc" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDefaultImportUser
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Company.DefaultImportUserId,
+                                                new SelectList(Model.UserList, "Id", "Text"),
+                                                new { @class = "form-control", style = "width:100%" })
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @EvolutionResources.lblDefaultImportUserTip
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.Company.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('Company_CompanyName');
+
+    $(document).ready(function () {
+        $('#divCompanyDetails').collapse({ toggle: true });
+    });
+</script>
+
+

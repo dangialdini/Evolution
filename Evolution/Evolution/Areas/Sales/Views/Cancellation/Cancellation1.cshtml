@@ -1,0 +1,73 @@
+﻿@model Evolution.Models.ViewModels.CancellationViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SaveStep", "Cancellation", FormMethod.Post, new { id = "frmCancellation" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <br/>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDeliveryWindowClose
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Step1.DeliveryWindowClosed)
+                </div>
+            </div>
+            <br/>
+            @for(var i = 0; i < Model.Step1.ProductStatusList.Count(); i++) {
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @if (i == 0) {
+                            @EvolutionResources.lblEndOfLineProducts
+                        }
+                    </div>
+                    <div class="col-sm-5 labelpadding">
+                        @Html.HiddenFor(m => m.Step1.ProductStatusList[i].Id)
+                        @Html.CheckBoxFor(m => m.Step1.ProductStatus[i].Value)
+                        @Model.Step1.ProductStatusList[i].Text
+                    </div>
+                </div>
+            }
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCancelAll
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.RadioButtonFor(m => m.Step1.CancelAll, 1)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCancelUnAllocated
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.RadioButtonFor(m => m.Step1.CancelAll, 2)
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSelectBrandCategory
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Step1.BrandCategoryId,
+                                               new SelectList(Model.Step1.BrandCategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" id="btnNext" name="command" value="nextstep2" class="button button-primary" onclick="DisplayProgress()">
+                <span class="glyphicon glyphicon-forward" data-toggle="tooltip" data-placement="bottom" title="@EvolutionResources.btnNext" style="font-size:2em;"></span>
+            </button>
+        </div>
+    </div>
+}

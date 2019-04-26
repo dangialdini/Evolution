@@ -1,0 +1,48 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.ParentId)
+                <div id="customeraccountmgrs" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'customeraccountmgrs',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: false,
+            keyfield: 'Id',
+            datasourceurl: '/Customers/CustomerAccountManagers/GetCustomerAccountManagers?index={INDEX}&customerid={PARENTID}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1&customerid={PARENTID}',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}&customerid={PARENTID}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&customerid={PARENTID}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblBrandCategory', width: '', class: '', fields: [{ type: 'field', field: 'BrandCategoryName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesPerson', width: '', class: '', fields: [{ type: 'field', field: 'UserName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesPersonType', width: '', class: '', fields: [{ type: 'field', field: 'SalesPersonTypeName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center', fields: [{ type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                                                                         { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                                                                        ]}
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

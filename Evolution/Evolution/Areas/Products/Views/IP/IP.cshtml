@@ -1,0 +1,35 @@
+﻿@model Evolution.Models.ViewModels.EditProductIPViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "IP", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ProductId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            @for(var i = 0; i < Model.ProductIPs.Items.Count(); i++) {
+                <div class="row">
+                    <div class="col-sm-2">
+                        @Model.ProductIPs.Items[i].MarketNameText
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.HiddenFor(m => Model.ProductIPs.Items[i].Id)
+                        @Html.HiddenFor(m => Model.ProductIPs.Items[i].MarketId)
+                        @Html.CheckBoxFor(m => Model.ProductIPs.Items[i].Selected)
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="saveandexit" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSaveAndExit</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}

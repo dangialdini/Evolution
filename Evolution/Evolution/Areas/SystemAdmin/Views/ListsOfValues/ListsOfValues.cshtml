@@ -1,0 +1,59 @@
+﻿@model Evolution.Models.ViewModels.ListsOfValuesViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div id="itemList" class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="listofvalues" class="table-responsive"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'listofvalues',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [{ caption: '', type: 'dropdownlist', id: 'ddlLOVs', width: '250px', refreshonchange: true, datasourceurl: '@Url.Action("GetLOVs")', defaultvalue: '' },
+                          ],
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetLOVItems")?index={INDEX}&lovid={ddlLOVs}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1&lovid={ddlLOVs}',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}&lovid={ddlLOVs}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&lovid={ddlLOVs}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            moveupurl: '@Url.Action("MoveUp")?id={KEYFIELD}&index={INDEX}&lovid={ddlLOVs}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            movedownurl: '@Url.Action("MoveDown")?id={KEYFIELD}&index={INDEX}&lovid={ddlLOVs}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblItemText', width: '', class: '', fields: [{ type: 'field', field: 'ItemText', width: '', class: '', colourfield: 'Colour' }] },
+                { heading: '@EvolutionResources.lblItemValue1', width: '', class: '', fields: [{ type: 'field', field: 'ItemValue1', width: '', class: '', colourfield: 'Colour' }] },
+                { heading: '@EvolutionResources.lblItemValue2', width: '', class: '', fields: [{ type: 'field', field: 'ItemValue2', width: '', class: '', colourfield: 'Colour' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAction', width: '140px', class: 'text-center',
+                    fields: [{ type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                             { type: 'buttonup', text: 'Up', class: '', icon: 'arrow-up' },
+                             { type: 'buttondown', text: 'Down', class: '', icon: 'arrow-down' },
+                             { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                            ]}
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

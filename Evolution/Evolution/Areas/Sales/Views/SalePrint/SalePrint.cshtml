@@ -1,0 +1,378 @@
+﻿@model Evolution.Models.ViewModels.SalePrintOptionsViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("DoPrintSendSale", "SalePrint", FormMethod.Post, new { id = "frmEdit" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.SalesOrderHeaderTempId)
+    @Html.HiddenFor(m => m.CustomerContact.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@EvolutionResources.bnrPrintSale</div>
+        <div class="panel-body">
+            <div class="row divMain">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDocumentType
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.TemplateId,
+                         new SelectList(Model.TemplateList, "Id", "Text"),
+                         new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row divMain">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblShowCancelledItems
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.ShowCancelledItems)
+                </div>
+            </div>
+            <div class="row divMain">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSaveInSaleNotesAttachments
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.SaveInSaleNotesAttachments)
+                </div>
+            </div>
+            <div class="row divMain">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblViewCreatedDocument
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.ViewCreatedDocument)
+                </div>
+            </div>
+            <div class="row divMain">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendAsEMail
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.SendAsEMail)
+                </div>
+            </div>
+
+            <div class="row divRecipient">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAvailableRecipients
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.ListBox("AvailIds",
+                                  new MultiSelectList(Model.AvailableRecipientsList, "Id", "Text"),
+                                  new { size = 7, @class = "form-control", @style = "width:100%" })
+                </div>
+                <div class="col-sm-1 text-top">
+                    <input type="button" id="btnTo" class="btn btn-default" style="width:55px; margin-bottom:5px" value="To" />
+                    <input type="button" id="btnCC" class="btn btn-default" style="width:55px; margin-bottom:5px" value="CC" />
+                    <input type="button" id="btnOther" class="btn btn-default" style="width:80px" value="Other" />
+                </div>
+            </div>
+            <div class="row divRecipient">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSelectedRecipients
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.ListBox("SelectedIds",
+                                  new MultiSelectList(Model.SelectedRecipientsList, "Id", "Text"),
+                                  new { size = 5, @class = "form-control", @style = "width:100%" })<br />
+                    <span id="spnRecipientsError"></span>
+                </div>
+                <div class="col-sm-1 text-top">
+                    <input type="button" id="btnRemove" class="btn btn-default" style="width:80px" value="Remove" />
+                </div>
+            </div>
+            <div class="row divRecipient">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSubject
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", @style = "width:100%" })
+                    <span id="spnSubjectError"></span>
+                </div>
+            </div>
+            <div class="row divRecipient">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMessage
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Message, new { @class = "form-control", style = "width:100%; height:120px", maxlength = 2048 })
+                    <span id="spnMessageError"></span>
+                </div>
+            </div>
+
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    <strong>Add Recipient</strong>
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSalutation
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerContact.ContactSalutation,
+                         new SelectList(Model.SalutationList, "Id", "Text"),
+                         new { @class = "form-control", @style = "width:25%" })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFirstName
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactFirstname, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                    <span id="spnFirstnameError"></span>
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @EvolutionResources.lblSurname
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactSurname, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "60" } })
+                    <span id="spnSurnameError"></span>
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblKnownAs
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactKnownAs, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @EvolutionResources.lblEmail
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactEmail, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                    <span id="spnEMailError"></span>
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPosition
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.Position, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone1
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone1, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @EvolutionResources.lblPhone2
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone2, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone3
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone3, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @EvolutionResources.lblFax
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactFax, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblContactPhoneNotes
+                </div>
+                <div class="col-sm-8 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhoneNotes, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "70" } })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblContactNotes
+                </div>
+                <div class="col-sm-8 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactNotes, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "70" } })
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendStatement
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.SendStatement)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendInvoice
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.SendInvoice)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSaveAsContact
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.SaveAsContact)
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-12 cellpadding text-right">
+                    <input type="button" id="btnDone" class="btn btn-sm btn-primary" style="width:80px" value="Done" />
+                </div>
+            </div>
+            <div class="row divContact">
+                <div class="col-sm-12 cellpadding text-right">
+                    <span id="spnError" style="color:red"></span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" id="btnPrint" name="command" value="print" class="btn btn-sm btn-primary" onclick="return OnSubmit()">@EvolutionResources.btnPrint</button>
+            <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+
+<script>
+    var othAdded = false;
+
+    $('#SendAsEMail').change(function () {
+        OnSendAsEMail();
+    });
+
+    function OnSendAsEMail() {
+        var value = $('#SendAsEMail').prop('checked');
+        if (value == true) {
+            $('.divRecipient').show();
+            $('#SaveInSaleNotesAttachments').prop('checked', true);
+        } else {
+            $('.divRecipient').hide();
+        }
+    }
+    OnSendAsEMail();
+    $('.divContact').hide();
+
+    function OnSubmit() {
+        var cont = true;
+        $("#SelectedIds option").prop("selected", true);
+        $("#CopiedIds option").prop("selected", true);
+        if ($('#SendAsEMail').prop('checked')) {
+            // Force save to notes/attachments
+            $('#SaveInSaleNotesAttachments').prop('checked', true);
+
+            // Check for recipients and a message
+            var msg = '';
+            if ($('#SelectedIds :selected').length == 0) {
+                msg = makeMessage('One or more Recipients must be selected!');
+                if (cont) $('#AvailIds').focus();
+                cont = false;
+            }
+            $('#spnRecipientsError').html(msg);
+            // Check for subject/message
+            cont = checkField('Subject', 'A Subject is required!', 'spnSubjectError', 1, cont);
+            cont = checkField('Message', 'A Message is required!', 'spnMessageError', 1, cont);
+
+            if (otherAdded) {
+                // Check for 'other recipient'
+                cont = checkField('CustomerContact_ContactFirstname', 'A First Name is required!', 'spnFirstnameError', 2, cont);
+                cont = checkField('CustomerContact_ContactSurname', 'A Surname is required!', 'spnSurnameError', 2, cont);
+                cont = checkField('CustomerContact_ContactEmail', 'An EMail Address is required!', 'spnEMailError', 2, cont);
+            }
+
+        } else if (!$('#SaveInSalesNotesAttachments').prop('checked')) {
+            // Not emailing and not saving, so must view created document otherwise nothing happens for the user
+            $('#ViewCreatedDocument').prop('checked', true);
+        }
+        if (cont) DisplayProgress();
+        return cont;
+    }
+
+    function checkField(fieldName, errorMsg, errorField, pane, cont) {
+        if ($('#' + fieldName).val().trim() == '') {
+            var msg = '<span style="color:red">' + errorMsg + '</span>';
+            if (cont) {
+                if (pane == 2) {
+                    btnOtherOnClick();
+                } else {
+                    btnDoneOnClick();
+                }
+                $('#' + fieldName).focus();
+            }
+            $('#' + errorField).html(msg);
+            cont = false;
+        }
+        return cont;
+    }
+
+    function makeMessage(msg) {
+        return '<span class="text-danger">' + msg + '</span>';
+    }
+
+    function moveItems(origin, dest, prefix) {
+        $(origin).find(':selected').each(function (i, item) {
+            var value = $(item).val();
+            var text = $(item).text();
+            if (prefix != '') {
+                // Add or CC
+                $(item).val(prefix + ':' + value);
+                $(item).text(prefix + ': ' + text);
+                if (value == 'OTH') otherAdded = true;
+            } else {
+                // Remove
+                var pos = value.indexOf(':');
+                if (pos != -1) value = value.substring(pos + 1);
+                $(item).val(value);
+                pos = text.indexOf(' ');
+                if (pos != -1) text = text.substring(pos + 1);
+                $(item).text(text);
+                if (value == 'OTH') otherAdded = false;
+            }
+            $(item).appendTo(dest);
+        });
+    }
+
+    $('#btnTo').on('click', function () {
+        moveItems('#AvailIds', '#SelectedIds', 'To');
+    });
+
+    $('#btnCC').on('click', function () {
+        moveItems('#AvailIds', '#SelectedIds', 'CC');
+    });
+
+    $('#btnRemove').on('click', function () {
+        moveItems('#SelectedIds', '#AvailIds', '');
+    });
+
+    $('#btnOther').on('click', function () {
+        btnOtherOnClick();
+        $('#CustomerContact_ContactSalutation').focus();
+    });
+    function btnOtherOnClick() {
+        $('.divMain').hide();
+        $('.divRecipient').hide();
+        $('.divContact').show();
+        $('#btnPrint').hide();
+    }
+
+    $('#btnDone').on('click', function () {
+        btnDoneOnClick();
+    });
+    function btnDoneOnClick() {
+        // Validate
+
+
+        // All OK
+        $('.divMain').show();
+        $('.divRecipient').show();
+        $('.divContact').hide();
+        $('#btnPrint').show();
+        $('#AvailIds').focus();
+    };
+</script>

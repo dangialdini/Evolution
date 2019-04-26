@@ -1,0 +1,67 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="customers" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'customers',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [{ caption: '', type: 'text', id: 'txtCardRecordId', width: '120px', maxlength: '15', defaultvalue: '', placeholder: 'Card Id' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlAccountMgr', width: '200px', datasourceurl: '@Url.Action("GetAccountMgrList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlCountry', width: '200px', datasourceurl: '@Url.Action("GetCountryList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlRegion', width: '200px', datasourceurl: '@Url.Action("GetRegionList")', defaultvalue: '' }
+                          ],
+            keyfield: 'Id',
+            sortcolumns: ['Name', 'CreatedDateISO'],
+            sortcolumn: 'Name',
+            sortorder: 1,
+            datasourceurl: '/Customers/Customers/GetCustomers?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&cardrecordid={txtCardRecordId}&acctmgr={ddlAccountMgr}&country={ddlCountry}&region={ddlRegion}',
+            //addurl: '@Url.Action("Edit")?id=-1',
+            addurl: 'javascript:AddCustomer()',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCardRecordId', width: '110px', class: '', fields: [{ type: 'field', field: 'CardRecordId', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblName', width: '', class: '', fields: [{ type: 'field', field: 'Name', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblRegion', width: '', class: '', fields: [{ type: 'field', field: 'RegionText', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCreatedDate', width: '', class: '', fields: [{ type: 'isodatetime', field: 'CreatedDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '60px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '100px', class: 'text-center',
+                    fields: [{ type: 'buttonedit', text: '@EvolutionResources.btnEdit', class: '', icon: 'edit' },
+                        { type: 'button', text: '@EvolutionResources.btnOrders', class: '', url: '/Sales/Sales/SalesForCustomer?custid={KEYFIELD}', icon: 'edit' },
+                        { type: 'buttondelete', text: '@EvolutionResources.btnDelete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function AddCustomer() {
+        return Dialog('@Url.Action("NewCustomer")', 'lg', 'Customer_Name');
+    }
+
+</script>

@@ -1,0 +1,212 @@
+﻿@model Evolution.Models.ViewModels.FileUploadViewModel
+@using Evolution.Resources
+@using Evolution.Extensions
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var headerLine = "\"" + Model.ColumnHeadings.Replace(", ", "\",\"") + "\"";
+}
+
+@using (Html.BeginForm("Upload", "ProductImport", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    This page enables a text file of products to be uploaded.<br />
+                    <br />
+                </div>
+            </div>
+
+            @*-- File Upload --*@
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 cellpadding">
+                    @EvolutionResources.lblSelectFile
+                </div>
+                <div class="col-lg-2 col-sm-3 col-xs-6 cellpadding">
+                    <div id="upload-files">
+                        <button type="button" class="button" onclick="SelectFileUpload()">
+                            <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="bottom" title="Click to Upload" style="font-size:2em;margin-bottom:10px;"></span>
+                        </button>
+                        <input type="file" id="Files" name="Files" style="display:none;" />
+                    </div>
+                    <div style="font-size:0.8em;">
+                        @EvolutionResources.lblMaximumFileSize @Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)
+                    </div>
+                    <div style="font-size:0.8em;">
+                        @EvolutionResources.lblValidFileTypes @Model.ValidFileTypes
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-5 col-xs-12 cellpadding">
+                    <span id="file-upload-filename" style='color:green'></span><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 cellpadding">
+                    @EvolutionResources.lblFirstLineContainsHeader:
+                </div>
+                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 cellpadding">
+                    @Html.CheckBoxFor(m => m.FirstLineContainsHeader)
+                </div>
+            </div>
+            <br />
+            @*-- Image Upload --*@
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 cellpadding">
+                    @EvolutionResources.lblSelectImageFile:
+                </div>
+                <div class="col-lg-2 col-sm-3 col-xs-6 cellpadding">
+                    <div id="upload-images">
+                        <button type="button" class="button" onclick="SelectImageUpload()">
+                            <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="bottom" title="Click to Upload" style="font-size:2em;margin-bottom:10px;"></span>
+                        </button>
+                        <input type="file" id="Images" name="Images" style="display:none;" />
+                    </div>
+                    <span style="font-size:0.8em;">
+                        @EvolutionResources.lblMaximumFileSize @Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)<br />
+                    </span>
+                    <span style="font-size:0.8em;">
+                        @EvolutionResources.lblValidFileTypes zip
+                    </span>
+                </div>
+                <div class="col-lg-6 col-sm-5 col-xs-12 cellpadding">
+                    <span id="image-upload-filename" style='color:green'></span><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 cellpadding">
+                    <br />
+                    <br />
+                    To be able to upload and import a text file:<br />
+                    <ul>
+                        <li>The file must be a comma separated text file created by saving as a 'CSV' from MS Excel or from any text file editor, including NotePad</li>
+                        <li>The fields in the file can optionally be quote-delimited (this is recommended if text data contains commas)</li>
+                        <li>The first line can optionally be a line of header fields which enable the software to identify what data each column contains eg @headerLine</li>
+                        <li>If the first line is not a line of header fields, you can select column headings once a file is uploaded</li>
+                        <li>The corresponding Image file must contain one of more images for each product. The file names of the image must be the product code with an optional version number eg File.jpg, File[1].jpg, File[2].jpg</li>
+                    </ul>
+                    <br />
+                    <p style="margin-bottom:5px;">The following is an example header line. When pasted into MS Excel, each field name must appear in a separate column:</p>
+                    @Html.TextBoxFor(m => m.ColumnHeadings, null, new { @class = "form-control", @style = "width:95%;float:left;", @maxlength = "20" })
+                    <button type="button" id="btnCopy" class="button" onclick="CopyText()" style="width:5%;">
+                        <span class="glyphicon glyphicon-copy" data-toggle="tooltip" data-placement="bottom" title="Copy text to the clipboard" style="font-size:2em;"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" id="btnUpload" name="command" value="upload" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnUpload</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function SelectFileUpload() {
+        var upload = document.getElementById('Files');
+        upload.click();
+    }
+
+    function SelectImageUpload() {
+        var upload = document.getElementById('Images');
+        upload.click();
+    }
+
+    $('#Files').change(function () {
+        // Called when files are selected for upload
+        if (typeof FileReader !== "undefined") {
+            var msg;
+            var validType = true;
+            var uploadFiles = document.getElementById('Files');
+            var size = 0;
+            for (var i = 0; i < uploadFiles.files.length && validType; i++) {
+                size += uploadFiles.files[i].size;
+
+                if (!IsValidFileType(uploadFiles.files[i].name)) {
+                    msg = '@EvolutionResources.errFileIsNotAValidType'.replace('%1', uploadFiles.files[i].name);
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                    validType = false;
+                } else {
+                    $('#file-upload-filename').text(uploadFiles.files[i].name);
+                }
+            }
+            if (validType) {
+                if (size > @Model.MaxUploadFileSize) {
+                    $('#file-upload-filename').text("");
+                    msg = '@EvolutionResources.errMaxFileUploadSizeExceeded'.replace('%1', '' + (size / 1000000).toFixed(2) + 'MB');
+                    msg = msg.replace('%2', '@Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)');
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                } else {
+                    EnableButton('btnUpload', true);
+                    HideError();
+                }
+            }
+        }
+    });
+
+    $('#Images').change(function () {
+        // Called when files are selected for upload
+        if (typeof FileReader !== "undefined") {
+            var msg;
+            var validType = true;
+            var uploadFiles = document.getElementById('Images');
+            var size = 0;
+            for (var i = 0; i < uploadFiles.files.length && validType; i++) {
+                size += uploadFiles.files[i].size;
+                
+                if (!IsValidFileType(uploadFiles.files[i].name)) {
+                    msg = '@EvolutionResources.errFileIsNotAValidType'.replace('%1', uploadFiles.files[i].name);
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                    validType = false;
+                } else {
+                    debugger
+                    //$('#image-upload-filename').text(uploadFiles.files[i].name);
+                }
+            }
+            if (validType) {
+                if (size > @Model.MaxUploadFileSize) {
+                    $('#image-upload-filename').text("");
+                    msg = '@EvolutionResources.errMaxFileUploadSizeExceeded'.replace('%1', '' + (size / 1000000).toFixed(2) + 'MB');
+                    msg = msg.replace('%2', '@Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)');
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                } else {
+                    EnableButton('btnUpload', true);
+                    HideError();
+                }
+            }
+        }
+    });
+
+    function IsValidFileType(fileName) {
+        var allowed = ',@Model.ValidFileTypes,'.replace(/\s/g, '').toLowerCase();
+        var tempName = fileName.toLowerCase();
+        var pos = tempName.lastIndexOf('.');
+        if (pos != -1) tempName = tempName.substr(pos + 1);
+        pos = allowed.indexOf(',' + tempName + ',');
+        if (pos != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function CopyText() {
+        CopyToClipboard('ColumnHeadings', true);
+        DisplayInformationError('@EvolutionResources.infTextCopiedToClipboard');
+    }
+
+    function EnableButton(buttonName, enabled) {
+        if (enabled) {
+            $('#' + buttonName).prop('disabled', false);
+        } else {
+            $('#' + buttonName).prop('disabled', true);
+        }
+    }
+    EnableButton('btnUpload', false);
+
+</script>

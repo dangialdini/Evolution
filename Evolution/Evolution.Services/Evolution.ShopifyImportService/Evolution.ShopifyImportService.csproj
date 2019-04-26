@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2D38BB2C-ECB0-44C4-A350-5C526314616A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Evolution.ShopifyImportService</RootNamespace>
+    <AssemblyName>Evolution.ShopifyImportService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ShopifyImportService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Evolution.DAL\Evolution.DAL.csproj">
+      <Project>{D9A7C74E-0B55-4D67-842D-C3F7C74D4B5D}</Project>
+      <Name>Evolution.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Enumerations\Evolution.Enumerations.csproj">
+      <Project>{9d5a6a83-7759-408d-9a40-6077ea835e4d}</Project>
+      <Name>Evolution.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Extensions\Evolution.Extensions.csproj">
+      <Project>{a2fb972b-17c3-4b84-864e-2c0d155f5240}</Project>
+      <Name>Evolution.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Models\Evolution.Models.csproj">
+      <Project>{731c026b-78b9-43c5-a0c5-4bc9cd5f3fd5}</Project>
+      <Name>Evolution.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CommonService\Evolution.CommonService.csproj">
+      <Project>{0E3D312D-5E25-4661-82DD-E16A104504AB}</Project>
+      <Name>Evolution.CommonService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CompanyService\Evolution.CompanyService.csproj">
+      <Project>{EF2EA3A6-9171-4B3C-9F39-5939281CB4E4}</Project>
+      <Name>Evolution.CompanyService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CustomerService\Evolution.CustomerService.csproj">
+      <Project>{8747150D-F0A9-4F72-AF25-032FCFEC756D}</Project>
+      <Name>Evolution.CustomerService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.LookupService\Evolution.LookupService.csproj">
+      <Project>{20D44A28-9BC2-4A58-93E9-98013BE3C90A}</Project>
+      <Name>Evolution.LookupService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.ProductService\Evolution.ProductService.csproj">
+      <Project>{1DE8F542-8705-48E7-874A-39E198D720AE}</Project>
+      <Name>Evolution.ProductService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

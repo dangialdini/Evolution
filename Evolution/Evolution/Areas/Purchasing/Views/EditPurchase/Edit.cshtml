@@ -1,0 +1,700 @@
+﻿@model Evolution.Models.ViewModels.EditPurchaseOrderHeaderTempViewModel
+@using Evolution.Enumerations
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="divEditOrder">
+    @using (Html.BeginForm("Save", "EditPurchase", FormMethod.Post, new { id = "frmEdit" })) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.TZ)
+        @Html.HiddenFor(m => m.LGS)
+        @Html.HiddenFor(m => m.LGST)
+        @Html.HiddenFor(m => m.PurchaseTemp.Id)
+        @Html.HiddenFor(m => m.PurchaseTemp.OriginalRowId)
+        @Html.HiddenFor(m => m.PurchaseTemp.CompanyId)
+        @Html.HiddenFor(m => m.PurchaseTemp.UserId)
+        @Html.HiddenFor(m => m.PurchaseTemp.OrderNumber)
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Model.PageTitle
+                <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divOrderDetails" aria-expanded="false" aria-controls="divOrderDetails" onclick="return false"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+            </div>
+            <div id="divOrderDetails" class="panel-body collapse">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblSupplier
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @if (Model.PurchaseTemp.OriginalRowId == 0 || Model.PurchaseTemp.SupplierId == null) {
+                            @Html.DropDownListFor(m => m.PurchaseTemp.SupplierId,
+                                             new SelectList(Model.SupplierList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%" })
+                        } else {
+                            @Html.HiddenFor(m => m.PurchaseTemp.SupplierId)
+                            @Html.DropDownListFor(m => m.PurchaseTemp.SupplierId,
+                                             new SelectList(Model.SupplierList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%", @disabled = "true" })
+                        }
+                    </div>
+                    <div class="col-sm-1 cellpadding">
+                        @EvolutionResources.lblNonStockOrder
+                    </div>
+                    <div class="col-sm-1 labelpadding">
+                        @Html.CheckBoxFor(m => m.PurchaseTemp.StockOrder)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblForDeliveryTo
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @if (Model.PurchaseTemp.OriginalRowId == 0 || Model.PurchaseTemp.LocationId == null) {
+                            @Html.DropDownListFor(m => m.PurchaseTemp.LocationId,
+                                             new SelectList(Model.LocationList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%" })
+                        } else {
+                            @Html.HiddenFor(m => m.PurchaseTemp.LocationId)
+                            @Html.DropDownListFor(m => m.PurchaseTemp.LocationId,
+                                             new SelectList(Model.LocationList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%", @disabled = "true" })
+                        }
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblBrandCategory
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @if (Model.PurchaseTemp.OriginalRowId == 0 || Model.PurchaseTemp.BrandCategoryId == null) {
+                            @Html.DropDownListFor(m => m.PurchaseTemp.BrandCategoryId,
+                                                     new SelectList(Model.BrandCategoryList, "Id", "Text"),
+                                                     new { @class = "form-control", @style = "width:100%" })
+                        } else {
+                            @Html.HiddenFor(m => m.PurchaseTemp.BrandCategoryId)
+                            @Html.DropDownListFor(m => m.PurchaseTemp.BrandCategoryId,
+                                                     new SelectList(Model.BrandCategoryList, "Id", "Text"),
+                                                     new { @class = "form-control", @style = "width:100%", @disabled = "true" })
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 cellpadding"></div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.TextAreaFor(m => m.PurchaseTemp.ShipAddress1, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 255 })
+                    </div>
+                    <div class="col-sm-1 labelpadding">
+                        @EvolutionResources.lblComment
+                    </div>
+                    <div class="col-sm-5 cellpadding">
+                        @Html.TextAreaFor(m => m.PurchaseTemp.OrderComment, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 255 })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblOrderStatus
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.POStatus,
+                                    new SelectList(Model.POStatusList, "Id", "Text"),
+                                    new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblStockTransferNo
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.StockTransferNo, null, new { @class = "form-control", @style = "width:100%", @maxlength = "10" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblOrderConfirmationNo
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.OrderConfirmationNo, null, new { @class = "form-control", @style = "width:100%", @maxlength = "20" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblPurchaser
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.SalespersonId,
+                                    new SelectList(Model.UserList, "Id", "Text"),
+                                    new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                    <div class="col-sm-3 labelpadding">
+                        @EvolutionResources.lblFirstOrder &nbsp;&nbsp; @Html.RadioButtonFor(m => m.PurchaseTemp.IsFirstOrder, true, new { id = "btnFirstOrder" })
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        @EvolutionResources.lblReOrder &nbsp;&nbsp; @Html.RadioButtonFor(m => m.PurchaseTemp.IsFirstOrder, false, new { id = "btnReOrder" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblPaymentTerms
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.PaymentTermsId,
+                                    new SelectList(Model.PaymentTermsList, "Id", "Text"),
+                                    new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblCommercialTerms
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.CommercialTermsId,
+                                    new SelectList(Model.CommercialTermsList, "Id", "Text"),
+                                    new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblOrderDate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.OrderDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.OrderDate, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblCancelDate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.CancelDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.CancelDate, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblLandingDate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @if (!string.IsNullOrEmpty(Model.PurchaseTemp.LandingDateISO)) {
+                            @DateTimeOffset.Parse(Model.PurchaseTemp.LandingDateISO).ToString(Model.DisplayDateFormat)
+                        }
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblAdvUSFinal
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.RequiredDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.RequiredDate, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblRealisticETA
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.RealisticRequiredDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.RealisticRequiredDate, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblCompletedDate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.CompletedDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10", @readonly = "readonly" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.CompletedDate, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblSRDFinal
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.RequiredShipDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.RequiredShipDate, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblSRDInitial
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.RequiredShipDate_Original, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.RequiredShipDate_Original, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 cellpadding">
+                        @EvolutionResources.lblShowDepositToBePaidOnOrder
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @Html.CheckBoxFor(m => m.PurchaseTemp.IsDeposit2BePaid)
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblAdvUSInitial
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.RequiredDate_Original, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.RequiredDate_Original, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblDateSentToSupplier
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.DatePOSentToSupplier, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.DatePOSentToSupplier, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblDateOrderConfirmed
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.DateOrderConfirmed, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.DateOrderConfirmed, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblSupplierInvoiceNo
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.SupplierInv, null, new { @class = "form-control", @style = "width:100%", @maxlength = "255" })
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblSupplierInvoiceDate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.SupplierInvoiceDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "255" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.SupplierInvoiceDate, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblCancelMessage
+                    </div>
+                    <div class="col-sm-6 cellpadding">
+                        @Html.TextAreaFor(m => m.PurchaseTemp.CancelMessage, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 8192 })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblDeparturePort
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.PortId,
+                                                   new SelectList(Model.PortList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                    <div class="col-sm-1 labelpadding">
+                        @EvolutionResources.lblArrivalPort
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.PortArrivalId,
+                                                   new SelectList(Model.PortList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblShippingMethod
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.ShipMethodId,
+                                                   new SelectList(Model.ShipMethodList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblContainerType
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.ContainerTypeId,
+                                                   new SelectList(Model.ContainerTypeList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblFreightForwarder
+                    </div>
+                    <div class="col-sm-4 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.FreightForwarderId,
+                                                   new SelectList(Model.FreightForwarderList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+
+                <br />
+                <hr stype="width:50%" />
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblCurrency
+                    </div>
+                    <div class="col-sm-3 cellpadding">
+                        @Html.DropDownListFor(m => m.PurchaseTemp.CurrencyId,
+                                                   new SelectList(Model.CurrencyList, "Id", "Text"),
+                                                   new { @class = "form-control", @style = "width:100%" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblExchangeRate
+                    </div>
+                    <div class="col-sm-2 cellpadding">
+                        @Html.TextBoxFor(m => m.PurchaseTemp.ExchangeRate, null, new { @class = "form-control", @style = "width:100px", @maxlength = "10" })<br />
+                        @Html.ValidationMessageFor(m => m.PurchaseTemp.ExchangeRate, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading">
+                @EvolutionResources.bnrOrderLines
+                <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divOrderLines" aria-expanded="false" aria-controls="divOrderLines"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+            </div>
+            <div id="divOrderLines" class="panel-body collapse">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="lines" class="table-responsive"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading">
+                @EvolutionResources.bnrOrderSummary: @Model.PurchaseTemp.OrderNumber
+                <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divOrderSummary" aria-expanded="false" aria-controls="divOrderSummary"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+            </div>
+            <div id="divOrderSummary" class="panel-body collapse">
+                <span id="spnOrderSummary"></span>
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-6">
+                        @if (Model.PurchaseTemp.OriginalRowId != 0) {
+                            <button type="button" name="btnSendToSupplier" class="btn btn-sm btn-default" onclick="SendToSupplier(@Model.PurchaseTemp.Id)">@EvolutionResources.btnSendToSupplier</button>
+                            <button type="button" name="btnSendToWhs" class="btn btn-sm btn-default" onclick="SendToWarehouse(@Model.PurchaseTemp.Id)">@EvolutionResources.btnSendToWarehouse</button>
+                            <button type="button" name="btnSendToFF" class="btn btn-sm btn-default" onclick="SendToFreightForwarder(@Model.PurchaseTemp.Id)">@EvolutionResources.btnSendToFreightForwarder</button>
+                            if (Model.PurchaseTemp.POStatusValue == Evolution.Enumerations.PurchaseOrderStatus.Closed) {
+                                <button type="button" name="btnCompleteOrder" disabled="disabled" class="btn btn-sm btn-default" onclick="CompleteOrder(@Model.PurchaseTemp.Id)">@EvolutionResources.btnCompleteOrder</button>
+                            } else {
+                                <button type="button" name="btnCompleteOrder" class="btn btn-sm btn-default" onclick="CompleteOrder(@Model.PurchaseTemp.Id)">@EvolutionResources.btnCompleteOrder</button>
+                            }
+                        }
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="submit" id="btnSave" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+                        <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    ApplyFocus('Product_ItemName');
+
+    var changedFlag = false;
+
+    $(document).ready(function () {
+        $('#divOrderDetails').collapse({ toggle: true });
+
+        $.datepicker.setDefaults({ dateFormat: '@Model.JQDateFormat', altFormat: 'yy-mm-dd' });
+
+        $('#PurchaseTemp_OrderDate').datepicker();
+        $('#PurchaseTemp_CancelDate').datepicker();
+        $('#PurchaseTemp_RequiredDate').datepicker();
+        $('#PurchaseTemp_RealisticRequiredDate').datepicker();
+        $('#PurchaseTemp_RequiredShipDate').datepicker();
+        $('#PurchaseTemp_RequiredShipDate_Original').datepicker();
+        $('#PurchaseTemp_RequiredDate_Original').datepicker();
+        $('#PurchaseTemp_DatePOSentToSupplier').datepicker();
+        $('#PurchaseTemp_DateOrderConfirmed').datepicker();
+        $('#PurchaseTemp_SupplierInvoiceDate').datepicker();
+
+        $("#frmEdit :input").change(function () {
+            $("#frmEdit").data("changed", true);
+        });
+
+        $('#PurchaseTemp_SupplierId').change(function () {
+            // Get the selections relative to the supplier
+            OnSupplierChanged();
+        });
+        OnSupplierChanged();    // So it is initialised
+
+        $('#PurchaseTemp_LocationId').change(function () {
+            // Get the address of the selected delivery location
+            OnLocationChanged();
+        });
+        OnLocationChanged();    // So it is initialised
+
+        $('#PurchaseTemp_POStatus').change(function () {
+            // Set/clear the completion date
+            OnOrderStatusChanged();
+        });
+
+        $('#PurchaseTemp_CurrencyId').change(function () {
+            // Get the exchange rate of the selected currency
+            OnCurrencyChanged();
+        });
+        OnCurrencyChanged();    // So it is initialised
+
+        // Order lines grid
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'lines',
+            widthoffset: 220,
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            pagesizes: [ 100, 500, 1000 ],
+            showsearch: false,
+            keyfield: 'Id',
+            sortcolumns: ['LineNumber', 'ProductCode', 'ProductDescription','SupplierItemNumber','OrderQty'],
+            sortcolumn: 'LineNumber',
+            sortorder: 0,
+            datasourceurl: '@Url.Action("GetPurchaseOrderDetailTemps")?index={INDEX}&parentid=@Model.ParentId&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: "javascript:OnAddItem()",
+            editurl: "javascript:OnEditItem({KEYFIELD})",
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&parentid=@Model.ParentId',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            deletesuccess: OnDeleteSuccess,
+            columnDefs: [
+                { heading: '@EvolutionResources.lblLineNumber', width: '90px', class: '', fields: [{ type: 'field', field: 'LineNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductCode', width: '', class: '', fields: [{ type: 'field', field: 'ProductCode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductDescription', width: '', class: '', fields: [{ type: 'field', field: 'ProductDescription', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSupplierItem', width: '', class: '', fields: [{ type: 'field', field: 'SupplierItemNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderQty', width: '', class: '', fields: [{ type: 'field', field: 'OrderQty', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblUnitPriceExTax', width: '', class: '', fields: [{ type: 'field', field: 'UnitPriceExTax', format: 'N2', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLinePrice', width: '', class: '', fields: [{ type: 'field', field: 'LinePrice', format: 'N2', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblUnitCBM', width: '', class: '', fields: [{ type: 'field', field: 'UnitCBM', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAllocated', width: '', class: '', fields: [{ type: 'field', field: 'Allocated', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+
+        DisplayOrderSummary();
+    });
+
+    function SaveOrder() {
+        var url = '@Url.Action("SaveKeyProperties")?pohtid=' + $('#PurchaseTemp_Id').val() +
+                  '&locationid=' + $('#PurchaseTemp_LocationId').val() +
+                  '&supplierid=' + $('#PurchaseTemp_SupplierId').val() +
+                  '&brandcatgeoryid=' + $('#PurchaseTemp_BrandCategoryId').val() +
+                  '&lgst=' + $('#LGST').val();
+        var result = DoAjaxCall(url);
+        if (result.IsError) {
+            DisplayError(1, result.Message);
+        } else {
+            $('#LGST').val(result.Data);
+        }
+        return result.IsError;
+    }
+
+    function OnAddItem() {
+        if (!SaveOrder()) {
+            HideError();
+            Dialog('@Url.Action("AddEditItem")?parentid=@Model.PurchaseTemp.Id&id=0', 'lg', 'PurchaseOrderDetailTemp_ProductName');
+        }
+    }
+
+    function OnEditItem(id) {
+        if (!SaveOrder()) {
+            HideError();
+            Dialog('@Url.Action("AddEditItem")?parentid=@Model.PurchaseTemp.Id&id=' + id, 'lg', 'PurchaseOrderDetailTemp_ProductName');
+        }
+    }
+
+    function OnDeleteSuccess() {
+        SetChanged();
+        DisplayOrderSummary();
+    }
+
+    function SetChanged() {
+        changedFlag = true;
+    }
+    function CheckChanged() {
+        if ($("#frmEdit").data("changed") || changedFlag) {
+            Alert('@EvolutionResources.errMustSaveOrderFirst', '@EvolutionResources.lblApplicationName');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function DisplayOrderSummary() {
+        var pohtId = parseInt($('#PurchaseTemp_Id').val());
+        var result = DoAjaxCall('@Url.Action("GetOrderSummary")?id=' + pohtId);
+        $('#spnOrderSummary').html(result);
+    }
+
+    function OnSupplierChanged() {
+        // Get the supplier details
+        var url = '@Url.Action("GetSupplier")?id=' + parseInt($('#PurchaseTemp_SupplierId').val());
+        var result = DoAjaxCall(url);
+        $('#PurchaseTemp_CurrencyId').val(result.CurrencyId);
+        OnCurrencyChanged();
+    }
+
+    function OnLocationChanged() {
+        // Get the address of the selected delivery location
+        var url = '@Url.Action("GetAddress")?id=' + parseInt($('#PurchaseTemp_LocationId').val());
+        var result = DoAjaxCall(url);
+        $('#PurchaseTemp_ShipAddress1').text(result);
+    }
+
+    function OnOrderStatusChanged() {
+        //var poStatusId = $('#PurchaseTemp_POStatus').text();
+        var poStatusId = $("#PurchaseTemp_POStatus option:selected").html();
+        if (poStatusId == '@PurchaseOrderStatus.Closed') {
+            var date = moment().format('@Model.DisplayDateFormat'.toUpperCase());
+            $('#PurchaseTemp_CompletedDate').val(date);
+        } else {
+            $('#PurchaseTemp_CompletedDate').val('');
+        }
+    }
+
+    function OnCurrencyChanged() {
+        // Get the exchange rate of the selected currency
+        var url = '@Url.Action("GetExchangeRate")?id=' + $('#PurchaseTemp_CurrencyId').val();
+        var result = DoAjaxCall(url);
+        $('#PurchaseTemp_ExchangeRate').val(result);
+    }
+
+    function SendToSupplier(id) {
+        var rc = !CheckChanged();
+        if(rc) rc = Confirm('@EvolutionResources.errConfirmSendToSupplier', '@EvolutionResources.lblApplicationName', id, 'DoSendToSupplier');
+        return rc;
+    }
+    function DoSendToSupplier(id) {
+        DisplayProgress();
+        var tempUrl = '@Url.Action("SendToSupplier")?id=' + id;
+        $.ajax({
+            url: tempUrl
+        })
+        .done(function (data, status, xhr) {
+            if (data.Error.IsError) {
+                DisplayError(data.Error.Icon, data.Error.Message);
+            } else {
+                SetSessionError(2, '@EvolutionResources.infPurchaseOrderSentToSupplier');
+                tempUrl = '@Url.Action("EditDetails")?id=' + id;
+                window.location = tempUrl;
+            }
+        })
+        .fail(function (xhr, status, error) {
+            HideProgress();
+            DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+        });
+    }
+
+    function SendToWarehouse(id) {
+        var rc = !CheckChanged();
+        if (rc) rc = Confirm('@EvolutionResources.errConfirmSendToWarehouse', '@EvolutionResources.lblApplicationName', id, 'DoSendToWarehouse');
+        return rc;
+    }
+    function DoSendToWarehouse(id) {
+        DisplayProgress();
+        var tempUrl = '@Url.Action("SendToWarehouse")?id=' + id;
+        $.ajax({
+            url: tempUrl
+        })
+        .done(function (data, status, xhr) {
+            if (data.Error.IsError) {
+                DisplayError(data.Error.Icon, data.Error.Message);
+            } else {
+                SetSessionError(2, data.Error.Message);
+                tempUrl = '@Url.Action("EditDetails")?id=' + id;
+                window.location = tempUrl;
+            }
+        })
+        .fail(function (xhr, status, error) {
+            HideProgress();
+            DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+        });
+    }
+
+    function SendToFreightForwarder(id) {
+        var rc = !CheckChanged();
+        if (rc) rc = Confirm('@EvolutionResources.errConfirmSendToFreightForwarder', '@EvolutionResources.lblApplicationName', id, 'DoSendToFreightForwarder');
+        return rc;
+    }
+    function DoSendToFreightForwarder(id) {
+        DisplayProgress();
+        var tempUrl = '@Url.Action("SendToFreightForwarder")?id=' + id;
+        $.ajax({
+            url: tempUrl
+        })
+        .done(function (data, status, xhr) {
+            if (data.Error.IsError) {
+                DisplayError(data.Error.Icon, data.Error.Message);
+            } else {
+                SetSessionError(2, data.Error.Message);
+                tempUrl = '@Url.Action("EditDetails")?id=' + id;
+                window.location = tempUrl;
+            }
+        })
+        .fail(function (xhr, status, error) {
+            HideProgress();
+            DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+        });
+    }
+
+    function CompleteOrder(id) {
+        var rc = !CheckChanged();
+        if (rc) rc = Confirm('@EvolutionResources.errConfirmCompleteOrder', '@EvolutionResources.lblApplicationName', id, 'DoCompleteOrder');
+        return rc;
+    }
+
+    function DoCompleteOrder(id) {
+        DisplayProgress();
+        var tempUrl = '@Url.Action("CompleteOrder")?id=' + id;
+        $.ajax({
+            url: tempUrl
+        })
+        .done(function (data, status, xhr) {
+            if (data.Error.Icon == 1) {
+                DisplayError(data.Error.Icon, data.Error.Message);
+            } else {
+                SetSessionError(2, data.Error.Message);
+                tempUrl = '@Url.Action("EditDetails")?id=' + id;
+                window.location = tempUrl;
+            }
+        })
+        .fail(function (xhr, status, error) {
+            HideProgress();
+            DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+        });
+    }
+</script>
+

@@ -1,0 +1,133 @@
+﻿@model Evolution.Models.ViewModels.AllocationInfoViewModel
+@using Evolution.Resources
+
+<div class="row">
+    <div class="col-sm-12">
+        <br/>
+        <div class="panel panel-default">
+            <div class="panel-heading">@EvolutionResources.bnrAvailabilityDetails</div>
+            <div class="panel-body">
+                <div id="availabilitydetails" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5 cellpadding">
+        <div class="panel panel-default">
+            <div class="panel-heading">@EvolutionResources.bnrAvailabilitySummary</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-7">@EvolutionResources.lblTotalStockonHandAndOnOrder</div>
+                    <div class="col-sm-5">@Model.TotalStockOnHandAndOnOrder</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7"><br/>@EvolutionResources.lblTotalAllocatedStock</div>
+                    <div class="col-sm-5"><br />@Model.TotalAllocatedStock</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7"><br />@EvolutionResources.lblTotalAvailableStock</div>
+                    <div class="col-sm-5"><br />@Model.TotalAvailableStock</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5 cellpadding">
+        <div class="panel panel-default">
+            <div class="panel-heading">@EvolutionResources.bnrSalesOrderSummary</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-7">@EvolutionResources.lblTotalStockOnSalesOrders</div>
+                    <div class="col-sm-5">@Model.TotalStockOnSalesOrders</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7"><br />@EvolutionResources.lblTotalAllocatedStockOnSalesOrders</div>
+                    <div class="col-sm-5"><br />@Model.TotalAllocatedStockOnSalesOrders</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7"><br />@EvolutionResources.lblTotalRequiredStockOnSalesOrders</div>
+                    <div class="col-sm-5"><br />@Model.TotalRequiredStockOnSalesOrders</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2 cellpadding text-centre">
+        <p><br /></p>
+        <p class="text-center" style="width:100%;">@Html.Raw(Model.Product.PictureHtml)</p>
+        <p class="text-center" style="width:100%;font-size:24pt;font-weight:bold">@Html.Raw(Model.AvailableNow)</p>
+        <p class="text-center" style="width:100%;font-weight:bold">@EvolutionResources.lblAvailableNow</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 cellpadding">
+        <div class="panel panel-default">
+            <div class="panel-heading">@EvolutionResources.bnrPrices</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 cellpadding">
+        <div class="panel panel-default">
+            <div class="panel-heading">@EvolutionResources.bnrSalesOrders</div>
+            <div class="panel-body>">
+                <div id="salesorders" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'availabilitydetails',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetAvailabilityDetails")?index={INDEX}&productid={ProductId}&locationid={LocationId}&brandcategoryid={BrandCategoryId}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblPONumber', width: '', class: '', fields: [{ type: 'field', field: 'PurchaseOrderNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPurchaseStatus', width: '', class: '', fields: [{ type: 'field', field: 'PurchaseStatus', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPurchaseDate', width: '90px', class: '', fields: [{ type: 'isodate', field: 'PurchaseDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPurchaseETA', width: '90px', class: '', fields: [{ type: 'isodate', field: 'PurchaseETAISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderQty', width: '', class: '', fields: [{ type: 'field', field: 'QuantityOnOrder', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQtyAllocated', width: '', class: '', fields: [{ type: 'field', field: 'QuantityAllocated', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQtyFree', width: '', class: '', fields: [{ type: 'field', field: 'QuantityFree', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+
+        gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'salesorders',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetSalesOrders")?index={INDEX}&productid={ProductId}&locationid={LocationId}&brandcategoryid={BrandCategoryId}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesOrderNo', width: '', class: '', fields: [{ type: 'field', field: 'SalesOrderNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerPO', width: '', class: '', fields: [{ type: 'field', field: 'CustPO', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderDate', width: '90px', class: '', fields: [{ type: 'isodate', field: 'OrderDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderQty', width: '', class: '', fields: [{ type: 'field', field: 'QuantityOnOrder', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQtyAllocated', width: '', class: '', fields: [{ type: 'field', field: 'QuantityAllocated', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQtyRequired', width: '', class: '', fields: [{ type: 'field', field: 'QuantityRequired', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAllocationDetail', width: '', class: '', fields: [{ type: 'field', field: 'AllocationDetail', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAllocationDate', width: '', class: '', fields: [{ type: 'isodate', field: 'AllocationDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDeliveryWindowOpen', width: '90px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowOpen', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDeliveryWindowClose', width: '90px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowClose', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblNextAction', width: '', class: '', fields: [{ type: 'field', field: 'NextAction', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAccountManager', width: '', class: '', fields: [{ type: 'field', field: 'SalesPerson', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+
+        InitialiseFancyBox();
+    });
+
+    </script>

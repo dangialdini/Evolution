@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Packing Slip - Default Template</title>
+        <style>
+            body{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            /* CELLSPACING */
+            table {
+                border-spacing: 0px;
+            }
+            /* CELLPADDING */
+            td {
+                padding: 0px;
+            }
+
+            .text11pt {
+                font-size: 11pt;
+            }
+
+            .text14pt {
+                font-size: 14pt;
+            }
+
+            .text16pt {
+                font-size: 16pt;
+            }
+
+            .text20pt {
+                font-size: 20pt;
+            }
+
+            .bold {
+                font-weight: bold;
+            }
+
+            .italic {
+                font-style: italic;
+            }
+
+            .text-top {
+                vertical-align: top;
+            }
+
+            .text-left {
+                text-align: left;
+            }
+
+            .text-right {
+                text-align: right;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .cellpadding {
+                padding-left: 6px;
+                padding-right: 6px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+
+            .border-top {
+                border-top: 1px solid #cccccc;
+            }
+
+            .border-left {
+                border-left: 1px solid #cccccc;
+            }
+
+            .border-bottom {
+                border-bottom: 1px solid #cccccc;
+            }
+
+            .border-right {
+                border-right: 1px solid #cccccc;
+            }
+
+            .border-all {
+                border-top: 1px solid #cccccc;
+                border-left: 1px solid #cccccc;
+                border-bottom: 1px solid #cccccc;
+                border-right: 1px solid #cccccc;
+            }
+
+            .border-leftright {
+                border-left: 1px solid #cccccc;
+                border-right: 1px solid #cccccc;
+            }
+        </style>
+    </head>
+    <body>
+        <table style="width:1024px">
+            <tr class="DocumentHeader" maxitemsonfirstpage="45" maxitemsonsecondpage="45" maxitemsbeforefooter="32">
+            </tr>
+            <tr class="PageHeader">
+                <td style="width:100%">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:33%">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="cellpadding text-top" style="height:50px">
+                                            <img src="{LOGOIMAGE}" alt="" style="width:280px;height:auto;"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cellpadding text11pt">{COMPANYNAME}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cellpadding text11pt">ABN: {ABN}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cellpadding text20pt bold">Packing Slip</td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:66%">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <td class="cellpadding text11pt" style="width:50%">
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" colspan="2">
+                                                                    {COMPANYADDRESS}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" style="width:15px">T:</td>
+                                                                <td class="cellpadding text11pt">{PHONENUMBER}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" style="width:15px">F:</td>
+                                                                <td class="cellpadding text11pt">{FAXNUMBER}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" style="width:15px">W:</td>
+                                                                <td class="cellpadding text11pt">{WEBSITE}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" style="width:15px">E:</td>
+                                                                <td class="cellpadding text11pt">{EMAILADDRESSSALES}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td class="cellpadding text11pt border-top border-left border-right border-bottom" style="width:50%;">
+                                                        <table style="width:100%">
+                                                            <tr>
+                                                                <td class="cellpadding text11pt" style="width:40%">Invoice #</td>
+                                                                <td class="cellpadding text11pt text-right" style="width:auto">{INVOICENUMBER}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt">Sale Date</td>
+                                                                <td class="cellpadding text11pt text-right">{SALESDATE}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt">Terms</td>
+                                                                <td class="cellpadding text11pt text-right">{TERMS}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="cellpadding text11pt"></td>
+                                                                <td class="cellpadding text11pt text-right">Page {PAGENO} of {PAGECOUNT}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="PageHeader">
+                <td style="width:100%">
+                    <br/>
+                    <table style="width:100%">
+                        <tr>
+                            <td class="cellpadding border-top border-left border-bottom border-right text-top" style="width:40%">
+                                <strong>Delivery Address:</strong><br />
+                                <br />
+                                {CUSTOMERCONTACT}
+                                {DELIVERYADDRESS}
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="ItemSection">
+                <td style="width:100%">
+                    <br/>
+                    <table style="width:100%">
+                        <tr>
+                            <td class="cellpadding text11pt bold text-center border-left border-top border-bottom" style="width: 10%">Qty</td>
+                            <td class="cellpadding text11pt bold text-center border-left border-top border-bottom" style="width: 20%">Item Code</td>
+                            <td class="cellpadding text11pt bold text-center border-left border-top border-bottom border-right" colspan="2">Description</td>
+                        </tr>
+                        <tr>
+                            <td class="bold" colspan="2">Our Order Number: {ORDERNUMBER}</td>
+                            <td style="width: 15%"></td>
+                            <td>Your PO # <span class="bold">{PURCHASEORDERNUMBER}</span></td>
+                        </tr>
+                        <tr class="lineitem">
+                            <td class="cellpadding text11pt text-center ">{ORDERQTY}</td>
+                            <td class="cellpadding text11pt">{ITEMNUMBER}</td>
+                            <td class="cellpadding text11pt" colspan="2">{DESCRIPTION}</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="PageFooter" style="page-break-after:always">
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="tasklog" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink(EvolutionResources.btnBack, "ScheduledTasks", "ScheduledTasks", null, new { @class="btn btn-sm btn-default", @onclick="ShowProgress()" })
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'tasklog',
+            tableclass: 'gridStyle',
+            jqdateformat: '@Model.JQDateFormat',
+            displaydateformat: '@Model.DisplayDateFormat',
+            pagesize: 50,
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [
+                           { caption: '', type: 'dropdownlist', id: 'ddlSeverity', width: '120px', datasource: '@EvolutionResources.strLogSeverity', defaultvalue: '-1' },
+                           { caption: '', type: 'datetime', id: 'txtDateFrom', width: '160px', datasourceurl: '', defaultvalue: '00:00:00' },
+                           { caption: '', type: 'datetime', id: 'txtDateTo', width: '160px', datasourceurl: '', defaultvalue: '23:59:59' },
+                          ],
+            keyfield: 'Id',
+            datasourceurl: '/SystemAdmin/ScheduledTasks/GetTaskLog?index={INDEX}&parentid=@Model.ParentId&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&severity={ddlSeverity}&datefrom={txtDateFrom}&dateto={txtDateTo}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblDate', width: '180px', class: '', fields: [{ type: 'isodatetime', field: 'LogDateISO', format: '@Model.DisplayDateFormat', width: '', class: '', colourfield: 'Colour' }] },
+                { heading: '@EvolutionResources.lblSeverity', width: '100px', class: '', fields: [{ type: 'field', field: 'SeverityText', width: '', class: '', colourfield: 'Colour' }] },
+                { heading: '@EvolutionResources.lblMessage', width: '', class: '', fields: [
+                    { type: 'field', field: 'Message', width: 'auto', class: '', colourfield: 'Colour' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>
+
+

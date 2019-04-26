@@ -1,0 +1,56 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="filetransferconfigurations" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'filetransferconfigurations',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            pagesizes: [ 20, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/SystemAdmin/DataTransfers/GetDataTransfers?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblTransferName', width: '', class: '', fields: [{ type: 'field', field: 'TransferName', width: '', class: 'truncate-elipses200' }] },
+                { heading: '@EvolutionResources.lblFTPHost', width: '', class: '', fields: [{ type: 'field', field: 'FTPHost', width: '', class: 'truncate-elipses200' }] },
+                { heading: '@EvolutionResources.lblSourceFolder', width: '', class: '', fields: [{ type: 'field', field: 'SourceFolder', width: '', class: 'truncate-elipses200' }] },
+                { heading: '@EvolutionResources.lblTargetFolder', width: '', class: '', fields: [{ type: 'field', field: 'TargetFolder', width: '', class: 'truncate-elipses200' }] },
+                { heading: '@EvolutionResources.lblType', width: '70px', class: '', fields: [{ type: 'field', field: 'TransferTypeText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblConfigurationTemplate', width: '', class: '', fields: [{ type: 'field', field: 'ConfigurationTemplate', width: '', class: 'truncate-elipses150' }] },
+                { heading: '@EvolutionResources.lblProtocol', width: '80px', class: '', fields: [{ type: 'field', field: 'ProtocolText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

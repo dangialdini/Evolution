@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{731C026B-78B9-43C5-A0C5-4BC9CD5F3FD5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Evolution.Models</RootNamespace>
+    <AssemblyName>Evolution.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\AllocationModel.cs" />
+    <Compile Include="Models\AllocationPOModel.cs" />
+    <Compile Include="Models\AllocationSOModel.cs" />
+    <Compile Include="Models\CancellationSummaryModel.cs" />
+    <Compile Include="Models\CreateOrderModel.cs" />
+    <Compile Include="Models\CreditCardModel.cs" />
+    <Compile Include="Models\CreditClaimHeaderModel.cs" />
+    <Compile Include="Models\CreditClaimReplacementOrder.cs" />
+    <Compile Include="Models\CustomerDefaultsModel.cs" />
+    <Compile Include="Models\DataMappingModel.cs" />
+    <Compile Include="Models\DataTransferQueueModel.cs" />
+    <Compile Include="Models\FileImportFieldModel.cs" />
+    <Compile Include="Models\EMailMessage.cs" />
+    <Compile Include="Models\MethodSignedModel.cs" />
+    <Compile Include="Models\NewCustomerModel.cs" />
+    <Compile Include="Models\PepperiTransactionTempModel.cs" />
+    <Compile Include="Models\FileImportRowModel.cs" />
+    <Compile Include="Models\JSONResultModel.cs" />
+    <Compile Include="Models\AllocationResultModel.cs" />
+    <Compile Include="Models\AuditModel.cs" />
+    <Compile Include="Models\BaseListModel.cs" />
+    <Compile Include="Models\BrandBrandCategoryModel.cs" />
+    <Compile Include="Models\BrandCategoryModel.cs" />
+    <Compile Include="Models\BrandCategorySalesPersonModel.cs" />
+    <Compile Include="Models\BrandModel.cs" />
+    <Compile Include="Models\CommercialTermModel.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\CountryModel.cs" />
+    <Compile Include="Models\CurrencyModel.cs" />
+    <Compile Include="Models\CustomerAdditionalInfoModel.cs" />
+    <Compile Include="Models\CustomerAddressModel.cs" />
+    <Compile Include="Models\CustomerConflictModel.cs" />
+    <Compile Include="Models\CustomerContactModel.cs" />
+    <Compile Include="Models\CustomerFreightModel.cs" />
+    <Compile Include="Models\CustomerMarketingModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\NoteAttachmentModel.cs" />
+    <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Models\EMailQueueModel.cs" />
+    <Compile Include="Models\FileTransferConfigurationModel.cs" />
+    <Compile Include="Models\DragDropListItemsModel.cs" />
+    <Compile Include="Models\MessageTemplateModel.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\FreightCarrierModel.cs" />
+    <Compile Include="Models\FreightForwarderModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\OrderActionModel.cs" />
+    <Compile Include="Models\PickDetailModel.cs" />
+    <Compile Include="Models\PickHeaderModel.cs" />
+    <Compile Include="Models\ProductAdditionCategory.cs" />
+    <Compile Include="Models\ProductComplianceModel.cs" />
+    <Compile Include="Models\ProductIPModel.cs" />
+    <Compile Include="Models\ProductPackingInfoModel.cs" />
+    <Compile Include="Models\ShopifyImportTempModel.cs" />
+    <Compile Include="Models\UserAliasModel.cs" />
+    <Compile Include="ViewModels\EditCustomerDefaultViewModel.cs" />
+    <Compile Include="ViewModels\EditLocationViewModel.cs" />
+    <Compile Include="ViewModels\EditProductComplianceViewModel.cs" />
+    <Compile Include="ViewModels\EditProductIPViewModel.cs" />
+    <Compile Include="ViewModels\EditSupplierAddressViewModel.cs" />
+    <Compile Include="ViewModels\NewCustomerViewModel.cs" />
+    <Compile Include="ViewModels\PicksListViewModel.cs" />
+    <Compile Include="ViewModels\ProductImageUploadViewModel.cs" />
+    <Compile Include="Models\TaskFollowupModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\OrderPaymentModel.cs" />
+    <Compile Include="Models\PricingInfoModel.cs" />
+    <Compile Include="Models\ProductLocationModel.cs" />
+    <Compile Include="Models\ProductMediaModel.cs" />
+    <Compile Include="Models\ProductPrice.cs" />
+    <Compile Include="Models\PurchaseNoteModel.cs" />
+    <Compile Include="Models\PurchaseOrderDetailModel.cs" />
+    <Compile Include="Models\PurchaseOrderDetailTempModel.cs" />
+    <Compile Include="Models\ListItemModel.cs" />
+    <Compile Include="Models\LOVItemModel.cs" />
+    <Compile Include="Models\LOVModel.cs" />
+    <Compile Include="Models\MarketingGroupModel.cs" />
+    <Compile Include="Models\MediaModel.cs" />
+    <Compile Include="Models\MenuOptionModel.cs" />
+    <Compile Include="Models\PaymentTermModel.cs" />
+    <Compile Include="Models\PortModel.cs" />
+    <Compile Include="Models\PriceLevelModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\PurchaseOrderHeaderModel.cs" />
+    <Compile Include="Models\PurchaseOrderHeaderStatusModel.cs" />
+    <Compile Include="Models\PurchaseOrderHeaderTempModel.cs" />
+    <Compile Include="Models\PurchaseOrderSummaryModel.cs" />
+    <Compile Include="Models\RegionModel.cs" />
+    <Compile Include="Models\SaleNoteModel.cs" />
+    <Compile Include="Models\SalesOrderDetailModel.cs" />
+    <Compile Include="Models\SalesOrderSummaryModel.cs" />
+    <Compile Include="Models\SalesOrderHeaderModel.cs" />
+    <Compile Include="Models\SalesOrderHeaderStatusModel.cs" />
+    <Compile Include="Models\SalesOrderHeaderTempModel.cs" />
+    <Compile Include="Models\ScheduledTaskLogModel.cs" />
+    <Compile Include="Models\ScheduledTaskModel.cs" />
+    <Compile Include="Models\ShipmentContentModel.cs" />
+    <Compile Include="Models\ShipmentModel.cs" />
+    <Compile Include="Models\ShipmentResultModel.cs" />
+    <Compile Include="Models\DocumentTemplateModel.cs" />
+    <Compile Include="Models\PurchaseDetailSplitListModel.cs" />
+    <Compile Include="Models\SplitPurchaseModel.cs" />
+    <Compile Include="Models\SupplierAddressModel.cs" />
+    <Compile Include="Models\SupplierModel.cs" />
+    <Compile Include="Models\SupplierTermModel.cs" />
+    <Compile Include="Models\LogListModel.cs" />
+    <Compile Include="Models\TaxCodeModel.cs" />
+    <Compile Include="Models\TransactionDrillDownModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddPOToShipmentPopupViewModel.cs" />
+    <Compile Include="ViewModels\AddToShipmentPopupViewModel.cs" />
+    <Compile Include="ViewModels\AllocationInfoViewModel.cs" />
+    <Compile Include="ViewModels\AllocationsViewModel.cs" />
+    <Compile Include="ViewModels\BrandCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\BrandListViewModel.cs" />
+    <Compile Include="ViewModels\BrandsViewModel.cs" />
+    <Compile Include="Models\CancellationStep.cs" />
+    <Compile Include="ViewModels\CancellationViewModel.cs" />
+    <Compile Include="ViewModels\CompanyListViewModel.cs" />
+    <Compile Include="ViewModels\CountryListViewModel.cs" />
+    <Compile Include="ViewModels\CreateOrderViewModel.cs" />
+    <Compile Include="ViewModels\CreditCardListViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyListViewModel.cs" />
+    <Compile Include="ViewModels\BrandCategorySalesPersonListViewModel.cs" />
+    <Compile Include="ViewModels\CustomerAddressListViewModel.cs" />
+    <Compile Include="ViewModels\CustomerConflictListViewModel.cs" />
+    <Compile Include="ViewModels\CustomerContactListViewModel.cs" />
+    <Compile Include="ViewModels\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\CustomerMarketingListViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\EditCreditCardViewModel.cs" />
+    <Compile Include="ViewModels\EditDataMappingViewModel.cs" />
+    <Compile Include="ViewModels\EditPurchaseImportDataMappingsViewModel.cs" />
+    <Compile Include="ViewModels\EditSaleImportMappingsViewModel.cs" />
+    <Compile Include="ViewModels\EditSalesOrderDetailTempViewModel.cs" />
+    <Compile Include="ViewModels\EditSalesOrderHeaderTempViewModel.cs" />
+    <Compile Include="ViewModels\EditShipmentViewModel.cs" />
+    <Compile Include="ViewModels\EditTaskViewModel.cs" />
+    <Compile Include="ViewModels\FileUploadViewModel.cs" />
+    <Compile Include="ViewModels\NoteListViewModel.cs" />
+    <Compile Include="ViewModels\EditBrandCategoryViewModel.cs" />
+    <Compile Include="ViewModels\EditBrandCategorySalesPersonViewModel.cs" />
+    <Compile Include="ViewModels\EditBrandViewModel.cs" />
+    <Compile Include="ViewModels\EditCompanyViewModel.cs" />
+    <Compile Include="ViewModels\EditCountryViewModel.cs" />
+    <Compile Include="ViewModels\EditCurrencyViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerAdditionalInfoViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerAddressViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerConflictViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerContactViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerFreightViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerMarketingViewModel.cs" />
+    <Compile Include="ViewModels\EditNoteViewModel.cs" />
+    <Compile Include="ViewModels\EditCustomerViewModel.cs" />
+    <Compile Include="ViewModels\EditFileTransferConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\EditMessageTemplateViewModel.cs" />
+    <Compile Include="ViewModels\EditFreightCarrierViewModel.cs" />
+    <Compile Include="ViewModels\EditFreightForwarderViewModel.cs" />
+    <Compile Include="ViewModels\EditLOVItemViewModel.cs" />
+    <Compile Include="ViewModels\EditMarketingGroupViewModel.cs" />
+    <Compile Include="ViewModels\EditPaymentTermViewModel.cs" />
+    <Compile Include="ViewModels\EditPriceLevelViewModel.cs" />
+    <Compile Include="ViewModels\EditProductViewModel.cs" />
+    <Compile Include="ViewModels\EditPurchaseOrderDetailTempViewModel.cs" />
+    <Compile Include="ViewModels\EditPurchaseOrderHeaderTempViewModel.cs" />
+    <Compile Include="ViewModels\EditRegionViewModel.cs" />
+    <Compile Include="ViewModels\EditScheduledTaskViewModel.cs" />
+    <Compile Include="ViewModels\EditSupplierViewModel.cs" />
+    <Compile Include="ViewModels\EditTaxCodeViewModel.cs" />
+    <Compile Include="ViewModels\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\MessageTemplateListViewModel.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\FreightCarrierListViewModel.cs" />
+    <Compile Include="ViewModels\GridViewModel.cs" />
+    <Compile Include="ViewModels\ListsOfValuesViewModel.cs" />
+    <Compile Include="ViewModels\MarketingGroupListViewModel.cs" />
+    <Compile Include="ViewModels\OverrideMSQViewModel.cs" />
+    <Compile Include="ViewModels\PaymentTermListViewModel.cs" />
+    <Compile Include="ViewModels\PriceLevelListViewModel.cs" />
+    <Compile Include="ViewModels\ProductListViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseOrderHeaderListViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseOrderLinesViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseOrderSplitViewModel.cs" />
+    <Compile Include="ViewModels\RegionListViewModel.cs" />
+    <Compile Include="Models\SalesOrderDetailTempModel.cs" />
+    <Compile Include="ViewModels\SalePrintOptionsViewModel.cs" />
+    <Compile Include="ViewModels\SalesOrderHeaderListViewModel.cs" />
+    <Compile Include="ViewModels\ShipmentContentDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SupplierAddressesListViewModel.cs" />
+    <Compile Include="ViewModels\SystemStatusViewModel.cs" />
+    <Compile Include="ViewModels\TaxCodeListViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Evolution.Enumerations\Evolution.Enumerations.csproj">
+      <Project>{9d5a6a83-7759-408d-9a40-6077ea835e4d}</Project>
+      <Name>Evolution.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.Extensions\Evolution.Extensions.csproj">
+      <Project>{a2fb972b-17c3-4b84-864e-2c0d155f5240}</Project>
+      <Name>Evolution.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.Resources\Evolution.Resources.csproj">
+      <Project>{d2a67eb1-5a98-49d7-a1a5-8e2735ea542a}</Project>
+      <Name>Evolution.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

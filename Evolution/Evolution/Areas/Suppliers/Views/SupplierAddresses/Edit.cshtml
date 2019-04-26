@@ -1,0 +1,59 @@
+﻿@model Evolution.Models.ViewModels.EditSupplierAddressViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "SupplierAddresses", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.SupplierAddress.Id)
+    @Html.HiddenFor(m => m.SupplierAddress.CompanyId)
+    @Html.HiddenFor(m => m.SupplierAddress.SupplierId)
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblAddressType</div>
+            <div class="col-sm-2 cellpadding">@Html.DropDownListFor(m => m.SupplierAddress.AddressTypeId, new SelectList(Model.AddressTypeList, "Id", "Text"), new { @class = "form-control", @style = "width:100%" })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblStreet</div>
+            <div class="col-sm-2 cellpadding">@Html.EditorFor(m => m.SupplierAddress.Street, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblCity</div>
+            <div class="col-sm-2 cellpadding">@Html.EditorFor(m => m.SupplierAddress.City, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblState</div>
+            <div class="col-sm-2 cellpadding">@Html.EditorFor(m => m.SupplierAddress.State, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "20" } })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblPostCode</div>
+            <div class="col-sm-2 cellpadding">@Html.EditorFor(m => m.SupplierAddress.Postcode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "10" } })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 labelpadding">@EvolutionResources.lblCountryName</div>
+            <div class="col-sm-2 cellpadding">@Html.DropDownListFor(m => m.SupplierAddress.CountryId, new SelectList(Model.CountryList, "Id", "Text"), new { @class = "form-control", @style = "width:100%" })</div>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+        <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('SupplierAddress_AddressTypeId');
+</script>

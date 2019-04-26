@@ -1,0 +1,57 @@
+﻿@model Evolution.Models.Models.DragDropListItemsModel
+
+<div class="row">
+    <div class="col-sm-2 cellpadding"></div>
+    <div class="col-sm-3 cellpadding">
+        @Model.AvailableItemsLabel<br />
+        @Html.ListBox("AvailIds",
+                        new MultiSelectList(Model.AvailableItemList, "Id", "Text"),
+                        new { size=10, @class = "form-control", @style = "width:100%" })
+    </div>
+    <div class="col-sm-1 cellpadding text-middle text-center">
+        <br />
+        <input type="button" id="left" style="width:40px" value="<" /><br/>
+        <input type="button" id="right" style="width:40px" value=">" /><br />
+        <input type="button" id="leftall" style="width:40px" value="<<" /><br />
+        <input type="button" id="rightall" style="width:40px" value=">>" /><br />
+    </div>
+    <div class="col-sm-3 cellpadding">
+        @Model.SelectedItemsLabel<br />
+        @Html.ListBox("SelectedIds",
+                        new MultiSelectList(Model.SelectedItemList, "Id", "Text"),
+                        new { size = 10, @class = "form-control", @style = "width:100%" })
+    </div>
+</div>
+
+<script>
+    function SelectAllListItems() {
+        $('#@Model.ControlPrefix' + 'SelectedIds option').prop('selected', true);
+        DisplayProgress();
+    }
+
+    function moveItems(origin, dest) {
+        $(origin).find(':selected').appendTo(dest);
+    }
+
+    function moveAllItems(origin, dest) {
+        $(origin).children().appendTo(dest);
+    }
+
+    $(function () {
+        $('#left').click(function () {
+            moveItems('#@Model.ControlPrefix' + 'SelectedIds', '#@Model.ControlPrefix' + 'AvailIds');
+        });
+
+        $('#right').on('click', function () {
+            moveItems('#@Model.ControlPrefix' + 'AvailIds', '#@Model.ControlPrefix' + 'SelectedIds');
+        });
+
+        $('#leftall').on('click', function () {
+            moveAllItems('#@Model.ControlPrefix' + 'SelectedIds', '#@Model.ControlPrefix' + 'AvailIds');
+        });
+
+        $('#rightall').on('click', function () {
+            moveAllItems('#@Model.ControlPrefix' + 'AvailIds', '#@Model.ControlPrefix' + 'SelectedIds');
+        });
+    });
+</script>

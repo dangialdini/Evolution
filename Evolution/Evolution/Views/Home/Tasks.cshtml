@@ -1,0 +1,69 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+<div class="panel panel-default">
+    <div class="panel-heading">@EvolutionResources.bnrTasks</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="tasks" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'tasks',
+            tableclass: 'gridStyle',
+            jqdateformat: '@Model.JQDateFormat',
+            displaydateformat: '@Model.DisplayDateFormat',
+            pagenumber: 1,
+            pagesizes: [ 5, 10, 20, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [
+                           { caption: '', type: 'dropdownlist', id: 'ddlPeriod', width: '130px', datasourceurl: '@Url.Action("GetPeriodList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlUser', width: '210px', datasourceurl: '@Url.Action("GetUserList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlBusinessUnit', width: '120px', datasourceurl: '@Url.Action("GetBusinessUnitList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlTaskType', width: '210px', datasourceurl: '@Url.Action("GetTaskStatusList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlCustomer', width: '230px', datasourceurl: '@Url.Action("GetCustomerList")', defaultvalue: '0' },
+                          ],
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetTasks")?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&period={ddlPeriod}&businessunit={ddlBusinessUnit}&user={ddlUser}&tasktype={ddlTaskType}&custid={ddlCustomer}&search={SEARCH}',
+            addurl: 'javascript:OnEditItem(0)',
+            editurl: 'javascript:OnEditItem({KEYFIELD})',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCreatedDate', width: '130px', class: '', fields: [{ type: 'isodatetime', field: 'CreatedDateISO', format: '@Model.DisplayDateFormat', width: '', class: '', colourfield: 'StatusColour' }] },
+                { heading: '@EvolutionResources.lblDescription', width: '', class: '', fields: [{ type: 'text', text: '<strong>' },
+                                                                                                { type: 'field', field: 'Title', width: '', class: '', colourfield: 'StatusColour' },
+                                                                                                { type: 'text', text: '</strong><br/><br/>', width: '', class: '' },
+                                                                                                { type: 'field', field: 'Description', dontreplacecrlfs: true, width: '', class: '', colourfield: 'StatusColour' }]},
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerUrl', class: '', colourfield: 'StatusColour' } ]},
+                { heading: '@EvolutionResources.lblBusinessUnit', width: '', class: '', fields: [{ type: 'field', field: 'BusinessUnit', class: '', colourfield: 'StatusColour' } ]},
+                { heading: '@EvolutionResources.lblTaskType', width: '150px', class: '', fields: [{ type: 'field', field: 'TaskTypeText', class: '', colourfield: 'StatusColour' } ]},
+                { heading: '@EvolutionResources.lblStatus', width: '100px', class: '', fields: [{ type: 'field', field: 'StatusText', class: '', colourfield: 'StatusColour' } ]},
+                { heading: '@EvolutionResources.lblDueDate', width: '100px', class: '', fields: [{ type: 'isodate', field: 'DueDateISO', format: '@Model.DisplayDateFormat', width: '', class: '', colourfield: 'StatusColour' }] },
+                { heading: '@EvolutionResources.lblAssignee', width: '', class: '', fields: [{ type: 'field', field: 'AssigneeName', width: '', class: '', colourfield: 'StatusColour' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function OnEditItem(id) {
+        HideError();
+        Dialog('@Url.Action("AddEditTask")?id=' + id, 'lg', 'Task_Title');
+    }
+</script>

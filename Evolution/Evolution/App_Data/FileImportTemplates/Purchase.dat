@@ -1,0 +1,7 @@
+// List of recognise fields in purchase import file
+// DatabaseFieldName,DisplayName
+,(None)
+ProductCode,Product Code
+UnitPrice,Unit Price
+Quantity,Quantity
+SupplierName,Supplier Name

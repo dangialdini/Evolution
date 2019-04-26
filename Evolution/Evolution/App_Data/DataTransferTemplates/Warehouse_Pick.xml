@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PackageDefinition>
+  <Description>Configuration file for sending a Pick to Warehouse</Description>
+  <SiteName>Warehouse Picks</SiteName>
+  <File CompressFile="Yes" FTPFile="Yes" EMailFile="No" DataFileExtension=".txt">
+    <Formats>
+      <Format DataFieldDelimiter="" DataFieldDelimiterUsage="None" DataFieldSeparator="\t" HeaderFieldDelimiter="" HeaderFieldSeparator=" | ">
+        <Fields>
+          <Field Name="PickID" Type="String"></Field>
+          <Field Name="HeaderLabel" Type="String"></Field>
+          <Field Name="CustomerName" Type="String"></Field>
+          <Field Name="CustomerOrderNumber" Type="String"></Field>
+          <Field Name="ShipAddress1" Type="String"></Field>
+          <Field Name="ShipAddress2" Type="String"></Field>
+          <Field Name="ShipAddress3" Type="String"></Field>
+          <Field Name="ShipSuburb" Type="String"></Field>
+          <Field Name="ShipState" Type="String"></Field>
+          <Field Name="ShipPostcode" Type="String"></Field>
+          <Field Name="ShipCountry" Type="String"></Field>
+          <Field Name="OnforwarderName" Type="String"></Field>
+          <Field Name="OnforwarderAddress" Type="String"></Field>
+          <Field Name="OnForwarderSuburb" Type="String"></Field>
+          <Field Name="OnForwarderPostcode" Type="String"></Field>
+          <Field Name="OnForwarderState" Type="String"></Field>
+          <Field Name="OnForwarderCode" Type="String"></Field>
+          <Field Name="CarrierCode" Type="String"></Field>
+          <Field Name="CustomerID" Type="String"></Field>
+          <Field Name="DeliveryInstructions" Type="String"></Field>
+          <Field Name="CustomerContact" Type="String"></Field>
+          <Field Name="PartnerEDI" Type="String"></Field>
+        </Fields>
+      </Format>
+      <Format DataFieldDelimiter="" DataFieldDelimiterUsage="None" DataFieldSeparator="\t" HeaderFieldDelimiter="" HeaderFieldSeparator=" | ">
+        <Fields>
+          <Field Name="PickID" Type="String"></Field>
+          <Field Name="DetailLabel" Type="String"></Field>
+          <Field Name="PickQty" Type="String"></Field>
+          <Field Name="ItemNumber" Type="String"></Field>
+          <Field Name="PickLineID" Type="String"></Field>
+        </Fields>
+      </Format>
+    </Formats>
+  </File>
+</PackageDefinition>

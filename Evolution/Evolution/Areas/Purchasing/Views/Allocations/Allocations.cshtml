@@ -1,0 +1,45 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="allocations" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'allocations',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetAllocations")?index={INDEX}&parentid=@Model.ParentId&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '', class: '', fields: [{ type: 'field', field: 'OrderNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductCode', width: '', class: '', fields: [{ type: 'field', field: 'ProductCode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQuantity', width: '', class: '', fields: [{ type: 'field', field: 'Quantity', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowOpen', width: '', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowOpenISO', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowClose', width: '', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowCloseISO', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>
+
+

@@ -1,0 +1,164 @@
+﻿@model Evolution.Models.ViewModels.EditProductComplianceViewModel
+@using Evolution.Resources
+@using Evolution.Extensions
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Compliance", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.ProductCompliance.Id)
+    @Html.HiddenFor(m => m.ProductCompliance.ProductId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            <div class="row">
+                <div class="col-lg-2 col-sm-3 labelpadding">
+                    @EvolutionResources.lblComplianceCategory
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.ProductCompliance.ComplianceCategoryId,
+                                               new SelectList(Model.ComplianceCategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-sm-3 labelpadding">
+                    @EvolutionResources.lblMarket
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.ProductCompliance.MarketId,
+                                               new SelectList(Model.MarketList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            @if (Model.ProductCompliance.Attachments.Count() > 0) {
+                <div class="row">
+                    <div class="col-lg-2 col-sm-3 labelpadding text-top">
+                        @EvolutionResources.lblDocuments
+                    </div>
+                    <div class="col-sm-5 cellpadding">
+                        <br />
+                        <table class="table-condensed table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="col-sm-3 labelpadding"><strong>@EvolutionResources.lblName</strong></th>
+                                    <th class="col-sm-1 labelpadding text-center"><strong>@EvolutionResources.lblDelete</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 0; i < Model.ProductCompliance.Attachments.Count(); i++) {
+                                    <tr>
+                                        <td class="col-sm-3 cellpadding">
+                                            @Html.HiddenFor(m => Model.ProductCompliance.Attachments[i].Id)
+                                            @Html.HiddenFor(m => Model.ProductCompliance.Attachments[i].MediaId)
+                                            @Model.ProductCompliance.Attachments[i].FileName
+                                        </td>
+                                        <td class="col-sm-1 cellpadding text-center">
+                                            @Html.CheckBoxFor(m => Model.ProductCompliance.Attachments[i].Selected)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            <br />
+            <div class="row">
+                <div class="col-lg-2 col-sm-3 cellpadding">
+                    @EvolutionResources.lblSelectImageFilesToUpload
+                </div>
+                <div class="col-sm-9 cellpadding">
+                    <div id="upload-images">
+                        <button type="button" class="button" onclick="SelectImageUpload()">
+                            <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="bottom" title="Click to Upload" style="font-size:2em;margin-bottom:10px;"></span>
+                        </button>
+                        <input type="file" id="Files" name="Files" style="display:none;" multiple/>
+                    </div>
+                    <span style="font-size:0.8em;">
+                        @EvolutionResources.lblMaximumFileSize @Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)<br />
+                    </span>
+                    <span style="font-size:0.8em;">
+                        @EvolutionResources.lblValidFileTypes @Model.ValidFileTypes
+                    </span>
+                    <div id="image-upload-filename"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer text-right">
+        <button type="submit" id="btnSave" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+        <button type="submit" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('ProductCompliance_ComplianceCategoryId');
+
+    function SelectImageUpload() {
+        var upload = document.getElementById('Files');
+        upload.click();
+    }
+
+    $('#Files').change(function () {
+        // Called when files are selected for upload
+        if (typeof FileReader !== "undefined") {
+            var msg;
+            var validType = true;
+            var uploadFiles = document.getElementById('Files');
+            var size = 0;
+            for (var i = 0; i < uploadFiles.files.length && validType; i++) {
+                size += uploadFiles.files[i].size;
+                if (!IsValidFileType(uploadFiles.files[i].name)) {
+                    msg = '@EvolutionResources.errFileIsNotAValidType'.replace('%1', uploadFiles.files[i].name);
+                    DisplayError(1, msg);
+                    EnableButton('btnSave', false);
+                    validType = false;
+                }
+                else {
+                    $('#image-upload-filename').append("<span style='color:green'>" + uploadFiles.files[i].name + "</span><br />");
+                }
+            }
+            if (validType) {
+                if (size > @Model.MaxUploadFileSize) {
+                    msg = '@EvolutionResources.errMaxFileUploadSizeExceeded'.replace('%1', '' + (size / 1000000).toFixed(2) + 'MB');
+                    msg = msg.replace('%2', '@Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)');
+                    DisplayError(1, msg);
+                    EnableButton('btnSave', false);
+                } else {
+                    EnableButton('btnSave', true);
+                    HideError();
+                }
+            }
+        }
+    });
+
+    function IsValidFileType(fileName) {
+        var allowed = ',@Model.ValidFileTypes,'.replace(/\s/g, '').toLowerCase();
+        var tempName = fileName.toLowerCase();
+        var pos = tempName.lastIndexOf('.');
+        if (pos != -1) tempName = tempName.substr(pos + 1);
+        pos = allowed.indexOf(',' + tempName + ',');
+        if (pos != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function EnableButton(buttonName, enabled) {
+        if (enabled) {
+            $('#' + buttonName).prop('disabled', false);
+        } else {
+            $('#' + buttonName).prop('disabled', true);
+        }
+    }
+
+</script>

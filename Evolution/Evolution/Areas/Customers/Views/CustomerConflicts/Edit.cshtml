@@ -1,0 +1,41 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerConflictViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerConflicts", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.CustomerConflict.Id)
+    @Html.HiddenFor(m => m.CustomerConflict.CompanyId)
+    @Html.HiddenFor(m => m.CustomerConflict.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12 cellpadding">
+                    @Html.HiddenFor(m => m.SelectedItems)
+                    @Html.EditorFor(m => m.CustomerConflict.SensitiveWithId)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="addselected" class="btn btn-sm btn-primary" onclick="OnSubmit()">@EvolutionResources.btnAddSelected</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('customersearch');
+
+    function OnSubmit() {
+        DisplayProgress();
+        var selectedItems = GetSelectedItems(0, 'chkSelect', 'hdnId');
+        $('#SelectedItems').val(selectedItems);
+        return true;
+    }
+</script>

@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Evolution - @Model.PageTitle</title>
+        <link href="/Content/bootstrap.css" rel="stylesheet" />
+        <link href="/Content/bootstrap-theme.css" rel="stylesheet" />
+        <link href="/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+        <link href="/Content/themes/base/datepicker.css" rel="stylesheet" />
+        <link href="/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+        <link href="/Content/site.css" rel="stylesheet" />
+
+        <script src="/Scripts/jquery-3.2.1.min.js"></script>
+        <script src="/scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="/Scripts/jquery-ui-timepicker-addon.js"></script>
+        <script src="/Scripts/moment-with-locales.min.js"></script>
+
+        <script src="/Scripts/bootstrap.min.js"></script>
+        <script src="/Scripts/MessageBox.js"></script>
+        <script src="/Scripts/Dialog.js"></script>
+        <script src="/Scripts/whirly.js"></script>
+        <script src="/Scripts/showprogress.js"></script>
+        <script src="/Scripts/error.js"></script>
+        <script src="/Scripts/PostForm.js"></script>
+        <script src="/Scripts/Cookie.js"></script>
+        <script src="/Scripts/Grid.js"></script>
+        <script src="/Scripts/TimeZone.js"></script>
+        <script src="/Scripts/Clipboard.js"></script>
+
+        <!-- Add fancyBox main JS and CSS files -->
+        <script src="/Scripts/FancyBox/FancyBox.js"></script>
+        <script src="/Scripts/FancyBox/jquery.fancybox.js?v=2.1.5"></script>
+        <link rel="stylesheet" type="text/css" href="/Scripts/FancyBox/jquery.fancybox.css" media="screen" />
+        <!-- Add Button helper (this is optional) -->
+        <link rel="stylesheet" type="text/css" href="/Scripts/FancyBox/helpers/jquery.fancybox-buttons.css" />
+        <script type="text/javascript" src="/Scripts/FancyBox/helpers/jquery.fancybox-buttons.js"></script>
+        <!-- Add Thumbnail helper (this is optional) -->
+        <link rel="stylesheet" type="text/css" href="/Scripts/FancyBox/helpers/jquery.fancybox-thumbs.css" />
+        <script src="/Scripts/FancyBox/helpers/jquery.fancybox-thumbs.js"></script>
+        <!-- Add Media helper (this is optional) -->
+        <script src="/Scripts/FancyBox/helpers/jquery.fancybox-media.js"></script>
+
+        <script type="text/javascript">
+            // Get the current UTC offset, allowing for DST
+            var tz = GetUTCTimeZoneOffset();
+            var DisplayDateFormat = '@Model.DisplayDateFormat';
+            var JQDateFormat = '@Model.JQDateFormat';
+            var focField = GetCookie('FocusField');
+            function ApplyFocus(focusField) {
+                focField = focusField;
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Progress whirly -->
+        <div id="divProgress" style="display: none; z-index: 99999; position:absolute; top:0px; left:0px; width:100%; height:100%">
+            <img id="imgProgress" src="~/Content/Processing.gif" alt="Processing..." width="100" height="100" />
+        </div>
+        <!-- Error Message Panel -->
+        <div class="row">
+            <div id="div-error" class="col-xs-12" style="position:fixed !important; left:0px; top:0px; z-index:999;">
+                <span id="lblError"></span>
+            </div>
+        </div>
+        <!-- Modal Message box -->
+        <div id="msgbox" class="modal fade" tabindex="-1" role="dialog">
+            <div id="msgboxclass">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><span id="modalcaption"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modaltext"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="modalbuttons"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Dialog -->
+        <div id="dialog" class="modal fade" tabindex="-1" role="dialog">
+            <div id="dlgboxclass" class="">
+                <div id="modal-content" class="modal-content">
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <table class="table pagecontainer">
+            <tbody>
+                <tr style="height: 100%; width:100%">
+                    <td>
+                        <table class="pagecontainerinner" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="topbar topbartext text-right" colspan="2">
+                                    <div style="width:80%; float:left;">&nbsp;</div>
+                                    <div style="width:20%; float:left; text-align:right; vertical-align:middle;">
+                                        @Html.DropDownListFor(m => m.CurrentCompany.Id, new SelectList(Model.AvailableCompanies, "Id", "Text"),
+                                                                   new { @class = "form-control"})
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="menubar" colspan="2">
+                                    @Html.Partial("BootStrapMenu", Model.Menu.Menu1)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @Html.Partial("BreadCrumbs", Model.Menu.BreadCrumb)
+                                </td>
+                            </tr>
+
+                            <tr style="height: auto;">
+                                <td class="text-top menupanelwidth">
+                                    <table class="menupanel">
+                                        <tr>
+                                            <td class="menupanelupper">
+                                                @if (Model.Menu.Menu2.Options.Count > 0) {
+                                                    @Html.Partial("IconMenu", Model.Menu.Menu2)
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="menupanellower">
+                                                @if (!string.IsNullOrEmpty(Model.MarginLogo)) {
+                                                    <img src="/Content/Logos/@Model.MarginLogo" alt="@EvolutionResources.lblBrandLogo" style="width:157px; height:auto;" />
+                                                }
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="contentpanel">
+                                    @RenderBody()
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script>
+            if ('@Model.FocusField' != '') {
+                $('#@Model.FocusField').focus();
+            } else {
+                if(focField) $('#' + focField).focus();
+            }
+
+            var icon = @((int)Model.Error.Icon);
+            var errMsg = '@(Model.Error.Message)';
+            DisplayError(icon, errMsg);
+            HoldError();
+            setTimeout(UnHoldError, 2500);   // Reset the hold on clearing messages
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip(); 
+
+                $('#TZ').val(tz);
+
+                $('#CurrentCompany_Id').change(function () {
+                    var selId = $(this).val();
+
+                    $.ajax({
+                        url: '/Home/SelectCompany?id=' + selId
+                    }).done(function (data) {
+                        // Redirect to the home page
+                        window.location = '/';
+
+                    }).fail(function (jqXhr, status) {
+                        alert('AJAX Request Failed: ' + status);
+                    })
+                })
+            });
+        </script>
+    </body>
+</html>

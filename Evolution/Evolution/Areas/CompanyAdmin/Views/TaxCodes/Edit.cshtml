@@ -1,0 +1,68 @@
+﻿@model Evolution.Models.ViewModels.EditTaxCodeViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "TaxCodes", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.TaxCode.Id)
+    @Html.HiddenFor(m => m.TaxCode.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTaxCode
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.TaxCode.TaxCode, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDescription
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.TaxCode.TaxCodeDescription, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPercentageRate
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.TaxCode.TaxPercentageRate, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTaxName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.TaxCode.TaxCodeTypeId, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.TaxCode.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('TaxCode_TaxCode');
+</script>
+
+

@@ -1,0 +1,289 @@
+﻿@model Evolution.Models.ViewModels.EditShipmentViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Shipments", FormMethod.Post, new { id = "frmEdit" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.TZ)
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Shipment.Id)
+    @Html.HiddenFor(m => m.Shipment.OriginalRowId)
+    @Html.HiddenFor(m => m.Shipment.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-4" cellpadding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@EvolutionResources.bnrVesselAndVoyageDetails</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblShippingMethod
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.DropDownListFor(m => m.Shipment.ShippingMethodId,
+                                                                 new SelectList(Model.ShippingMethodList, "Id", "Text"),
+                                                                 new { @class = "form-control", @style = "width:100%" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblCarrierVessel
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.DropDownListFor(m => m.Shipment.CarrierVesselId,
+                                                                 new SelectList(Model.CarrierVesselList, "Id", "Text"),
+                                                                 new { @class = "form-control", @style = "width:100%" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblDeparturePort
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.DropDownListFor(m => m.Shipment.PortDepartId,
+                                                                 new SelectList(Model.PortList, "Id", "Text"),
+                                                                 new { @class = "form-control", @style = "width:100%" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblArrivalPort
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.DropDownListFor(m => m.Shipment.PortArrivalId,
+                                                                new SelectList(Model.PortList, "Id", "Text"),
+                                                                new { @class = "form-control", @style = "width:100%" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblVoyageNo
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.VoyageNo, null, new { @class = "form-control", @style = "width:100%", @maxlength = "25" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblTranshipment
+                                </div>
+                                <div class="col-sm-6 labelpadding">
+                                    @Html.CheckBoxFor(m => m.Shipment.IsTranshipment)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4" cellpadding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@EvolutionResources.bnrShipmentDates</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblDate110Shipped
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.Date100Shipped, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblLandingDate
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.DatePreAlertETA, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblExpectedDelivery
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.DateExpDel, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblWarehouseAccepted
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.DateWarehouseAccept, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 cellpadding">
+                                    @EvolutionResources.lblDateUnpackSlipReceived
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.DateUnpackSlipRcvd, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4" cellpadding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@EvolutionResources.bnrShipmentDetails</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblSeason
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.DropDownListFor(m => m.Shipment.SeasonId,
+                                                                 new SelectList(Model.SeasonList, "Id", "Text"),
+                                                                 new { @class = "form-control", @style = "width:100%" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblConsidationName
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.ConsolidationName, null, new { @class = "form-control", @style = "width:100%", @maxlength = "52" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblConsignmentNo
+                                </div>
+                                <div class="col-sm-6 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.ConsignmentNo, null, new { @class = "form-control", @style = "width:100%", @maxlength = "50" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 labelpadding">
+                                    @EvolutionResources.lblShipmentComments
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 cellpadding">
+                                    @Html.TextAreaFor(m => m.Shipment.Comments, new { @class = "form-control", style = "width:100%; height:70px", maxlength = 255 })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" cellpadding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@EvolutionResources.bnrContainerDetails</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-2 labelpadding">
+                                    @EvolutionResources.lblContainerNos
+                                </div>
+                                <div class="col-sm-3 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.ContainerNo, null, new { @class = "form-control", @style = "width:100%", @maxlength = "255" })
+                                </div>
+                                <div class="col-sm-1 labelpadding">
+                                    @EvolutionResources.lblPackages
+                                </div>
+                                <div class="col-sm-1 cellpadding">
+                                    @Html.TextBoxFor(m => m.Shipment.CountPackages, null, new { @class = "form-control", @style = "width:100%", @maxlength = "5" })
+                                </div>
+                                <div class="col-sm-2 labelpadding text-right">
+                                    @EvolutionResources.lblCBMEstimate: @Model.Shipment.CBMEstimate.Value.ToString("N3")
+                                </div>
+                                <div class="col-sm-2 labelpadding text-right">
+                                    @EvolutionResources.lblCBMCharged: @Model.Shipment.CBMCharged.Value.ToString("N3")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">@EvolutionResources.bnrContentDetails</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="posinshipment" class="table-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button type="submit" id="btnSave" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+                    <button type="submit" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('Shipment_ShipmentMethodId');
+
+    $(document).ready(function () {
+        $.datepicker.setDefaults({ dateFormat: '@Model.JQDateFormat', altFormat: '' });
+
+        $('#Shipment_Date100Shipped').datepicker();
+        $('#Shipment_DatePreAlertETA').datepicker();
+        $('#Shipment_DateExpDel').datepicker();
+        $('#Shipment_DateWarehouseAccept').datepicker();
+        $('#Shipment_DateUnpackSlipRcvd').datepicker();
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'posinshipment',
+            widthoffset: 240,
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: false,
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetShipmentDetails")?shipmentid=@Model.Shipment.Id&index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}',
+            addurl: 'javascript:AddPurchaseOrders()',
+            editurl: '@Url.Action("EditContent")?shipmentId=@Model.Shipment.Id&contentId={KEYFIELD}',
+            deleteurl: '@Url.Action("DropContent")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            clearmessageondisplay: false,
+            columnDefs: [
+                { heading: '@EvolutionResources.lblOrderNumber', width: '100px', class: '', fields: [{ type: 'field', field: 'OrderNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductBrand', width: '', class: '', fields: [{ type: 'field', field: 'ProductBrand', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSupplier', width: '', class: '', fields: [{ type: 'field', field: 'SupplierName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWeight (@Model.CurrentCompany.WeightUnit)', width: '100px', class: '', fields: [{ type: 'field', field: 'PackageWeight', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCBMEstimate', width: '100px', class: '', fields: [{ type: 'field', field: 'CBMEstimate', format: 'N3', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCBMCharged', width: '100px', class: '', fields: [{ type: 'field', field: 'CBMCharged', format: 'N3', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                                { type: 'buttonedit', text: '@EvolutionResources.btnEdit', class: '', icon: 'edit' },
+                                { type: 'buttondelete', text: '@EvolutionResources.btnDrop', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function AddPurchaseOrders() {
+        var shipmentId = parseInt($('#Shipment_Id').val());
+        if (shipmentId == 0) {
+            DisplayError(1, '@EvolutionResources.errMustSaveShipmentBeforeAddingOrders');
+        } else {
+            Dialog('@Url.Action("AddPurchaseOrderPopup")', 'lg');
+        }
+    }
+
+</script>

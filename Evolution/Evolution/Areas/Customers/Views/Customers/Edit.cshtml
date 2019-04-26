@@ -1,0 +1,203 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Customers", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Customer.Id)
+    @Html.HiddenFor(m => m.Customer.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Customer.Name, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "52" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCustomerType
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Customer.CustomerTypeId,
+                                               new SelectList(Model.CustomerTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCardRecordId
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Customer.CardRecordId, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "8" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTaxId
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Customer.TaxId, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBillCustomerIn
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Customer.CurrencyId,
+                                               new SelectList(Model.CurrencyList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTaxCode
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Customer.TaxCodeId,
+                                               new SelectList(Model.TaxCodeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPriceLevel
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Customer.PriceLevelId,
+                                               new SelectList(Model.PriceLevelList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+                <div class="col-sm-1 cellpadding"></div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblVolumeDiscount
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Customer.VolumeDiscount, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPaymentTerms
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Customer.PaymentTermId,
+                                               new SelectList(Model.PaymentTermList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCreditLimit
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Customer.CreditLimit, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+                <div class="col-sm-2 labelpadding">
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblOnHold
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.OnHold)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCurrentBalance
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Customer.CurrentBalance, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <br />
+            <hr stype="width:50%" />
+            <br />
+            <div class="row">
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblSendInvoicesWhenClosingPick
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.SendInvoices)
+                </div>
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblEmailAcctMgrOnSaleChange
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.EmailAcctMgrOnSaleChange)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblEmailAcctMgrOnLinkedPurchaseChange
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.EmailAcctMgrOnLinkedPurchaseChange)
+                </div>
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblAllowSalesInNonMSQMultiples
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.AllowSalesInNonMSQMultiples)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblRequireAuthorisation4OrderQtyChange
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.RequireAuthorisation4OrderQtyChange)
+                </div>
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblSendPOSFile
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.SendPOSFile)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblRemoveCustNameFromAddressWhenDrop
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.RemoveCustNameFromAddressWhenDrop)
+                </div>
+                <div class="col-sm-4 labelpadding">
+                    @EvolutionResources.lblExcludeFromSalesGraphs
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.ExcludeFromSalesGraphs)
+                </div>
+            </div>
+
+            <hr style="width:50%; height:2px" />
+
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblActive
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Customer.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('Customer_Name');
+</script>
+
+

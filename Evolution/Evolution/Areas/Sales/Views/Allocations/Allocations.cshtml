@@ -1,0 +1,69 @@
+﻿@model Evolution.Models.ViewModels.AllocationsViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="productlist"></div>
+            </div>
+        </div>
+        <div id="divAllocationInfo"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'productlist',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            pagesizes: [ 5, 10, 15, 30, 50 ],
+            showsearch: true,
+            searchfields: [
+                           { type: 'label', text: '@EvolutionResources.lblBrand', width: '50px' },
+                           { type: 'dropdownlist', id: 'ddlBrands', width: '200px', datasourceurl: '@Url.Action("GetBrands")', defaultvalue: '-1', refreshonchange: true },
+                           { type: 'label', text: '&nbsp;&nbsp;@EvolutionResources.lblLocation', width: '60px' },
+                           { type: 'dropdownlist', id: 'ddlLocations', width: '250px', datasourceurl: '@Url.Action("GetLocations")', defaultvalue: '-1', refreshonchange: true },
+                          ],
+            keyfield: 'Id',
+            sortcolumns: ['ItemNumber', 'ItemName', 'ProductStatusText', 'Enabled'],
+            sortcolumn: 'ItemNumber',
+            sortorder: 1,
+            datasourceurl: '/Products/Products/GetProducts?index={INDEX}&brandid={ddlBrands}&locationid={ddlLocations}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            ondisplaycomplete: InitialiseFancyBox,
+            columnDefs: [
+                { heading: '@EvolutionResources.lblProductCode', width: '120px', class: '', fields: [{ type: 'field', field: 'ItemNumber', width: '', class: '' }] },
+                //{ heading: '@EvolutionResources.lblImage', width: '70px', class: '', fields: [{ type: 'html', field: 'PictureHtml', width: '80px', class: '' }] },
+                { heading: '@EvolutionResources.lblProductName', width: '', class: '', fields: [{ type: 'field', field: 'ItemName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblMSQ', width: '60px', class: '', fields: [{ type: 'field', field: 'MSQ', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductStatus', width: '160px', class: '', fields: [{ type: 'field', field: 'ProductStatusText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        {
+                            type: 'button', text: 'Select', jsfunc: 'OnSelect({KEYFIELD})', class: '', icon: 'check'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function OnSelect(productId) {
+        ShowProgress();
+        var url = '@Url.Action("GetAllocationInfo")?id=' + productId + '&brandid=' + $('#productlist_ddlBrands').val();
+        $('#divAllocationInfo').load(url);
+        HideProgress();
+    }
+</script>

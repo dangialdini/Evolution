@@ -1,0 +1,70 @@
+/* CELLSPACING */
+table {
+    border-spacing: 0px;
+}
+/* CELLPADDING */
+td {
+    padding: 0px;
+}
+.text8pt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+}
+.text9pt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11pt;
+}
+.text11pt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13pt;
+}
+.text18pt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20pt;
+}
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.text-top {
+    vertical-align: top;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.cellpadding {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.border-top {
+    border-top: 1px solid #cccccc;
+}
+.border-left {
+    border-left: 1px solid #cccccc;
+}
+.border-bottom {
+    border-bottom: 1px solid #cccccc;
+}
+.border-right {
+    border-right: 1px solid #cccccc;
+}
+.border-all {
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}
+.border-leftright {
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}

@@ -1,0 +1,22 @@
+<Data>
+    
+<Order>
+        
+        <SalesOrderItems>
+            
+<SalesOrderItem>
+               <id>1</id>
+				<name>Item</name>
+                <sku>sku</sku>
+				<quantity>1</quantity>
+				<price>70.0</price>
+				<tax>0.0</tax>
+				<tax_percent>0.0</tax_percent>
+				<discount>0.0</discount>
+				<discount_percent>0.0</discount_percent>
+            </SalesOrderItem>
+<SalesOrderItem>
+</SalesOrderItems>
+  
+</Order>
+</Data>

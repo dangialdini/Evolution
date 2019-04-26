@@ -1,0 +1,82 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="purchases" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'purchases',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfieldsleft: 3,
+            searchfields: [{ caption: '', type: 'button', id: 'btnAddToShipment', align: 'left', width: '125px', text: '@EvolutionResources.btnAddToShipment', url: '', jsfunc: 'AddToShipment()', icon: 'list-alt' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlPOStatus', width: '200px', datasourceurl: '@Url.Action("GetPOStatusList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlWarehouse', width: '200px', datasourceurl: '@Url.Action("GetLocationList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlBrandCategory', width: '170px', datasourceurl: '@Url.Action("GetBrandCategoryList")', defaultvalue: '' },
+                          ],
+            keyfield: 'Id',
+            sortcolumns: ['OrderNumber', 'OrderDateISO', 'SalesPersonName', 'SupplierName', 'POStatusText', 'RealisticRequiredDateISO', 'RequiredDateISO', 'CompletedDateISO'],
+            sortcolumn: 'OrderNumber',
+            sortorder: 1,
+            datasourceurl: '@Url.Action("GetPurchases")?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&postatus={ddlPOStatus}&warehouse={ddlWarehouse}&brandcategory={ddlBrandCategory}',
+            addurl: '/Purchasing/EditPurchase/Add',
+            addtext: '@EvolutionResources.btnCreatePO',
+            icon: 'plus', // the name of the glyphicon icon
+            addwidth: '75px',
+            editurl: '/Purchasing/EditPurchase/Edit?id={KEYFIELD}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblOrderNumber', width: '120px', class: '', fields: [{ type: 'field', field: 'OrderNumberUrl', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderDate', width: '100px', class: '', fields: [{ type: 'isodate', field: 'OrderDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesPerson', width: '', class: '', fields: [{ type: 'field', field: 'SalesPersonName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSupplier', width: '', class: '', fields: [{ type: 'field', field: 'SupplierName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderStatus', width: '', class: '', fields: [{ type: 'field', field: 'POStatusText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLandingDate', width: '80px', class: '', fields: [{ type: 'isodate', field: 'LandingDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblRealisticETA', width: '80px', class: '', fields: [{ type: 'isodate', field: 'RealisticRequiredDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAdvUSFinal', width: '90px', class: '', fields: [{ type: 'isodate', field: 'RequiredDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCompletedDate', width: '80px', class: '', fields: [{ type: 'isodate', field: 'CompletedDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSelect', width: '60px', class: 'text-center', fields: [{ type: 'checkbox', id: 'chkSelect', class: '' }, {type: 'hidden', id: 'hdnId', field: 'Id'}] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: '@EvolutionResources.btnEdit', class: '', icon: 'edit' },
+                        { type: 'button', text: '@EvolutionResources.btnSplit', url: '@Url.Action("Split", "SplitPurchase")?id={KEYFIELD}', class: '', icon: 'resize-full', enabled: '{Splitable}' },
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function AddToShipment() {
+        // Check for filled in checkboxes
+        HideError();
+        DisplayProgress();
+        var selected = GetSelectedItems(0, 'chkSelect', 'hdnId');
+        if (selected.length == 0) {
+            DisplayError(1, '@EvolutionResources.errNoPurchaseOrdersHaveBeenSelected');
+        } else {
+            Dialog('@Url.Action("AddToShipmentPopup")', 'sm');
+        }
+        HideProgress();
+    }
+
+</script>

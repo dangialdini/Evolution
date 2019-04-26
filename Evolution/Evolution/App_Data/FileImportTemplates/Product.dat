@@ -1,0 +1,10 @@
+﻿// List of recognise fields in product import file
+// DatabaseFieldName,DisplayName
+,(None)
+BrandName,Brand Name
+ItemName,Item Name
+ItemNumber,Item Number
+ItemDescription,Description
+UnitCBM,Unit CBM
+MinSaleQty,Min Sale Qty
+Active,Active

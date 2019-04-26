@@ -1,0 +1,104 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerAddressViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerAddresses", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.CustomerAddress.Id)
+    @Html.HiddenFor(m => m.CustomerAddress.CompanyId)
+    @Html.HiddenFor(m => m.CustomerAddress.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAddressType
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAddress.AddressTypeId,
+                                               new SelectList(Model.AddressTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblStreet
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAddress.Street, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCity
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAddress.City, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblState
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAddress.State, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "20" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPostCode
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAddress.Postcode, new { htmlAttributes = new { @class = "form-control", @style = "width:60%", @maxlength = "10" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCountryName
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAddress.CountryId,
+                                               new SelectList(Model.CountryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblValidFrom
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.TextBoxFor(m => m.CustomerAddress.DateStart, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblValidTo
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.TextBoxFor(m => m.CustomerAddress.DateEnd, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('CustomerAddress_AddressTypeId');
+
+    $(document).ready(function () {
+        $('#CustomerAddress_DateStart').datepicker({ dateFormat: '@Model.JQDateFormat' });
+        $('#CustomerAddress_DateEnd').datepicker({ dateFormat: '@Model.JQDateFormat' });
+    });
+</script>
+
+
+

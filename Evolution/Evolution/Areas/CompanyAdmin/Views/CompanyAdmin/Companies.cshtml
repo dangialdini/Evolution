@@ -1,0 +1,53 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="companies" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'companies',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/CompanyAdmin/CompanyAdmin/GetCompanies?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteCompany',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblFriendlyName', width: '', class: '', fields: [{ type: 'field', field: 'FriendlyName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblABN', width: '', class: '', fields: [{ type: 'field', field: 'ABN', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCompanyAddress', width: '', class: '', fields: [{ type: 'field', field: 'CompanyAddress', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPhoneNumber', width: '', class: '', fields: [{ type: 'field', field: 'PhoneNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblFaxNumber', width: '', class: '', fields: [{ type: 'field', field: 'FaxNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '65px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

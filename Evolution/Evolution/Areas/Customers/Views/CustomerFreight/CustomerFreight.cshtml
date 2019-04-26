@@ -1,0 +1,147 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerFreightViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerFreight", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.CustomerFreight.CustomerId)
+    @Html.HiddenFor(m => m.CustomerFreight.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.PageTitle
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divCustFreight" aria-expanded="false" aria-controls="divCustFreight"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divCustFreight" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblFreightCarrier</div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerFreight.FreightCarrierId,
+                                               new SelectList(Model.FreightCarrierList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblManualFreight</div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.CustomerFreight.IsManualFreight)
+                </div>
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblFreightRate</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.FreightRate, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "8" } })
+                </div>
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblMinFreightPerOrder</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.MinFreightPerOrder, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "8" } })
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 cellpadding">@EvolutionResources.lblMinOrderValueThreshold</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.MinFreightThreshold, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "8" } })
+                </div>
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblFreightWhenBelowThreshold</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.FreightWhenBelowThreshold, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "8" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrDeliveriesOutOfAUWarehouse
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divDeliveriesAU" aria-expanded="false" aria-controls="divDeliveriesAU"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divDeliveriesAU" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblDeliveryInstructions</div>
+                <div class="col-sm-9 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.DeliveryInstructions, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblDeliveryContact</div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.DeliveryContact, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrDeliveriesOutOfUSWarehouse
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divDeliveriesUS" aria-expanded="false" aria-controls="divDeliveriesUS"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divDeliveriesUS" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblFreightTerm</div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerFreight.FreightTermId,
+                                               new SelectList(Model.FreightTermList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+                <div class="col-sm-1 labelpadding">@EvolutionResources.lblAccount</div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.ShipMethodAccount, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrWarehouse
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divWarehouse" aria-expanded="false" aria-controls="divWarehouse"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divWarehouse" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblWarehouseInstructions</div>
+                <div class="col-sm-9 cellpadding">
+                    @Html.EditorFor(m => m.CustomerFreight.WarehouseInstructions, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    function DoFieldGreying() {
+        var bManualFreight = $('#CustomerFreight_IsManualFreight').is(":checked");
+
+        $('#CustomerFreight_FreightRate').prop('disabled', bManualFreight);
+        $('#CustomerFreight_MinFreightPerOrder').prop('disabled', bManualFreight);
+        if (bManualFreight) {
+            $('#CustomerFreight_FreightRate').val('0');
+            $('#CustomerFreight_MinFreightPerOrder').val('0');
+        }
+        var minOrderValueThreshold = $('#CustomerFreight_MinFreightThreshold').val();
+        if (minOrderValueThreshold > 0) {
+            $('#CustomerFreight_FreightWhenBelowThreshold').prop('disabled', false);
+        } else {
+            $('#CustomerFreight_FreightWhenBelowThreshold').prop('disabled', true);
+            $('#CustomerFreight_FreightWhenBelowThreshold').val('0');
+        }
+    }
+
+    $(document).ready(function () {
+        $('#divCustFreight').collapse({ toggle: true });
+
+        $('#CustomerFreight_IsManualFreight').click(function () {
+            DoFieldGreying();
+        });
+        $('#CustomerFreight_MinFreightThreshold').change(function () {
+            DoFieldGreying();
+        });
+
+        DoFieldGreying();
+        ApplyFocus('CustomerFreight_FreightCarrierId');
+    });
+
+</script>
+

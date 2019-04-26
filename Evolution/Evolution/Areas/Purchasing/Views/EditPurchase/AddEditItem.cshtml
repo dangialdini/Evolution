@@ -1,0 +1,144 @@
+﻿@model Evolution.Models.ViewModels.EditPurchaseOrderDetailTempViewModel
+@using Evolution.Resources
+
+@using (Html.BeginForm("DoAddItem", "Purchasing", FormMethod.Post, new { id = "frmAddItem" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.PurchaseOrderDetailTemp.Id)
+    @Html.HiddenFor(m => m.PurchaseOrderDetailTemp.OriginalRowId)
+    @Html.HiddenFor(m => m.PurchaseOrderDetailTemp.PurchaseOrderHeaderTempId)
+    @Html.HiddenFor(m => m.PurchaseOrderDetailTemp.LineNumber)
+    @Html.HiddenFor(m => m.PurchaseOrderDetailTemp.TaxCodeId)
+
+    <div class="modal-header">
+        <button type="button" id="btnCloseDialog" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span id="modalcaption">@EvolutionResources.bnrAddEditLine</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblProductName
+            </div>
+            <div class="col-sm-5 cellpadding">
+                @Html.TextBoxFor(m => m.PurchaseOrderDetailTemp.ProductName, null, new { @class = "form-control", @style = "width:100%", @maxlength = "64" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblProductDescription
+            </div>
+            <div class="col-sm-5 cellpadding">
+                @Html.EditorFor(m => m.PurchaseOrderDetailTemp.ProductDescription, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 cellpadding"></div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.PurchaseOrderDetailTemp.ProductDescription, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblUnitPriceExTax
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.PurchaseOrderDetailTemp.UnitPriceExTax, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.PurchaseOrderDetailTemp.UnitPriceExTax, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblDiscountPercent
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.PurchaseOrderDetailTemp.DiscountPercent, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.PurchaseOrderDetailTemp.DiscountPercent, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblOrderQty
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.PurchaseOrderDetailTemp.OrderQty, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "6" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.PurchaseOrderDetailTemp.OrderQty, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @if(Model.PurchaseOrderDetailTemp.Id == 0) {
+            <button type="button" id="btnAddItem" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem()">@EvolutionResources.btnAddItem</button>
+        } else {
+            <button type="button" id="btnAddItem" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem()">@EvolutionResources.btnSave</button>
+        }
+        <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('PurchaseOrderDetailTemp_ProductName');
+
+    $(function () {
+        $('#PurchaseOrderDetailTemp_ProductName').autocomplete({
+            source: function (request, response) {
+                var url = '@Url.Action("GetProducts")' + '?brandcategoryid=' + $('#PurchaseTemp_BrandCategoryId').val() + '&search=' + $('#PurchaseOrderDetailTemp_ProductName').val();
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: request,
+                    success: function (data) {
+                        response($.map(data, function (d) {
+                            return {
+                                label: d.Id + ' ' + d.Text,
+                                value: d.Id
+                            };
+                        }))
+                    },
+                    error: function (jqXhr, status, error) {
+                        DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                // Prevent value from being put in the input:
+                this.value = ui.item.label;
+                // Set the next input's value to the "value" of the item.
+                var pos = this.value.indexOf(' ');
+                $('#PurchaseOrderDetailTemp_ProductDescription').val(this.value.substr(pos + 1));
+                event.preventDefault();
+
+                // Get the tax code for the select item from its supplier
+                var result = DoAjaxCall('@Url.Action("GetProduct")?id=' + this.value.substr(0, pos));
+                if (result.Data.TaxCodeId) $('#PurchaseOrderDetailTemp_TaxCodeId').val(result.Data.TaxCodeId);
+            }
+        });
+        // The following is needed so that autocomplete works in a dialog
+        $('#PurchaseOrderDetailTemp_ProductName').autocomplete("option", "appendTo", '#dialog');
+    });
+
+    function OnSubmitAddItem() {
+        PostForm($('#btnAddItem'), 'modal-content', 'frmAddItem', '@Url.Action("DoAddItem")', OnAddItemSuccess, null, null, null);
+    }
+
+    function OnAddItemSuccess(data) {
+        if(!IsErrorSummary(data)) {
+            // Success
+            DisplayGrid(0);
+            DisplayOrderSummary();
+            HideDialog();
+        }
+    }
+
+</script>

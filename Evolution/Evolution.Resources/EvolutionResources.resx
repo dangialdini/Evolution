@@ -1,0 +1,2706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bnrAddEditCompany" xml:space="preserve">
+    <value>Add/Edit Company</value>
+  </data>
+  <data name="bnrAddEditCountry" xml:space="preserve">
+    <value>Add/Edit Country</value>
+  </data>
+  <data name="bnrAddEditCurrency" xml:space="preserve">
+    <value>Add/Edit Currency</value>
+  </data>
+  <data name="bnrAddEditFreightCarrier" xml:space="preserve">
+    <value>Add/Edit Freight Carrier</value>
+  </data>
+  <data name="bnrAddEditLOVItem" xml:space="preserve">
+    <value>Add/Edit List of Values Item</value>
+  </data>
+  <data name="bnrAddEditPriceLevel" xml:space="preserve">
+    <value>Add/Edit Price Level</value>
+  </data>
+  <data name="bnrAddEditRegion" xml:space="preserve">
+    <value>Add/Edit Region</value>
+  </data>
+  <data name="bnrAddEditTaxCode" xml:space="preserve">
+    <value>Add/Edit Tax Code</value>
+  </data>
+  <data name="bnrCompanies" xml:space="preserve">
+    <value>Companies</value>
+  </data>
+  <data name="bnrCountries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="bnrCurrencies" xml:space="preserve">
+    <value>Currencies</value>
+  </data>
+  <data name="bnrError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="bnrFreightCarriers" xml:space="preserve">
+    <value>Freight Carriers</value>
+  </data>
+  <data name="bnrHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="bnrListsOfValues" xml:space="preserve">
+    <value>Lists Of Values</value>
+  </data>
+  <data name="bnrMyOptions" xml:space="preserve">
+    <value>My Options</value>
+  </data>
+  <data name="bnrPriceLevels" xml:space="preserve">
+    <value>Price Levels</value>
+  </data>
+  <data name="bnrRegions" xml:space="preserve">
+    <value>Regions</value>
+  </data>
+  <data name="bnrTaxCodes" xml:space="preserve">
+    <value>Tax Codes</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="errConfirmDeleteCompany" xml:space="preserve">
+    <value>Are you sure you wish to Delete this Company ?&lt;br/&gt;&lt;br/&gt;WARNING: Deleting this Company will Delete all associated data and this will not be recoverable.</value>
+  </data>
+  <data name="errConfirmDeleteItem" xml:space="preserve">
+    <value>Are you sure you wish to Delete this item ?</value>
+  </data>
+  <data name="errNumericDataRequiredInField" xml:space="preserve">
+    <value>Error: Data is required in field '%1' !</value>
+  </data>
+  <data name="errLogRecordNotFound" xml:space="preserve">
+    <value>Error: Log record %1 could not be found to display this error!</value>
+  </data>
+  <data name="errTheFollowingErrorHasOccurred" xml:space="preserve">
+    <value>The following error has occurred:</value>
+  </data>
+  <data name="errThisErrorHasBeenLoggedAndNotified" xml:space="preserve">
+    <value>This error has been logged and notified to the Systems team.</value>
+  </data>
+  <data name="errUserIsNotInRole" xml:space="preserve">
+    <value>Error: User '%1' is not in Role(s) '%2' !</value>
+  </data>
+  <data name="lblABN" xml:space="preserve">
+    <value>ABN/VAT Reg No/EIN</value>
+  </data>
+  <data name="lblAccountBSB" xml:space="preserve">
+    <value>Account BSB</value>
+  </data>
+  <data name="lblAccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="lblAccountNumber" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="lblAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="lblAmexSurcharge" xml:space="preserve">
+    <value>Amex Surcharge</value>
+  </data>
+  <data name="lblApplicationName" xml:space="preserve">
+    <value>Evolution</value>
+  </data>
+  <data name="lblBankName" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="lblBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="lblBranchAddress" xml:space="preserve">
+    <value>Branch Address</value>
+  </data>
+  <data name="lblBrandLogo" xml:space="preserve">
+    <value>Brand logo</value>
+  </data>
+  <data name="lblCompanyAddress" xml:space="preserve">
+    <value>Company Address</value>
+  </data>
+  <data name="lblCompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="lblCountryCode" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
+  <data name="lblCountryName" xml:space="preserve">
+    <value>Country Name</value>
+  </data>
+  <data name="lblCurrencyCode" xml:space="preserve">
+    <value>Currency Code</value>
+  </data>
+  <data name="lblCurrencyName" xml:space="preserve">
+    <value>Currency Name</value>
+  </data>
+  <data name="lblCurrencySymbol" xml:space="preserve">
+    <value>Currency Symbol</value>
+  </data>
+  <data name="lblDefaultCurrencyID" xml:space="preserve">
+    <value>Default Currency</value>
+  </data>
+  <data name="lblDefaultLocationID" xml:space="preserve">
+    <value>Default Location</value>
+  </data>
+  <data name="lblDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblEmailAddressAccounts" xml:space="preserve">
+    <value>Email Address - Accounts</value>
+  </data>
+  <data name="lblEmailAddressPurchasing" xml:space="preserve">
+    <value>Email Address - Purchasing</value>
+  </data>
+  <data name="lblEmailAddressSales" xml:space="preserve">
+    <value>Email Address - Sales</value>
+  </data>
+  <data name="lblEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="lblExchangeRate" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="lblFaxNumber" xml:space="preserve">
+    <value>Fax Number</value>
+  </data>
+  <data name="lblFormatTemplate" xml:space="preserve">
+    <value>Format Template</value>
+  </data>
+  <data name="lblFreightCarrier" xml:space="preserve">
+    <value>Freight Carrier</value>
+  </data>
+  <data name="lblFreightRate" xml:space="preserve">
+    <value>Freight Rate</value>
+  </data>
+  <data name="lblFriendlyName" xml:space="preserve">
+    <value>Friendly Name</value>
+  </data>
+  <data name="lblHttpPrefix" xml:space="preserve">
+    <value>Http Prefix</value>
+  </data>
+  <data name="lblImportPriceLevel" xml:space="preserve">
+    <value>Import Price Level</value>
+  </data>
+  <data name="lblImportSalesTaxCalcMethod" xml:space="preserve">
+    <value>Import Sales Tax Calc Method</value>
+  </data>
+  <data name="lblISO2Code" xml:space="preserve">
+    <value>ISO 2 Code</value>
+  </data>
+  <data name="lblISO3Code" xml:space="preserve">
+    <value>ISO 3 Code</value>
+  </data>
+  <data name="lblIsParentCompany" xml:space="preserve">
+    <value>Is Parent Company ?</value>
+  </data>
+  <data name="lblItemText" xml:space="preserve">
+    <value>Item Text</value>
+  </data>
+  <data name="lblItemValue1" xml:space="preserve">
+    <value>Item Value 1</value>
+  </data>
+  <data name="lblItemValue2" xml:space="preserve">
+    <value>Item Value 2</value>
+  </data>
+  <data name="lblMCSurcharge" xml:space="preserve">
+    <value>MC Surcharge</value>
+  </data>
+  <data name="lblMneumonic" xml:space="preserve">
+    <value>Mneumonic</value>
+  </data>
+  <data name="lblPercentageRate" xml:space="preserve">
+    <value>Percentage Rate</value>
+  </data>
+  <data name="lblPhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="lblPostCodeFrom" xml:space="preserve">
+    <value>Postcode From</value>
+  </data>
+  <data name="lblPostCodeTo" xml:space="preserve">
+    <value>Postcode To</value>
+  </data>
+  <data name="lblRegionName" xml:space="preserve">
+    <value>Region Name</value>
+  </data>
+  <data name="lblRoutingNo" xml:space="preserve">
+    <value>Routing Number</value>
+  </data>
+  <data name="lblSelectList" xml:space="preserve">
+    <value>Select List</value>
+  </data>
+  <data name="lblShippingAddress" xml:space="preserve">
+    <value>Shipping Address</value>
+  </data>
+  <data name="lblStatementBody" xml:space="preserve">
+    <value>Statement Body</value>
+  </data>
+  <data name="lblSwift" xml:space="preserve">
+    <value>SWIFT</value>
+  </data>
+  <data name="lblSymbol" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="lblTaxCode" xml:space="preserve">
+    <value>Tax Code</value>
+  </data>
+  <data name="lblTaxName" xml:space="preserve">
+    <value>Tax Name</value>
+  </data>
+  <data name="lblUNCode" xml:space="preserve">
+    <value>UN Code</value>
+  </data>
+  <data name="lblVisaSurcharge" xml:space="preserve">
+    <value>Visa Surcharge</value>
+  </data>
+  <data name="lblWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="bnrAddEditPaymentTerm" xml:space="preserve">
+    <value>Add/Edit Payment Term</value>
+  </data>
+  <data name="bnrPaymentTerms" xml:space="preserve">
+    <value>Payment Terms</value>
+  </data>
+  <data name="lblBalanceDueDate" xml:space="preserve">
+    <value>Balance Due Date</value>
+  </data>
+  <data name="lblBalanceDueDays" xml:space="preserve">
+    <value>Balance Due Days</value>
+  </data>
+  <data name="lblDiscountDate" xml:space="preserve">
+    <value>Discount Date</value>
+  </data>
+  <data name="lblDiscountDays" xml:space="preserve">
+    <value>Discount Days</value>
+  </data>
+  <data name="lblEarlyPaymentDiscountPercent" xml:space="preserve">
+    <value>Early Payment Discount %</value>
+  </data>
+  <data name="lblImportPaymentIsDue" xml:space="preserve">
+    <value>Import Payment Due ?</value>
+  </data>
+  <data name="lblLatePaymentChargePercent" xml:space="preserve">
+    <value>Late Payment Charge %</value>
+  </data>
+  <data name="lblTermsOfPaymentId" xml:space="preserve">
+    <value>Terms Of Payment</value>
+  </data>
+  <data name="bnrAddEditMessageTemplate" xml:space="preserve">
+    <value>Add/Edit Message Template</value>
+  </data>
+  <data name="bnrMessageTemplates" xml:space="preserve">
+    <value>Message Templates</value>
+  </data>
+  <data name="lblMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="lblSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="bnrAddEditMarketingGroup" xml:space="preserve">
+    <value>Add/Edit Marketing Group</value>
+  </data>
+  <data name="bnrMarketingGroups" xml:space="preserve">
+    <value>Marketing Groups</value>
+  </data>
+  <data name="lblGroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="bnrAddEditCustomer" xml:space="preserve">
+    <value>Add/Edit Customer</value>
+  </data>
+  <data name="bnrCustomers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="lblName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="lblFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="lblLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="lblCreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="lblTaxId" xml:space="preserve">
+    <value>Tax Id</value>
+  </data>
+  <data name="lblActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="lblBillCustomerIn" xml:space="preserve">
+    <value>Bill Customer In</value>
+  </data>
+  <data name="lblCreditLimit" xml:space="preserve">
+    <value>Credit Limit</value>
+  </data>
+  <data name="lblCurrentBalance" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="lblDefaultRetailInvoiceNo" xml:space="preserve">
+    <value>Default Retail Invoice Number</value>
+  </data>
+  <data name="lblVolumeDiscount" xml:space="preserve">
+    <value>Volume Discount %</value>
+  </data>
+  <data name="lblEDIVendorNumber" xml:space="preserve">
+    <value>EDI Vendor Number</value>
+  </data>
+  <data name="lblOnHold" xml:space="preserve">
+    <value>On Hold</value>
+  </data>
+  <data name="lblPaymentTerms" xml:space="preserve">
+    <value>Payment Terms</value>
+  </data>
+  <data name="lblPriceLevel" xml:space="preserve">
+    <value>Price Level</value>
+  </data>
+  <data name="lblRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="lblShippingTemplate" xml:space="preserve">
+    <value>Shipping Template</value>
+  </data>
+  <data name="lblSource" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="lblSupplyItemsBy" xml:space="preserve">
+    <value>Supply Items By</value>
+  </data>
+  <data name="bnrAddEditCustomerAddress" xml:space="preserve">
+    <value>Add/Edit Customer Address</value>
+  </data>
+  <data name="bnrCustomerAddresses" xml:space="preserve">
+    <value>Customer Addresses</value>
+  </data>
+  <data name="lblCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="lblPostCode" xml:space="preserve">
+    <value>Post Code</value>
+  </data>
+  <data name="lblStreet" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="lblStreetLine1" xml:space="preserve">
+    <value>Line 1</value>
+  </data>
+  <data name="lblStreetLine2" xml:space="preserve">
+    <value>Line 2</value>
+  </data>
+  <data name="lblStreetLine3" xml:space="preserve">
+    <value>Line 3</value>
+  </data>
+  <data name="lblStreetLine4" xml:space="preserve">
+    <value>Line 4</value>
+  </data>
+  <data name="lblValidFrom" xml:space="preserve">
+    <value>Valid From</value>
+  </data>
+  <data name="lblValidTo" xml:space="preserve">
+    <value>Valid To</value>
+  </data>
+  <data name="lblState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="lblAddressType" xml:space="preserve">
+    <value>Address Type</value>
+  </data>
+  <data name="lblCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="lblNewAddress" xml:space="preserve">
+    <value>New Address</value>
+  </data>
+  <data name="errCantDeleteRecordAlreadyLocked" xml:space="preserve">
+    <value>Error: Cannot Delete this record because it is currently locked by %1 !</value>
+  </data>
+  <data name="errRecordAlreadyLocked" xml:space="preserve">
+    <value>This record is already locked by %1 !</value>
+  </data>
+  <data name="errRecordChangedByAnotherUser" xml:space="preserve">
+    <value>Error: Another user has changed this record - please reload the record and try again!</value>
+  </data>
+  <data name="errCantDeleteLockedRecord" xml:space="preserve">
+    <value>Error: Cannot Delete this record because it is locked by %1 !</value>
+  </data>
+  <data name="errCustomerNameMustBeEntered" xml:space="preserve">
+    <value>Error: A Customer Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errCityRequired" xml:space="preserve">
+    <value>Error: A City Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errPostCodeRequired" xml:space="preserve">
+    <value>Error: A PostCode of 1-%1 characters is required!</value>
+  </data>
+  <data name="errStateRequired" xml:space="preserve">
+    <value>Error: A State Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errStreetRequired" xml:space="preserve">
+    <value>Error: A Street Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errCompanyNameRequired" xml:space="preserve">
+    <value>Error: A Company Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errCountryNameRequired" xml:space="preserve">
+    <value>Error: A Country Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errCurrencyCodeRequired" xml:space="preserve">
+    <value>Error: A Currency Code of 1-%1 characters is required!</value>
+  </data>
+  <data name="errCurrencyNameRequired" xml:space="preserve">
+    <value>Error: A Currency Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errMessageTemplateSubjectRequired" xml:space="preserve">
+    <value>Error: A Message Template Subject of 1-%1 characters is required!</value>
+  </data>
+  <data name="errItemTextIsRequired" xml:space="preserve">
+    <value>Error: Item Text is required!</value>
+  </data>
+  <data name="errMarketingGroupNameRequired" xml:space="preserve">
+    <value>Error: A Marketing Group Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errMneumonicRequired" xml:space="preserve">
+    <value>Error: A Mneumonic of 1-%1 characters is required!</value>
+  </data>
+  <data name="errRegionNameRequired" xml:space="preserve">
+    <value>Error: A Region Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errTaxCodeDescriptionRequired" xml:space="preserve">
+    <value>Error: A Tax Code Description of 1-%1 characters is required!</value>
+  </data>
+  <data name="errTaxCodeRequired" xml:space="preserve">
+    <value>Error: A Tax Code of 1-%1 characters is required!</value>
+  </data>
+  <data name="bnrAccountManagers" xml:space="preserve">
+    <value>Account Managers</value>
+  </data>
+  <data name="bnrCustomerContacts" xml:space="preserve">
+    <value>Customer Contacts</value>
+  </data>
+  <data name="errFirstNameRequired" xml:space="preserve">
+    <value>Error: A First Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errSurnameRequired" xml:space="preserve">
+    <value>Error: A Surname of 1-%1 characters is required!</value>
+  </data>
+  <data name="lblSurname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="lblEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblKnownAs" xml:space="preserve">
+    <value>Known As</value>
+  </data>
+  <data name="lblPhone1" xml:space="preserve">
+    <value>Phone 1</value>
+  </data>
+  <data name="lblPhone2" xml:space="preserve">
+    <value>Phone 2</value>
+  </data>
+  <data name="lblPhone3" xml:space="preserve">
+    <value>Phone 3</value>
+  </data>
+  <data name="lblPosition" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="lblSalutation" xml:space="preserve">
+    <value>Salutation</value>
+  </data>
+  <data name="lblFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="lblContactNotes" xml:space="preserve">
+    <value>Contact Notes</value>
+  </data>
+  <data name="lblContactPhoneNotes" xml:space="preserve">
+    <value>Contact Phone Notes</value>
+  </data>
+  <data name="lblMailingList" xml:space="preserve">
+    <value>Mailing List</value>
+  </data>
+  <data name="lblPrimaryContact" xml:space="preserve">
+    <value>Primary Contact</value>
+  </data>
+  <data name="lblReceivedCatalog" xml:space="preserve">
+    <value>Receive Catalog</value>
+  </data>
+  <data name="lblSendInvoice" xml:space="preserve">
+    <value>Send Invoice</value>
+  </data>
+  <data name="lblSendStatement" xml:space="preserve">
+    <value>Send Statement</value>
+  </data>
+  <data name="errInvalidEMailAddress" xml:space="preserve">
+    <value>Error: Invalid EMail address entered!</value>
+  </data>
+  <data name="bnrAddEditCustomerConflict" xml:space="preserve">
+    <value>Add/Edit Customer Conflict</value>
+  </data>
+  <data name="bnrAddEditCustomerContact" xml:space="preserve">
+    <value>Add/Edit Customer Contact</value>
+  </data>
+  <data name="bnrCustomerConflicts" xml:space="preserve">
+    <value>Customer Conflicts</value>
+  </data>
+  <data name="lblConflictSensitivity" xml:space="preserve">
+    <value>Conflict Sensitivity</value>
+  </data>
+  <data name="lblNewConflict" xml:space="preserve">
+    <value>New Conflict</value>
+  </data>
+  <data name="lblNewContact" xml:space="preserve">
+    <value>New Contact</value>
+  </data>
+  <data name="bnrCustomerSearch" xml:space="preserve">
+    <value>Customer Search</value>
+  </data>
+  <data name="btnAddSelected" xml:space="preserve">
+    <value>Add Selected</value>
+  </data>
+  <data name="lblSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="bnrCustomerFreight" xml:space="preserve">
+    <value>Customer Freight</value>
+  </data>
+  <data name="infChangesSuccessfullySaved" xml:space="preserve">
+    <value>Changes successfully saved.</value>
+  </data>
+  <data name="lblFreightWhenBelowThreshold" xml:space="preserve">
+    <value>Freight when below Threshold</value>
+  </data>
+  <data name="lblManualFreight" xml:space="preserve">
+    <value>Manual Freight</value>
+  </data>
+  <data name="lblMinFreightPerOrder" xml:space="preserve">
+    <value>Minimum Freight Per Order</value>
+  </data>
+  <data name="lblMinOrderValueThreshold" xml:space="preserve">
+    <value>Minimum Order Value Threshold</value>
+  </data>
+  <data name="bnrDeliveriesOutOfAUWarehouse" xml:space="preserve">
+    <value>Deliveries out of AU Warehouse</value>
+  </data>
+  <data name="bnrDeliveriesOutOfUSWarehouse" xml:space="preserve">
+    <value>Deliveries out of US Warehouse</value>
+  </data>
+  <data name="bnrWarehouse" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="lblAccount" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="lblDeliveryContact" xml:space="preserve">
+    <value>Delivery Contact</value>
+  </data>
+  <data name="lblDeliveryInstructions" xml:space="preserve">
+    <value>Delivery Instructions</value>
+  </data>
+  <data name="lblFreightTerm" xml:space="preserve">
+    <value>Freight Term</value>
+  </data>
+  <data name="lblWarehouseInstructions" xml:space="preserve">
+    <value>Warehouse Instructions</value>
+  </data>
+  <data name="bnrCustomerMarketing" xml:space="preserve">
+    <value>Customer Marketing</value>
+  </data>
+  <data name="bnrAddEditCustomerMarketing" xml:space="preserve">
+    <value>Add/Edit Customer Marketing</value>
+  </data>
+  <data name="lblFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="lblTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="lblMarketingGroup" xml:space="preserve">
+    <value>Marketing Group</value>
+  </data>
+  <data name="lblCustomerContact" xml:space="preserve">
+    <value>Customer Contact</value>
+  </data>
+  <data name="lblDateFormat" xml:space="preserve">
+    <value>Date Format</value>
+  </data>
+  <data name="bnrCustomerNotes" xml:space="preserve">
+    <value>Customer Notes/Attachments</value>
+  </data>
+  <data name="bnrAddEditCustomerNote" xml:space="preserve">
+    <value>Add/Edit Customer Note</value>
+  </data>
+  <data name="lblNewNote" xml:space="preserve">
+    <value>New Note</value>
+  </data>
+  <data name="errSubjectRequired" xml:space="preserve">
+    <value>Error: A Subject of 1-%1 characters is required!</value>
+  </data>
+  <data name="lblAttachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="lblCreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="lblAttachmentFiles" xml:space="preserve">
+    <value>Attachment Files (optional)</value>
+  </data>
+  <data name="errFailedToUploadFile" xml:space="preserve">
+    <value>Error: Failed to upload file '%1' : %2</value>
+  </data>
+  <data name="errFileTypeNotValidForUpload" xml:space="preserve">
+    <value>Error: File '%1' is not a type permitted for uploading! Please remove this file and try again.</value>
+  </data>
+  <data name="errFileSizeToLarge" xml:space="preserve">
+    <value>Error: The file '%1' is larger than the maximum allowed file size of %2 bytes or the total of all files is greater then the maximum. Please remove some files and try again.</value>
+  </data>
+  <data name="errCurrencySymbolRequired" xml:space="preserve">
+    <value>Error: A Currency Symbol of 1-%1 characters is required!</value>
+  </data>
+  <data name="errFreightCarrierNameRequired" xml:space="preserve">
+    <value>Error: A Freight Carrier Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="errTextDataRequiredInField" xml:space="preserve">
+    <value>Error: A Text value of 1-%1 characters is required in field '%2' !</value>
+  </data>
+  <data name="lblAllowSalesInNonMSQMultiples" xml:space="preserve">
+    <value>Allow non-MSQ multiples</value>
+  </data>
+  <data name="lblEmailAcctMgrOnLinkedPurchaseChange" xml:space="preserve">
+    <value>Email the Acct Manager when an affective linked purchase is changed</value>
+  </data>
+  <data name="lblEmailAcctMgrOnSaleChange" xml:space="preserve">
+    <value>Email the Acct Manager when a sale is changed by someone else</value>
+  </data>
+  <data name="lblExcludeFromSalesGraphs" xml:space="preserve">
+    <value>Exclude from Sales Graphs</value>
+  </data>
+  <data name="lblRequireAuthorisation4OrderQtyChange" xml:space="preserve">
+    <value>Require authorisation for negative order qty change</value>
+  </data>
+  <data name="lblSendInvoicesWhenClosingPick" xml:space="preserve">
+    <value>Send Invoices when closing Pick</value>
+  </data>
+  <data name="lblSendPOSFile" xml:space="preserve">
+    <value>Send POS file when orders are dropped</value>
+  </data>
+  <data name="lblRemoveCustNameFromAddressWhenDrop" xml:space="preserve">
+    <value>Remove Customer Name from Address when dropping DTC orders</value>
+  </data>
+  <data name="lblCustomerType" xml:space="preserve">
+    <value>Customer Type</value>
+  </data>
+  <data name="bnrCustomerAdditionalInfo" xml:space="preserve">
+    <value>Customer Additional Information</value>
+  </data>
+  <data name="lblPlacesForwardOrders" xml:space="preserve">
+    <value>Places Forward Orders</value>
+  </data>
+  <data name="lblPricingInstructions" xml:space="preserve">
+    <value>Pricing Instructions</value>
+  </data>
+  <data name="lblVirtualMerchantPassword" xml:space="preserve">
+    <value>Virtual Merchant Password</value>
+  </data>
+  <data name="lblVirtualMerchantUserName" xml:space="preserve">
+    <value>Virtual Merchant user Name</value>
+  </data>
+  <data name="lblInvoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="lblPackingSlip" xml:space="preserve">
+    <value>Packing Slip</value>
+  </data>
+  <data name="lblProductLabel" xml:space="preserve">
+    <value>Product Label</value>
+  </data>
+  <data name="errSelectionRequiredInField" xml:space="preserve">
+    <value>Error: A selection is required in field '%1' !</value>
+  </data>
+  <data name="bnrBrands" xml:space="preserve">
+    <value>Brands</value>
+  </data>
+  <data name="bnrAddEditBrand" xml:space="preserve">
+    <value>Add/Edit Brand</value>
+  </data>
+  <data name="lblBrandName" xml:space="preserve">
+    <value>Brand Name</value>
+  </data>
+  <data name="lblBrandCategory" xml:space="preserve">
+    <value>Brand Category</value>
+  </data>
+  <data name="bnrAddEditBrandCategory" xml:space="preserve">
+    <value>Add/Edit Brand Category</value>
+  </data>
+  <data name="bnrBrandCategories" xml:space="preserve">
+    <value>Brand Categories</value>
+  </data>
+  <data name="lblCategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="bnrAddEditProduct" xml:space="preserve">
+    <value>Add/Edit Product Details</value>
+  </data>
+  <data name="bnrProducts" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="lblBrand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="lblProductNumber" xml:space="preserve">
+    <value>Product Number</value>
+  </data>
+  <data name="lblImage" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="bnrCustomerAccountManagers" xml:space="preserve">
+    <value>Customer Account Managers</value>
+  </data>
+  <data name="bnrAddEditCustomerAccountManager" xml:space="preserve">
+    <value>Add/Edit Customer Account Manager</value>
+  </data>
+  <data name="lblSalesPerson" xml:space="preserve">
+    <value>Sales Person</value>
+  </data>
+  <data name="lblSalesPersonType" xml:space="preserve">
+    <value>Sales Person Type</value>
+  </data>
+  <data name="lblAvailableItems" xml:space="preserve">
+    <value>Available Items</value>
+  </data>
+  <data name="lblSelectedItems" xml:space="preserve">
+    <value>Selected Items</value>
+  </data>
+  <data name="lblAvailableBrands" xml:space="preserve">
+    <value>Available Brands</value>
+  </data>
+  <data name="lblBrandsSelectedIntoCatgeory" xml:space="preserve">
+    <value>Brands Selected into Category</value>
+  </data>
+  <data name="errEMailRequiredInField" xml:space="preserve">
+    <value>Error: An EMail Address or 1-%1 characters is required!</value>
+  </data>
+  <data name="lblDefaultBrandCategory" xml:space="preserve">
+    <value>Default Brand Category</value>
+  </data>
+  <data name="lblDefaultCompany" xml:space="preserve">
+    <value>Default Company</value>
+  </data>
+  <data name="lblFullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="errCantDeleteBrandWhenProductsLinked" xml:space="preserve">
+    <value>Error: You cannot Delete this Brand while it has %1 Product(s) attached!</value>
+  </data>
+  <data name="lblProducts" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="bnrAddEditSupplier" xml:space="preserve">
+    <value>Add/Edit Supplier</value>
+  </data>
+  <data name="bnrSuppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="errSupplierNameMustBeEntered" xml:space="preserve">
+    <value>Error:A Supplier Name of 1-%1 characters is required!</value>
+  </data>
+  <data name="lblCurrency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="bnrAddressDetails" xml:space="preserve">
+    <value>Address Details</value>
+  </data>
+  <data name="bnrContactDetails" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="bnrFinanceDetails" xml:space="preserve">
+    <value>Finance Details</value>
+  </data>
+  <data name="bnrMessagesAndNotes" xml:space="preserve">
+    <value>Messages/Notes</value>
+  </data>
+  <data name="bnrSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="bnrShippingDetails" xml:space="preserve">
+    <value>Shipping Details</value>
+  </data>
+  <data name="lblDeparturePort" xml:space="preserve">
+    <value>Departure Port</value>
+  </data>
+  <data name="lblShippingMethod" xml:space="preserve">
+    <value>Shipping Method</value>
+  </data>
+  <data name="lblCancelMessage" xml:space="preserve">
+    <value>Cancel Message</value>
+  </data>
+  <data name="lblNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="lblAgent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="lblManufacturer" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="lblProductSupplier" xml:space="preserve">
+    <value>Product Supplier</value>
+  </data>
+  <data name="lblTrader" xml:space="preserve">
+    <value>Trader</value>
+  </data>
+  <data name="lblVerticalSupplier" xml:space="preserve">
+    <value>Vertical Supplier</value>
+  </data>
+  <data name="lblContactName" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="lblURL" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="lblSupplierTerm" xml:space="preserve">
+    <value>Supplier Term</value>
+  </data>
+  <data name="lblCommercialTerms" xml:space="preserve">
+    <value>Commercial Terms</value>
+  </data>
+  <data name="errModelFieldValueRequired" xml:space="preserve">
+    <value>Error: The model requires a value in field '%1' !</value>
+  </data>
+  <data name="lblBrands" xml:space="preserve">
+    <value>Brands</value>
+  </data>
+  <data name="bnrAddEditPurchase" xml:space="preserve">
+    <value>Add/Edit Purchase</value>
+  </data>
+  <data name="bnrPurchases" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="lblOrderNumber" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="lblCompletedDate" xml:space="preserve">
+    <value>Completed Date</value>
+  </data>
+  <data name="lblOrderDate" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="lblRequiredDate" xml:space="preserve">
+    <value>Required Date</value>
+  </data>
+  <data name="lblSupplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="lblForDeliveryTo" xml:space="preserve">
+    <value>For Delivery To</value>
+  </data>
+  <data name="btnSaveAndExit" xml:space="preserve">
+    <value>Save and Exit</value>
+  </data>
+  <data name="bnrOrderSummary" xml:space="preserve">
+    <value>Order Summary</value>
+  </data>
+  <data name="lblAdvUSFinal" xml:space="preserve">
+    <value>Adv US Final</value>
+  </data>
+  <data name="lblAdvUSInitial" xml:space="preserve">
+    <value>Adv US Initial</value>
+  </data>
+  <data name="lblArrivalPort" xml:space="preserve">
+    <value>Arrival Port</value>
+  </data>
+  <data name="lblCancelDate" xml:space="preserve">
+    <value>Cancel Date</value>
+  </data>
+  <data name="lblContainerType" xml:space="preserve">
+    <value>Container Type</value>
+  </data>
+  <data name="lblDateOrderConfirmed" xml:space="preserve">
+    <value>Date Order Confirmed</value>
+  </data>
+  <data name="lblDateSentToSupplier" xml:space="preserve">
+    <value>Date Sent to Supplier</value>
+  </data>
+  <data name="lblFreightForwarder" xml:space="preserve">
+    <value>Freight Forwarder</value>
+  </data>
+  <data name="lblLandingDate" xml:space="preserve">
+    <value>Landing Date</value>
+  </data>
+  <data name="lblOrderConfirmationNo" xml:space="preserve">
+    <value>Order Confirmation No</value>
+  </data>
+  <data name="lblOrderStatus" xml:space="preserve">
+    <value>Order Status</value>
+  </data>
+  <data name="lblPurchaser" xml:space="preserve">
+    <value>Purchaser</value>
+  </data>
+  <data name="lblRealisticETA" xml:space="preserve">
+    <value>Realistic ETA</value>
+  </data>
+  <data name="lblShowDepositToBePaidOnOrder" xml:space="preserve">
+    <value>Show 'Deposit To Be Paid' on Order</value>
+  </data>
+  <data name="lblSRDFinal" xml:space="preserve">
+    <value>SRD Final</value>
+  </data>
+  <data name="lblSRDInitial" xml:space="preserve">
+    <value>SRD Initial</value>
+  </data>
+  <data name="lblStockTransferNo" xml:space="preserve">
+    <value>Stock Transfer No</value>
+  </data>
+  <data name="lblSupplierInvoiceDate" xml:space="preserve">
+    <value>Supplier Invoice Date</value>
+  </data>
+  <data name="lblSupplierInvoiceNo" xml:space="preserve">
+    <value>Supplier Invoice No</value>
+  </data>
+  <data name="lblFirstOrder" xml:space="preserve">
+    <value>First Order</value>
+  </data>
+  <data name="lblReOrder" xml:space="preserve">
+    <value>Re-Order</value>
+  </data>
+  <data name="lblNonStockOrder" xml:space="preserve">
+    <value>Non Stock Order</value>
+  </data>
+  <data name="lblComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="bnrAddEditLine" xml:space="preserve">
+    <value>Add/Edit Line</value>
+  </data>
+  <data name="bnrLines" xml:space="preserve">
+    <value>Lines</value>
+  </data>
+  <data name="lblDiscountPercent" xml:space="preserve">
+    <value>Discount %</value>
+  </data>
+  <data name="lblLineNumber" xml:space="preserve">
+    <value>Line#</value>
+  </data>
+  <data name="lblLineStatus" xml:space="preserve">
+    <value>Line Status</value>
+  </data>
+  <data name="lblOrderQty" xml:space="preserve">
+    <value>Order Qty</value>
+  </data>
+  <data name="lblProductDescription" xml:space="preserve">
+    <value>Product Description</value>
+  </data>
+  <data name="lblProductName" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="lblReceived" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="lblUnitPriceExTax" xml:space="preserve">
+    <value>Unit Price (ex Tax)</value>
+  </data>
+  <data name="bnrPurchaseDetails" xml:space="preserve">
+    <value>Purchase Details</value>
+  </data>
+  <data name="lblItem" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="lblProductCode" xml:space="preserve">
+    <value>Product Code</value>
+  </data>
+  <data name="errIntegerRequiredInField" xml:space="preserve">
+    <value>Error: An Integer value is required in field '%1' !</value>
+  </data>
+  <data name="errMaxValueOutOfRange" xml:space="preserve">
+    <value>Error: A Maximum value of %1 must be entered in field '%2' !</value>
+  </data>
+  <data name="errMinValueOutOfRange" xml:space="preserve">
+    <value>Error: A Minimum value of %1 must be entered in field '%2' !</value>
+  </data>
+  <data name="errDateRequiredInField" xml:space="preserve">
+    <value>Error: A Date value is required in field '%1' !</value>
+  </data>
+  <data name="errDecimalRequiredInField" xml:space="preserve">
+    <value>Error: A Decimal value is required in field '%1' !</value>
+  </data>
+  <data name="lblNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lblYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="lblSupplierItem" xml:space="preserve">
+    <value>Supplier Item</value>
+  </data>
+  <data name="lblAllocated" xml:space="preserve">
+    <value>Allocated</value>
+  </data>
+  <data name="lblLinePrice" xml:space="preserve">
+    <value>Line Price</value>
+  </data>
+  <data name="lblUnitCBM" xml:space="preserve">
+    <value>Unit CBM</value>
+  </data>
+  <data name="bnrAllocations" xml:space="preserve">
+    <value>Allocations</value>
+  </data>
+  <data name="lblCustomerName" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="lblQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="lblWindowClose" xml:space="preserve">
+    <value>Window Close</value>
+  </data>
+  <data name="bnrPayments" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="lblAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="lblDeposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="lblPaymentDate" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnSendToWarehouse" xml:space="preserve">
+    <value>Send to Whs</value>
+  </data>
+  <data name="errConfirmSendToWarehouse" xml:space="preserve">
+    <value>Are you sure you wish to send this order to the Warehouse ?</value>
+  </data>
+  <data name="btnSendToFreightForwarder" xml:space="preserve">
+    <value>Send to FF</value>
+  </data>
+  <data name="errConfirmSendToFreightForwarder" xml:space="preserve">
+    <value>Are you sure you wish to send this order to the Freight Forwarder ?</value>
+  </data>
+  <data name="infPurchaseOrderSentToFreightForwarder" xml:space="preserve">
+    <value>Purchase Order send to the Freight Forwarder.</value>
+  </data>
+  <data name="bnrDataTransfers" xml:space="preserve">
+    <value>Data Transfers</value>
+  </data>
+  <data name="bnrAddEditDataTransfer" xml:space="preserve">
+    <value>Add/Edit Data Transfer</value>
+  </data>
+  <data name="lblConfigurationTemplate" xml:space="preserve">
+    <value>Configuration Template</value>
+  </data>
+  <data name="lblTargetFolder" xml:space="preserve">
+    <value>Target Folder</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblFTPHost" xml:space="preserve">
+    <value>FTP Host</value>
+  </data>
+  <data name="lblUserId" xml:space="preserve">
+    <value>User Id</value>
+  </data>
+  <data name="lblSourceFolder" xml:space="preserve">
+    <value>Source Folder</value>
+  </data>
+  <data name="lblTransferType" xml:space="preserve">
+    <value>Transfer Type</value>
+  </data>
+  <data name="lblTransferName" xml:space="preserve">
+    <value>Transfer Name</value>
+  </data>
+  <data name="lblWarehouse" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="lblNone" xml:space="preserve">
+    <value>(None)</value>
+  </data>
+  <data name="bnrAddEditScheduledTask" xml:space="preserve">
+    <value>Add/Edit Scheduled Task</value>
+  </data>
+  <data name="bnrScheduledTasks" xml:space="preserve">
+    <value>Scheduled Tasks</value>
+  </data>
+  <data name="lblCurrentState" xml:space="preserve">
+    <value>Current State</value>
+  </data>
+  <data name="lblLastRun" xml:space="preserve">
+    <value>Last Run</value>
+  </data>
+  <data name="lblTaskName" xml:space="preserve">
+    <value>Task Name</value>
+  </data>
+  <data name="btnRun" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="lblParameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="btnLogs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="errCantStartTaskBecauseItIsDisabled" xml:space="preserve">
+    <value>Error: Cannot start Task '%1' because it is disabled!</value>
+  </data>
+  <data name="infTaskSuccessfullyQueued" xml:space="preserve">
+    <value>Task '%1' was successfully queued.</value>
+  </data>
+  <data name="lblDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="lblSeverity" xml:space="preserve">
+    <value>Severity</value>
+  </data>
+  <data name="bnrSystemStatus" xml:space="preserve">
+    <value>System Status</value>
+  </data>
+  <data name="lblCompanies" xml:space="preserve">
+    <value>Companies</value>
+  </data>
+  <data name="btnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="bnrEMailQueue" xml:space="preserve">
+    <value>Email Queue</value>
+  </data>
+  <data name="lblMessageSubject" xml:space="preserve">
+    <value>Message Subject</value>
+  </data>
+  <data name="lblQueuedDate" xml:space="preserve">
+    <value>Queued Date</value>
+  </data>
+  <data name="lblAvailableRecipients" xml:space="preserve">
+    <value>Available Recipients</value>
+  </data>
+  <data name="lblReplyTo" xml:space="preserve">
+    <value>Reply To</value>
+  </data>
+  <data name="lblRetries" xml:space="preserve">
+    <value>Retries</value>
+  </data>
+  <data name="lblSender" xml:space="preserve">
+    <value>Sender</value>
+  </data>
+  <data name="bnrSystemLogs" xml:space="preserve">
+    <value>System Logs</value>
+  </data>
+  <data name="btnCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="bnrAddNewPurchase" xml:space="preserve">
+    <value>Add New Purchase</value>
+  </data>
+  <data name="strLogSeverity" xml:space="preserve">
+    <value>-1=All|0=Normal|1=Warning|2=Severe</value>
+  </data>
+  <data name="strLogSection" xml:space="preserve">
+    <value>-1=All|1=System Error|2=Security|3=SQL Error</value>
+  </data>
+  <data name="bnrDataTransferQueue" xml:space="preserve">
+    <value>Data Transfer Queue</value>
+  </data>
+  <data name="lblSourceFile" xml:space="preserve">
+    <value>Source File</value>
+  </data>
+  <data name="lblTargetFile" xml:space="preserve">
+    <value>Target File</value>
+  </data>
+  <data name="lblProtocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="lblHoldUntil" xml:space="preserve">
+    <value>Hold Until</value>
+  </data>
+  <data name="lblType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="lblArchiveFolder" xml:space="preserve">
+    <value>Archive Folder</value>
+  </data>
+  <data name="errCantSendEMailToBlankFreightForwarderAddress" xml:space="preserve">
+    <value>Error: Cannot send EMail to Freight Forwarder because no EMail address has been configured!</value>
+  </data>
+  <data name="bnrAddEditFreightForwarder" xml:space="preserve">
+    <value>Add/Edit Freight Forwarder</value>
+  </data>
+  <data name="bnrFreightForwarders" xml:space="preserve">
+    <value>Freight Forwarders</value>
+  </data>
+  <data name="lblAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="errEMailingWarehouseNotSupported" xml:space="preserve">
+    <value>Error: EMailing a warehouse is not currently supported!</value>
+  </data>
+  <data name="lblMessageDetails" xml:space="preserve">
+    <value>Message Details</value>
+  </data>
+  <data name="infPurchaseOrderSentToWareHouse" xml:space="preserve">
+    <value>Purchase Order sent to Warehouse.</value>
+  </data>
+  <data name="errInvalidSenderEMailAddress" xml:space="preserve">
+    <value>Error: '%1' is not a valid sender EMail address for '%2' !</value>
+  </data>
+  <data name="errEMailTemplateNotFound" xml:space="preserve">
+    <value>Error: The specified EMail template could not be found to complete this action!</value>
+  </data>
+  <data name="btnSendToSupplier" xml:space="preserve">
+    <value>Send to Supplier</value>
+  </data>
+  <data name="errConfirmSendToSupplier" xml:space="preserve">
+    <value>Are you sure you wish to send this Purchase Order to the Supplier ?</value>
+  </data>
+  <data name="infPurchaseOrderSentToSupplier" xml:space="preserve">
+    <value>Purchase Order sent to Supplier.</value>
+  </data>
+  <data name="lblFormLogo" xml:space="preserve">
+    <value>Form Logo</value>
+  </data>
+  <data name="lblMarginLogo" xml:space="preserve">
+    <value>Margin Logo</value>
+  </data>
+  <data name="lblFormLogoTip" xml:space="preserve">
+    <value>This logo appears on all orders/forms issued/printed by this Company</value>
+  </data>
+  <data name="lblMarginLogoTip" xml:space="preserve">
+    <value>This logo appears in the left margin of all screens when this is the currently selected Company</value>
+  </data>
+  <data name="errCantSendOrderPurchaseOrderHasNoSupplier" xml:space="preserve">
+    <value>Error: Cannot send Order to Supplier because the Order has no Supplier configured!</value>
+  </data>
+  <data name="errCantSendOrderSupplierHasNoEMail" xml:space="preserve">
+    <value>Error: Cannot send Order to '%1' because this supplier has no EMail configured!</value>
+  </data>
+  <data name="bnrAddEditPurchaseNote" xml:space="preserve">
+    <value>Add/Edit Purchase Note</value>
+  </data>
+  <data name="bnrPurchaseNotes" xml:space="preserve">
+    <value>Purchase Notes</value>
+  </data>
+  <data name="lblCompany" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="errInvalidRecipientEMailAddress" xml:space="preserve">
+    <value>Error: '%1' is not a valid recipient EMail address for '%2' !</value>
+  </data>
+  <data name="errRecordError" xml:space="preserve">
+    <value>Error: Failed for find record Id %2 in table '%1' !</value>
+  </data>
+  <data name="bnrNotifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="btnCompleteOrder" xml:space="preserve">
+    <value>Complete Order</value>
+  </data>
+  <data name="errConfirmCompleteOrder" xml:space="preserve">
+    <value>Are you sure you wish to Complete this Order ?</value>
+  </data>
+  <data name="infOrderCompleted" xml:space="preserve">
+    <value>Order Completed.</value>
+  </data>
+  <data name="errMustSaveOrderFirst" xml:space="preserve">
+    <value>Error: You must Save this Order before you can perform this action!</value>
+  </data>
+  <data name="errCantCloseAlreadyClosedPurchaseOrder" xml:space="preserve">
+    <value>Error: Cannot close this Purchase Order because it is already closed!</value>
+  </data>
+  <data name="errSupplierAlreadyExists" xml:space="preserve">
+    <value>Error: A Supplier with this name already exists! Please choose another name</value>
+  </data>
+  <data name="errItemAlreadyExists" xml:space="preserve">
+    <value>Error: An Item with this name already exists! Please choose a different name</value>
+  </data>
+  <data name="errCustomerAlreadyExists" xml:space="preserve">
+    <value>Error: A Customer with this name already exists! Please choose a different name</value>
+  </data>
+  <data name="errCompanyAlreadyExists" xml:space="preserve">
+    <value>Error: A Company with this name already exists! Please choose another name</value>
+  </data>
+  <data name="errBrandAlreadyExists" xml:space="preserve">
+    <value>Error: A Brand with this name already exists! Please choose another name</value>
+  </data>
+  <data name="errBrandCategoryAlreadyExists" xml:space="preserve">
+    <value>Error: A Brand Category with this name already exists! Please choose another name</value>
+  </data>
+  <data name="errCantDeleteSupplier" xml:space="preserve">
+    <value>Error: Cannot Delete this Supplier because they have %1 Product(s) attached</value>
+  </data>
+  <data name="errCantDeleteProductUsedByOrders" xml:space="preserve">
+    <value>Error: You cannot Delete this Product because it is included in %1 Purchase Order(s) !</value>
+  </data>
+  <data name="errCantDeleteProductUsedBySales" xml:space="preserve">
+    <value>Error: You cannot Delete this Product because it is included in %1 Sales Order(s) !</value>
+  </data>
+  <data name="bnrSales" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="lblCustomerPO" xml:space="preserve">
+    <value>Customer PO</value>
+  </data>
+  <data name="bnrAddEditShipment" xml:space="preserve">
+    <value>Add/Edit Shipment</value>
+  </data>
+  <data name="bnrShipments" xml:space="preserve">
+    <value>Shipments</value>
+  </data>
+  <data name="lblSeason" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="lblDate100Shipped" xml:space="preserve">
+    <value>Date 100% Shipped</value>
+  </data>
+  <data name="lblDateDepartSupplier" xml:space="preserve">
+    <value>Date Dep Supplier</value>
+  </data>
+  <data name="lblExpectedDeliveryDate" xml:space="preserve">
+    <value>Exp Del Date</value>
+  </data>
+  <data name="lblPreAlertETA" xml:space="preserve">
+    <value>Pre Alert ETA</value>
+  </data>
+  <data name="lblReqShipDate" xml:space="preserve">
+    <value>Req Ship Date</value>
+  </data>
+  <data name="lblAllOrders" xml:space="preserve">
+    <value>All Orders</value>
+  </data>
+  <data name="lblOpenOrders" xml:space="preserve">
+    <value>Open Orders</value>
+  </data>
+  <data name="lblShipment" xml:space="preserve">
+    <value>Shipment</value>
+  </data>
+  <data name="lblCBMEstimate" xml:space="preserve">
+    <value>CBM Estimate</value>
+  </data>
+  <data name="lblDateWhsAccepted" xml:space="preserve">
+    <value>Date Whs Accepted</value>
+  </data>
+  <data name="lblProductBrand" xml:space="preserve">
+    <value>Product/Brand</value>
+  </data>
+  <data name="lblCarrierVessel" xml:space="preserve">
+    <value>Carrier Vessel</value>
+  </data>
+  <data name="bnrShipmentDates" xml:space="preserve">
+    <value>Shipment Dates</value>
+  </data>
+  <data name="bnrShipmentDetails" xml:space="preserve">
+    <value>Shipment Details</value>
+  </data>
+  <data name="bnrVesselAndVoyageDetails" xml:space="preserve">
+    <value>Vessel and Voyage Details</value>
+  </data>
+  <data name="lblConsidationName" xml:space="preserve">
+    <value>Consolidation Name</value>
+  </data>
+  <data name="lblConsignmentNo" xml:space="preserve">
+    <value>Consignment No</value>
+  </data>
+  <data name="lblDate110Shipped" xml:space="preserve">
+    <value>Date 100% Shipped</value>
+  </data>
+  <data name="lblDateUnpackSlipReceived" xml:space="preserve">
+    <value>Date Unpack Slip Received</value>
+  </data>
+  <data name="lblExpectedDelivery" xml:space="preserve">
+    <value>Expected Delivery</value>
+  </data>
+  <data name="lblShipmentComments" xml:space="preserve">
+    <value>Shipment Comments</value>
+  </data>
+  <data name="lblTranshipment" xml:space="preserve">
+    <value>Transhipment</value>
+  </data>
+  <data name="lblVoyageNo" xml:space="preserve">
+    <value>Voyage No</value>
+  </data>
+  <data name="lblWarehouseAccepted" xml:space="preserve">
+    <value>Warehouse Accepted</value>
+  </data>
+  <data name="bnrContainerDetails" xml:space="preserve">
+    <value>Container Details</value>
+  </data>
+  <data name="bnrContentDetails" xml:space="preserve">
+    <value>Content Details</value>
+  </data>
+  <data name="lblCBMCharged" xml:space="preserve">
+    <value>CBM Charged</value>
+  </data>
+  <data name="lblContainerNos" xml:space="preserve">
+    <value>Container Nos</value>
+  </data>
+  <data name="lblPackages" xml:space="preserve">
+    <value>Packages</value>
+  </data>
+  <data name="btnDrop" xml:space="preserve">
+    <value>Drop</value>
+  </data>
+  <data name="lblWindowOpen" xml:space="preserve">
+    <value>Window Open</value>
+  </data>
+  <data name="errConfirmDropItem" xml:space="preserve">
+    <value>Are you sure you wish to Drop this item from the list ?</value>
+  </data>
+  <data name="btnAddToShipment" xml:space="preserve">
+    <value>Add To Shipment</value>
+  </data>
+  <data name="lblSelectShipment" xml:space="preserve">
+    <value>Select Shipment</value>
+  </data>
+  <data name="errNoPurchaseOrdersHaveBeenSelected" xml:space="preserve">
+    <value>Error: No Purchase Orders have been selected for adding to a Shipment! Please check one or more Purchase Orders and try again</value>
+  </data>
+  <data name="lblNewShipment" xml:space="preserve">
+    <value>(New Shipment)</value>
+  </data>
+  <data name="lblSelectPurchaseOrder" xml:space="preserve">
+    <value>Select Purchase Order</value>
+  </data>
+  <data name="btnSplit" xml:space="preserve">
+    <value>Split</value>
+  </data>
+  <data name="bnrSplitPurchase" xml:space="preserve">
+    <value>Split Purchase</value>
+  </data>
+  <data name="bnrNewOrderDetails" xml:space="preserve">
+    <value>New Order Details</value>
+  </data>
+  <data name="bnrOriginalOrderDetails" xml:space="preserve">
+    <value>Original Order Details</value>
+  </data>
+  <data name="bnrSplitting" xml:space="preserve">
+    <value>Splitting</value>
+  </data>
+  <data name="lblOriginalOrderQty" xml:space="preserve">
+    <value>Original Order Qty</value>
+  </data>
+  <data name="lblRemainingQty" xml:space="preserve">
+    <value>Remaining Qty</value>
+  </data>
+  <data name="lblSplitToTargetOrderQty" xml:space="preserve">
+    <value>Split to Target Order Qty</value>
+  </data>
+  <data name="lblTargetOrder" xml:space="preserve">
+    <value>Target Order</value>
+  </data>
+  <data name="lblTargetOrderQty" xml:space="preserve">
+    <value>Target Order Qty</value>
+  </data>
+  <data name="lblAdvertisedETA" xml:space="preserve">
+    <value>Advertised ETA</value>
+  </data>
+  <data name="lblLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="lblSplitToNewOrderQty" xml:space="preserve">
+    <value>Split to New Order Qty</value>
+  </data>
+  <data name="errCantSplitMoreThanOriginalQty" xml:space="preserve">
+    <value>Error: You cannot split off more items than the Original Order Quantity!</value>
+  </data>
+  <data name="infMustSelectTargetOrder" xml:space="preserve">
+    <value>Note: When specifying items to move to another Order, you must specify the Order you want to move them to.</value>
+  </data>
+  <data name="errMustSelectValidOrderNumber" xml:space="preserve">
+    <value>Error: A valid Purchase Order must be specified!</value>
+  </data>
+  <data name="errMustSaveShipmentBeforeAddingOrders" xml:space="preserve">
+    <value>You must Save this Shipment before you can add Purchase Orders to it!</value>
+  </data>
+  <data name="errNoItemsHaveBeenSpecifiedToMoveOrSplit" xml:space="preserve">
+    <value>Error: No Items have been specified to be Split or Moved!</value>
+  </data>
+  <data name="errYouCannotMoveItemsToNonRootOrder" xml:space="preserve">
+    <value>Error: You can only move items to non-decimal order numbers!</value>
+  </data>
+  <data name="errTargetQtyMustBeZeroWhenNoOrderSpecified" xml:space="preserve">
+    <value>Error: Target Order Quantity must be zero when no Target Order is specified!</value>
+  </data>
+  <data name="lblCostedExchgRate" xml:space="preserve">
+    <value>Costed Exchange Rate</value>
+  </data>
+  <data name="lblDatePOSentToSupplier" xml:space="preserve">
+    <value>Date PO Sent to Supplier</value>
+  </data>
+  <data name="lblEstCBMRate" xml:space="preserve">
+    <value>Estimated CBM Rate</value>
+  </data>
+  <data name="lblEstDutyRate" xml:space="preserve">
+    <value>Estimated Duty Rate</value>
+  </data>
+  <data name="lblPONumber" xml:space="preserve">
+    <value>PO Number</value>
+  </data>
+  <data name="lblPurchaseAmount" xml:space="preserve">
+    <value>Purchase Amount</value>
+  </data>
+  <data name="lblSupplierPaymentTerms" xml:space="preserve">
+    <value>Supplier Payment Terms</value>
+  </data>
+  <data name="lblTotalLandedPrice" xml:space="preserve">
+    <value>Total Landed Price</value>
+  </data>
+  <data name="btnView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="lblWeight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="bnrAddToShipmentSelectPurchaseOrder" xml:space="preserve">
+    <value>Add to Shipment - Select Purchase Order</value>
+  </data>
+  <data name="bnrLandingCostSpreader" xml:space="preserve">
+    <value>Landing Cost Spreader</value>
+  </data>
+  <data name="bnrStockTransfer" xml:space="preserve">
+    <value>Stock Transfer</value>
+  </data>
+  <data name="bnrShipmentPhasePortTimes" xml:space="preserve">
+    <value>Shipment Phase/Port Times</value>
+  </data>
+  <data name="bnrOrdersAndQuotes" xml:space="preserve">
+    <value>Orders And Quotes</value>
+  </data>
+  <data name="bnrCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="bnrAddEditSale" xml:space="preserve">
+    <value>Add/Edit Sale</value>
+  </data>
+  <data name="bnrOrderDetails" xml:space="preserve">
+    <value>Order Details</value>
+  </data>
+  <data name="bnrFreight" xml:space="preserve">
+    <value>Freight</value>
+  </data>
+  <data name="bnrDeliveryWindow" xml:space="preserve">
+    <value>Delivery Window</value>
+  </data>
+  <data name="bnrEDI" xml:space="preserve">
+    <value>EDI</value>
+  </data>
+  <data name="bnrOrderConfirmation" xml:space="preserve">
+    <value>Order Confirmation</value>
+  </data>
+  <data name="lblSubTotal" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="lblTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="lblCreditCard" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="lblEndUserName" xml:space="preserve">
+    <value>End User Name</value>
+  </data>
+  <data name="lblEnteredBy" xml:space="preserve">
+    <value>Entered By</value>
+  </data>
+  <data name="lblHeldUntil" xml:space="preserve">
+    <value>Held Until</value>
+  </data>
+  <data name="lblNextAction" xml:space="preserve">
+    <value>Next Action</value>
+  </data>
+  <data name="lblNextReviewDate" xml:space="preserve">
+    <value>Next Review Date</value>
+  </data>
+  <data name="lblOARChangeDate" xml:space="preserve">
+    <value>OAR Change Date</value>
+  </data>
+  <data name="lblOrderSource" xml:space="preserve">
+    <value>Order Source</value>
+  </data>
+  <data name="lblOrderType" xml:space="preserve">
+    <value>Order Type</value>
+  </data>
+  <data name="lblRetailHoldingOrder" xml:space="preserve">
+    <value>Retail Holding Order</value>
+  </data>
+  <data name="lblShipFrom" xml:space="preserve">
+    <value>Ship From</value>
+  </data>
+  <data name="lblSuburb" xml:space="preserve">
+    <value>Suburb</value>
+  </data>
+  <data name="bnrCreditCards" xml:space="preserve">
+    <value>Credit Cards</value>
+  </data>
+  <data name="bnrAddEditCreditCard" xml:space="preserve">
+    <value>Add/Edit Credit Card</value>
+  </data>
+  <data name="errCreditCardNoRequiredInField" xml:space="preserve">
+    <value>Error: A Credit Card Number of 1-%1 digits is required in field '%2' !</value>
+  </data>
+  <data name="errInvalidExpiryInField" xml:space="preserve">
+    <value>Error: An Expiry date of %1 characters in the form dd/yy is required in field '%2' !</value>
+  </data>
+  <data name="lblCardNumber" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="lblCardProvider" xml:space="preserve">
+    <value>Card Provider</value>
+  </data>
+  <data name="lblCCV" xml:space="preserve">
+    <value>CCV</value>
+  </data>
+  <data name="lblExpiry" xml:space="preserve">
+    <value>Expiry</value>
+  </data>
+  <data name="lblNameOnCard" xml:space="preserve">
+    <value>Name on Card</value>
+  </data>
+  <data name="errCantDeleteCreditCardAttachedToSales" xml:space="preserve">
+    <value>Error: You cannot Delete this card because it is attached to %1 Sale(s) !</value>
+  </data>
+  <data name="btnCreatePO" xml:space="preserve">
+    <value>Create PO</value>
+  </data>
+  <data name="errBrandCategoryRequired" xml:space="preserve">
+    <value>The Brand Category for this Order must be set on the Order Details screen before adding items</value>
+  </data>
+  <data name="bnrPurchaseImport" xml:space="preserve">
+    <value>Purchase Import</value>
+  </data>
+  <data name="btnAddItem" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="bnrOrderLines" xml:space="preserve">
+    <value>Order Lines</value>
+  </data>
+  <data name="errAValidItemMustBeSelected" xml:space="preserve">
+    <value>Error: A Valid item must be selected in field '%1' !</value>
+  </data>
+  <data name="errNoItemsSelectedToSplit" xml:space="preserve">
+    <value>Error: No items have been selected for splitting!</value>
+  </data>
+  <data name="lblSelectFile" xml:space="preserve">
+    <value>Select File to upload:</value>
+  </data>
+  <data name="btnUpload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="lblFirstLineContainsHeader" xml:space="preserve">
+    <value>First line contains Header</value>
+  </data>
+  <data name="btnImport" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="lblUrls" xml:space="preserve">
+    <value>URLs (Optional)</value>
+  </data>
+  <data name="lblWebReferences" xml:space="preserve">
+    <value>Web References (optional)</value>
+  </data>
+  <data name="errImportErrorsFound" xml:space="preserve">
+    <value>Error: Import Errors have been found!</value>
+  </data>
+  <data name="errMaxFileUploadSizeExceeded" xml:space="preserve">
+    <value>Error: The size of the selected file(s) is %1 which exceeds the maximum upload size of %2 ! Please remove one or more files</value>
+  </data>
+  <data name="lblBytes" xml:space="preserve">
+    <value>Bytes</value>
+  </data>
+  <data name="lblMaximumFileSize" xml:space="preserve">
+    <value>Maximum File Size:</value>
+  </data>
+  <data name="lblValidFileTypes" xml:space="preserve">
+    <value>Valid File Types:</value>
+  </data>
+  <data name="lblDefaultCountryID" xml:space="preserve">
+    <value>Default Country</value>
+  </data>
+  <data name="lblSetByCustomer" xml:space="preserve">
+    <value>Set by Customer</value>
+  </data>
+  <data name="lblDCCode" xml:space="preserve">
+    <value>DC Code</value>
+  </data>
+  <data name="lblDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="lblEDIStoreNo" xml:space="preserve">
+    <value>EDI Store No</value>
+  </data>
+  <data name="lblShipMethodAccount" xml:space="preserve">
+    <value>Ship Method Account</value>
+  </data>
+  <data name="lblAddressIsConfirmed" xml:space="preserve">
+    <value>Address is confirmed (Suburb, State, Postcode and Country are all required)</value>
+  </data>
+  <data name="lblDateSigned" xml:space="preserve">
+    <value>Date Signed</value>
+  </data>
+  <data name="lblMethodSigned" xml:space="preserve">
+    <value>Method Signed</value>
+  </data>
+  <data name="lblSignedBy" xml:space="preserve">
+    <value>Signed By</value>
+  </data>
+  <data name="errInvalidImportFile" xml:space="preserve">
+    <value>Error: Invalid File Type! An Import file must be one of: %1</value>
+  </data>
+  <data name="bnrAddEditSaleNote" xml:space="preserve">
+    <value>Add/Edit Sale Note</value>
+  </data>
+  <data name="bnrSaleNotes" xml:space="preserve">
+    <value>Sale Notes</value>
+  </data>
+  <data name="lblDeliveryWindowClose" xml:space="preserve">
+    <value>Delivery Window Close</value>
+  </data>
+  <data name="lblDeliveryWindowOpen" xml:space="preserve">
+    <value>Delivery Window Open</value>
+  </data>
+  <data name="lblTotalCBMs" xml:space="preserve">
+    <value>Total CBMs</value>
+  </data>
+  <data name="lblAllocatedPercent" xml:space="preserve">
+    <value>Allocated %</value>
+  </data>
+  <data name="lblAllocValueEx" xml:space="preserve">
+    <value>Alloc Value Ex</value>
+  </data>
+  <data name="lblOrderValueEx" xml:space="preserve">
+    <value>Order Value Ex</value>
+  </data>
+  <data name="btnCopy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="bnrCancellations" xml:space="preserve">
+    <value>Cancellations</value>
+  </data>
+  <data name="bnrSelectCriteria" xml:space="preserve">
+    <value>Select Criteria</value>
+  </data>
+  <data name="bnrSelectCustomers" xml:space="preserve">
+    <value>Select Customers</value>
+  </data>
+  <data name="btnNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="btnPrev" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="lblCancelAll" xml:space="preserve">
+    <value>Cancel All</value>
+  </data>
+  <data name="lblCancelUnAllocated" xml:space="preserve">
+    <value>Cancel Unallocated</value>
+  </data>
+  <data name="lblDeliveryWindowClosed" xml:space="preserve">
+    <value>Delivery Window Closed</value>
+  </data>
+  <data name="lblEndOfLineProducts" xml:space="preserve">
+    <value>End of Line Products</value>
+  </data>
+  <data name="lblEOL" xml:space="preserve">
+    <value># EOL</value>
+  </data>
+  <data name="lblEOLS" xml:space="preserve">
+    <value>^ EOLS</value>
+  </data>
+  <data name="lblPercentActive" xml:space="preserve">
+    <value>% Active</value>
+  </data>
+  <data name="lblCannotGetAnyMore" xml:space="preserve">
+    <value>% Cannot get any more</value>
+  </data>
+  <data name="lblEndOfLine" xml:space="preserve">
+    <value>End of Line</value>
+  </data>
+  <data name="lblEndOfLineSecret" xml:space="preserve">
+    <value>End of Line (customers not advised)</value>
+  </data>
+  <data name="lblAvailableCustomers" xml:space="preserve">
+    <value>Available Customers</value>
+  </data>
+  <data name="lblSelectedCustomers" xml:space="preserve">
+    <value>Selected Customers</value>
+  </data>
+  <data name="lblSelectBrandCategory" xml:space="preserve">
+    <value>Select Brand Category</value>
+  </data>
+  <data name="lblAvailableOrders" xml:space="preserve">
+    <value>Available Orders</value>
+  </data>
+  <data name="lblSelectedOrders" xml:space="preserve">
+    <value>Selected Orders</value>
+  </data>
+  <data name="bnrSelectOrders" xml:space="preserve">
+    <value>Select Orders</value>
+  </data>
+  <data name="bnrSelectProducts" xml:space="preserve">
+    <value>Select Products</value>
+  </data>
+  <data name="lblAvailableProducts" xml:space="preserve">
+    <value>Available Products</value>
+  </data>
+  <data name="lblSelectedProducts" xml:space="preserve">
+    <value>Selected Products</value>
+  </data>
+  <data name="bnrSelectAccountManagers" xml:space="preserve">
+    <value>Select Account Managers</value>
+  </data>
+  <data name="bnrSelectWarehouse" xml:space="preserve">
+    <value>Select Warehouse</value>
+  </data>
+  <data name="lblAvailableAccountManagers" xml:space="preserve">
+    <value>Available Account Managers</value>
+  </data>
+  <data name="lblAvailableWarehouses" xml:space="preserve">
+    <value>Available Warehouses</value>
+  </data>
+  <data name="lblSelectedAccountManagers" xml:space="preserve">
+    <value>Selected Account Managers</value>
+  </data>
+  <data name="lblSelectedWarehouses" xml:space="preserve">
+    <value>Selected Warehouses</value>
+  </data>
+  <data name="btnFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="lblAccountManager" xml:space="preserve">
+    <value>Account Manager</value>
+  </data>
+  <data name="bnrSummaryConfirmation" xml:space="preserve">
+    <value>Summary and Confirmation</value>
+  </data>
+  <data name="lblProductStatus" xml:space="preserve">
+    <value>Product Status</value>
+  </data>
+  <data name="errConfirmCancellation" xml:space="preserve">
+    <value>The items listed will now be Cancelled. Are you sure you wish to continue ?</value>
+  </data>
+  <data name="bnrSaleImport" xml:space="preserve">
+    <value>Sale Import</value>
+  </data>
+  <data name="lblImportTransactionsAs" xml:space="preserve">
+    <value>Import Transactions As</value>
+  </data>
+  <data name="bnrHoldingOrderReAllocation" xml:space="preserve">
+    <value>Holding Order Re-Allocation</value>
+  </data>
+  <data name="bnrReAllocations" xml:space="preserve">
+    <value>Re-Allocations</value>
+  </data>
+  <data name="bnrOrderActioning" xml:space="preserve">
+    <value>Order Actioning</value>
+  </data>
+  <data name="lblBuildDate" xml:space="preserve">
+    <value>Build Date</value>
+  </data>
+  <data name="lblCopyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="lblSoftware" xml:space="preserve">
+    <value>Software</value>
+  </data>
+  <data name="lblSoftwareVersion" xml:space="preserve">
+    <value>Software Version</value>
+  </data>
+  <data name="lblAssembly" xml:space="preserve">
+    <value>Assembly</value>
+  </data>
+  <data name="errFailedToFindFileTransferConfigForDeliveryLocation" xml:space="preserve">
+    <value>Error: Failed to find a File Transfer configuration for sending to Delivery Location '%1' !</value>
+  </data>
+  <data name="errOrderHasNoLocationSet" xml:space="preserve">
+    <value>Error: Order has no Location set!</value>
+  </data>
+  <data name="errOrderHasNoFreightForwarderSet" xml:space="preserve">
+    <value>Error: Order has no Freight Forwarder set!</value>
+  </data>
+  <data name="errFailedToFindFileTransferConfigForFreightForwarder" xml:space="preserve">
+    <value>Error: Failed to find a File Transfer configuration for sending to Freight Forwarder '%1' !</value>
+  </data>
+  <data name="lblSelectAddress" xml:space="preserve">
+    <value>Select Address</value>
+  </data>
+  <data name="errCantSaveSaleWithNoLines" xml:space="preserve">
+    <value>Error: You cannot save a Sale with no lines!</value>
+  </data>
+  <data name="errProductPriceNotFound" xml:space="preserve">
+    <value>Error: A Price for this product could not be found!</value>
+  </data>
+  <data name="errFailedToRetrieveCustomer" xml:space="preserve">
+    <value>Error: Failed to retrieve the requested Customer!</value>
+  </data>
+  <data name="errFailedToRetrieveCustomerCards" xml:space="preserve">
+    <value>Error: Failed to retrieve Customer Cards!</value>
+  </data>
+  <data name="errAddressMustBeConfirmedForConfirmedOrder" xml:space="preserve">
+    <value>Error: The Address must be confirmed to be able to save a Confirmed order!</value>
+  </data>
+  <data name="errCustomerRequired" xml:space="preserve">
+    <value>Error: A Customer must be selected!</value>
+  </data>
+  <data name="errProductNotFound" xml:space="preserve">
+    <value>Error: The specified Product could not be found!</value>
+  </data>
+  <data name="infTextCopiedToClipboard" xml:space="preserve">
+    <value>Text successfully copied to the clipboard.</value>
+  </data>
+  <data name="lblNonMSQMultiplesAllowed" xml:space="preserve">
+    <value>Non-MSQ Multiples Allowed</value>
+  </data>
+  <data name="lblNonMSQMultiplesNotAllowed" xml:space="preserve">
+    <value>Non-MSQ Multiples Not Allowed</value>
+  </data>
+  <data name="btnOverride" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="bnrSelectApprover" xml:space="preserve">
+    <value>Select Approver</value>
+  </data>
+  <data name="bnrProductImport" xml:space="preserve">
+    <value>Product Import</value>
+  </data>
+  <data name="lblSelectImageFile" xml:space="preserve">
+    <value>Select Image file</value>
+  </data>
+  <data name="lblUploadProductImages" xml:space="preserve">
+    <value>Upload Product Images</value>
+  </data>
+  <data name="btnSetasPrimaryImage" xml:space="preserve">
+    <value>Set as Primary Image</value>
+  </data>
+  <data name="errCantDeleteMediaWhenSetAsProductPrimaryImage" xml:space="preserve">
+    <value>Error: Cannot delete media '%1' because it is configured as the primary image for product '%2' !</value>
+  </data>
+  <data name="errInvalidFileName" xml:space="preserve">
+    <value>Error: '%1' is not a valid file name!</value>
+  </data>
+  <data name="btnOrders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="lblDimensions" xml:space="preserve">
+    <value>Dimensions (cm)</value>
+  </data>
+  <data name="lblHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="lblLength" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="lblWidth" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="lblMaterial" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="btnPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="bnrPrintSale" xml:space="preserve">
+    <value>Print Sale</value>
+  </data>
+  <data name="lblDocumentType" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="lblSaveInSaleNotesAttachments" xml:space="preserve">
+    <value>Save in Sale Notes/Attachments</value>
+  </data>
+  <data name="lblShowCancelledItems" xml:space="preserve">
+    <value>Show Cancelled Items</value>
+  </data>
+  <data name="lblSendAsEMail" xml:space="preserve">
+    <value>Send as EMail</value>
+  </data>
+  <data name="lblRecipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="lblSelectedRecipients" xml:space="preserve">
+    <value>Selected Recipients</value>
+  </data>
+  <data name="lblViewCreatedDocument" xml:space="preserve">
+    <value>View Created Document</value>
+  </data>
+  <data name="infDocumentSuccessfullyCreated" xml:space="preserve">
+    <value>Document successfully created.</value>
+  </data>
+  <data name="errFailedToFindSOGForSOHT" xml:space="preserve">
+    <value>Error: Failed to find SalesOrderHeader record for SalesOrderHeaderTemp record #%1 !</value>
+  </data>
+  <data name="lblCCRecipients" xml:space="preserve">
+    <value>CC'd Recipients</value>
+  </data>
+  <data name="errInvalidEMailsForUsers" xml:space="preserve">
+    <value>Error: Invalid EMail addresses for user(s):</value>
+  </data>
+  <data name="infEMailSuccessfullySent" xml:space="preserve">
+    <value>Email successfully sent.</value>
+  </data>
+  <data name="lblSaveAsContact" xml:space="preserve">
+    <value>Save as Contact</value>
+  </data>
+  <data name="errNoToRecipientsSelected" xml:space="preserve">
+    <value>Error: No 'To:' recipients selected!</value>
+  </data>
+  <data name="bnrOutstanding" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="bnrAvailabilityDetails" xml:space="preserve">
+    <value>Availability Details</value>
+  </data>
+  <data name="bnrSalesOrders" xml:space="preserve">
+    <value>Sales Orders</value>
+  </data>
+  <data name="lblAllocationDate" xml:space="preserve">
+    <value>Allocation Date</value>
+  </data>
+  <data name="lblAllocationDetail" xml:space="preserve">
+    <value>Allocation Detail</value>
+  </data>
+  <data name="lblAvailableNow" xml:space="preserve">
+    <value>Available Now</value>
+  </data>
+  <data name="lblPurchaseDate" xml:space="preserve">
+    <value>Purchase Date</value>
+  </data>
+  <data name="lblPurchaseETA" xml:space="preserve">
+    <value>Purchase ETA</value>
+  </data>
+  <data name="lblPurchaseStatus" xml:space="preserve">
+    <value>Purchase Status</value>
+  </data>
+  <data name="lblQtyAllocated" xml:space="preserve">
+    <value>Qty Allocated</value>
+  </data>
+  <data name="lblQtyRequired" xml:space="preserve">
+    <value>Qty Required</value>
+  </data>
+  <data name="lblSalesOrderNo" xml:space="preserve">
+    <value>Sales Order No</value>
+  </data>
+  <data name="bnrAvailabilitySummary" xml:space="preserve">
+    <value>Availability Summary</value>
+  </data>
+  <data name="bnrPrices" xml:space="preserve">
+    <value>Prices</value>
+  </data>
+  <data name="bnrSalesOrderSummary" xml:space="preserve">
+    <value>Sales Order Summary</value>
+  </data>
+  <data name="lblMSQ" xml:space="preserve">
+    <value>MSQ</value>
+  </data>
+  <data name="lblQtyFree" xml:space="preserve">
+    <value>Qty Free</value>
+  </data>
+  <data name="lblTotalAllocatedStock" xml:space="preserve">
+    <value>Total Allocated Stock</value>
+  </data>
+  <data name="lblTotalAllocatedStockOnSalesOrders" xml:space="preserve">
+    <value>Total Allocated Stock on Sales Orders</value>
+  </data>
+  <data name="lblTotalAvailableStock" xml:space="preserve">
+    <value>Total Available Stock</value>
+  </data>
+  <data name="lblTotalRequiredStockOnSalesOrders" xml:space="preserve">
+    <value>Total Required Stock on Sales Orders</value>
+  </data>
+  <data name="lblTotalStockonHandAndOnOrder" xml:space="preserve">
+    <value>Total Stock on Hand and on Order</value>
+  </data>
+  <data name="lblTotalStockOnSalesOrders" xml:space="preserve">
+    <value>Total Stock on Sales Orders</value>
+  </data>
+  <data name="bnrTasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="lblDueDate" xml:space="preserve">
+    <value>Due Date</value>
+  </data>
+  <data name="lblStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="strAll" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="lblTaskType" xml:space="preserve">
+    <value>Task Type</value>
+  </data>
+  <data name="lblColour" xml:space="preserve">
+    <value>Colour</value>
+  </data>
+  <data name="bnrAddEditTask" xml:space="preserve">
+    <value>Add/Edit Task</value>
+  </data>
+  <data name="lblTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lblAssignee" xml:space="preserve">
+    <value>Assignee</value>
+  </data>
+  <data name="btnComplete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="lblBusinessUnit" xml:space="preserve">
+    <value>Business Unit</value>
+  </data>
+  <data name="lblAddFollowUp" xml:space="preserve">
+    <value>Add Follow-up/Reminder</value>
+  </data>
+  <data name="lblFollowUpDate" xml:space="preserve">
+    <value>Follow-up Date</value>
+  </data>
+  <data name="lblFollowUpNote" xml:space="preserve">
+    <value>Follow-up Note</value>
+  </data>
+  <data name="lblPostTransferCommand" xml:space="preserve">
+    <value>Post Transfer Command</value>
+  </data>
+  <data name="lblPostTransferParameters" xml:space="preserve">
+    <value>Post Transfer Parameters</value>
+  </data>
+  <data name="lblMediaType" xml:space="preserve">
+    <value>Media Type</value>
+  </data>
+  <data name="lblSupplierItemNumber" xml:space="preserve">
+    <value>Supplier Item Number</value>
+  </data>
+  <data name="lblSupplierProductName" xml:space="preserve">
+    <value>Supplier Product Name</value>
+  </data>
+  <data name="lblCountryOfOrigin" xml:space="preserve">
+    <value>Country Of Origin</value>
+  </data>
+  <data name="lblApprovedBy" xml:space="preserve">
+    <value>Approved By</value>
+  </data>
+  <data name="bnrCompliance" xml:space="preserve">
+    <value>Compliance</value>
+  </data>
+  <data name="bnrImages" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="bnrMarketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="bnrPricing" xml:space="preserve">
+    <value>Pricing</value>
+  </data>
+  <data name="bnrSupplierInfo" xml:space="preserve">
+    <value>Supplier Information</value>
+  </data>
+  <data name="lblPrimary" xml:space="preserve">
+    <value>Primary</value>
+  </data>
+  <data name="lblAgeGroup" xml:space="preserve">
+    <value>Age Group</value>
+  </data>
+  <data name="lblBarcode" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="lblSelectImageFiles" xml:space="preserve">
+    <value>Select Image file(s)</value>
+  </data>
+  <data name="bnrUploadImages" xml:space="preserve">
+    <value>Upload Images</value>
+  </data>
+  <data name="lblSelectImageFilesToUpload" xml:space="preserve">
+    <value>Select Image File(s) to Upload</value>
+  </data>
+  <data name="infImagesSuccessfullyUploaded" xml:space="preserve">
+    <value>Images successfully uploaded.</value>
+  </data>
+  <data name="lblMinimumOrderQuantities" xml:space="preserve">
+    <value>Minimum Order Quantities</value>
+  </data>
+  <data name="lblMinimumSaleQuantity" xml:space="preserve">
+    <value>Minimum Sale Quantity</value>
+  </data>
+  <data name="lblItemShortDescription" xml:space="preserve">
+    <value>Short Description</value>
+  </data>
+  <data name="errFileIsNotAValidType" xml:space="preserve">
+    <value>Error: File '%1' is not a valid file type!</value>
+  </data>
+  <data name="lblCatalogueDetails" xml:space="preserve">
+    <value>Catalogue Details</value>
+  </data>
+  <data name="lblDisplayTradeShowQty" xml:space="preserve">
+    <value>Display Tradeshow Quantity</value>
+  </data>
+  <data name="bnrAddEditCompliance" xml:space="preserve">
+    <value>Add/Edit Compliance</value>
+  </data>
+  <data name="bnrIntellectualProperty" xml:space="preserve">
+    <value>Intellectual Property</value>
+  </data>
+  <data name="bnrAddEditIntellectualPropertyNote" xml:space="preserve">
+    <value>Add/Edit Intellectual Property Note</value>
+  </data>
+  <data name="lblAB" xml:space="preserve">
+    <value>AB</value>
+  </data>
+  <data name="lblInnerBarcode" xml:space="preserve">
+    <value>Inner Barcode</value>
+  </data>
+  <data name="lblMasterBarcode" xml:space="preserve">
+    <value>Master Barcode</value>
+  </data>
+  <data name="lblProductNameFormat" xml:space="preserve">
+    <value>Format Name</value>
+  </data>
+  <data name="lblProductNameLong" xml:space="preserve">
+    <value>Long Name</value>
+  </data>
+  <data name="lblProductNameStyle" xml:space="preserve">
+    <value>Style Name</value>
+  </data>
+  <data name="lblSet" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="lblSpecifications" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
+  <data name="lblHSCode" xml:space="preserve">
+    <value>HS Code</value>
+  </data>
+  <data name="lblMinimumOrderQuantity" xml:space="preserve">
+    <value>Minimum Order Quantity</value>
+  </data>
+  <data name="lblInnerQuantity" xml:space="preserve">
+    <value>Inner Quantity</value>
+  </data>
+  <data name="lblMasterQuantity" xml:space="preserve">
+    <value>Master Quantity</value>
+  </data>
+  <data name="lblOuterQuantity" xml:space="preserve">
+    <value>Outer Quantity</value>
+  </data>
+  <data name="bnrPackingInfo" xml:space="preserve">
+    <value>Packing Information</value>
+  </data>
+  <data name="lblPackPackingType" xml:space="preserve">
+    <value>Pack Packing Type</value>
+  </data>
+  <data name="bnrDimensionsAndWeight" xml:space="preserve">
+    <value>Dimensions and Weight</value>
+  </data>
+  <data name="lblInner" xml:space="preserve">
+    <value>Inner</value>
+  </data>
+  <data name="lblMaster" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="lblPackedProduct" xml:space="preserve">
+    <value>Packed Product</value>
+  </data>
+  <data name="lblProduct" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="lblImperial" xml:space="preserve">
+    <value>Imperial</value>
+  </data>
+  <data name="lblMetric" xml:space="preserve">
+    <value>Metric</value>
+  </data>
+  <data name="lblUnitOfMeasure" xml:space="preserve">
+    <value>Unit of Measure</value>
+  </data>
+  <data name="bnrAdditionalCategories" xml:space="preserve">
+    <value>Company Specs</value>
+  </data>
+  <data name="lblCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="lblDvlptType" xml:space="preserve">
+    <value>Development Type</value>
+  </data>
+  <data name="lblFormat" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="lblFormatType" xml:space="preserve">
+    <value>Format Type</value>
+  </data>
+  <data name="lblPackingType" xml:space="preserve">
+    <value>Packing Type</value>
+  </data>
+  <data name="lblPCDvlpt" xml:space="preserve">
+    <value>PC Development</value>
+  </data>
+  <data name="lblPCProduct" xml:space="preserve">
+    <value>PC Product</value>
+  </data>
+  <data name="lblWebCategory" xml:space="preserve">
+    <value>Web Category</value>
+  </data>
+  <data name="lblWebSubCategory" xml:space="preserve">
+    <value>Web Sub Category</value>
+  </data>
+  <data name="lblWeightPerProduct" xml:space="preserve">
+    <value>Weight per Product</value>
+  </data>
+  <data name="lblKidsAdults" xml:space="preserve">
+    <value>Age Demographic</value>
+  </data>
+  <data name="errConfirmCreatePicks" xml:space="preserve">
+    <value>Are you sure wish to create Picks for the selected items ?</value>
+  </data>
+  <data name="btnCreatePicks" xml:space="preserve">
+    <value>Create Picks</value>
+  </data>
+  <data name="errNoSalesWereSelectedForPicking" xml:space="preserve">
+    <value>Error: No Sales were selected for picking!</value>
+  </data>
+  <data name="errCannotDropOrderWhenMSQNotMet" xml:space="preserve">
+    <value>Error: You cannot drop order %1 to customer '%2' because item %3 does not meet its minimum sale quantity (MSQ) requirement of %4!</value>
+  </data>
+  <data name="errCannotDropOrderWhenNotShipSomething" xml:space="preserve">
+    <value>Error: You cannot drop order %1 to customer '%2' because it does not have an action of 'Ship Something'!</value>
+  </data>
+  <data name="btnCombinePicks" xml:space="preserve">
+    <value>Combine Picks</value>
+  </data>
+  <data name="errConfirmCombinePicks" xml:space="preserve">
+    <value>Are you sure wish to combine Picks for the selected items ?</value>
+  </data>
+  <data name="bnrCreationApproval" xml:space="preserve">
+    <value>Creation/Approval</value>
+  </data>
+  <data name="lblApprovedDate" xml:space="preserve">
+    <value>Approved Date</value>
+  </data>
+  <data name="btnApprove" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="infProductHasBeenApproved" xml:space="preserve">
+    <value>This product has now been approved.</value>
+  </data>
+  <data name="cnfConfirmApproveProduct" xml:space="preserve">
+    <value>Are you sure you wish to Approve this Product ?</value>
+  </data>
+  <data name="bnrAddNewCustomer" xml:space="preserve">
+    <value>Add New Customer</value>
+  </data>
+  <data name="lblErrorFolder" xml:space="preserve">
+    <value>Error Folder</value>
+  </data>
+  <data name="lblMarketName" xml:space="preserve">
+    <value>Market Name</value>
+  </data>
+  <data name="lblComplianceCategory" xml:space="preserve">
+    <value>Compliance Category</value>
+  </data>
+  <data name="lblDocuments" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="lblMarket" xml:space="preserve">
+    <value>Market</value>
+  </data>
+  <data name="infFilesSuccessfullyUploaded" xml:space="preserve">
+    <value>Files successfully uploaded.</value>
+  </data>
+  <data name="lblDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="errCannotCombineRetailOrder" xml:space="preserve">
+    <value>Error: Cannot combine order %1 for customer '%2' because it is not permitted to combine an order which is Retail!</value>
+  </data>
+  <data name="errCannotDropOrderForDifferentCustomer" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because this is a different customer to other orders in this selection!</value>
+  </data>
+  <data name="errCannotDropOrderMixedReplacements" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because Replacement Orders and Regular Orders cannot be combined!</value>
+  </data>
+  <data name="errCannotDropOrderShipAddrsDifferent" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because it has a different shipping address to other orders in this selection!</value>
+  </data>
+  <data name="errCannotDropOrderShipAddrsIncomplete" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to '%2' because the Shipping Address on this order is missing or incomplete!</value>
+  </data>
+  <data name="errCannotDropOrderWhenNoSalesPerson" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because the order has no Sales Person attached!</value>
+  </data>
+  <data name="errCannotDropOrderWithDifferentCreditCard" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because is uses a different Credit Card to other orders in this selection!</value>
+  </data>
+  <data name="errCannotDropOrderWithDifferentFreightCarrier" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because it uses a different Freight Carrier to other orders in this selection!</value>
+  </data>
+  <data name="errCannotDropOrderWithDifferentManualFreight" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because Manual and Auto Freight cannot be combined!</value>
+  </data>
+  <data name="errCannotDropOrderWithInvalidCustomerBillingAddress" xml:space="preserve">
+    <value>Error: Cannot drop order %1 because customer '%2' has a missing or incomplete Billing address!</value>
+  </data>
+  <data name="errCannotDropOrderWithNoCreditCard" xml:space="preserve">
+    <value>Error: Cannot drop order %1 for customer '%2' because it has no Credit Card attached! To be able to attach a Credit Card to the Order, you will need to attach it to the customer first, then attach it to and re-save the order.</value>
+  </data>
+  <data name="errCannotDropOrderWithNoCustomer" xml:space="preserve">
+    <value>Error: Cannot drop order %1 because it has no customer!</value>
+  </data>
+  <data name="errCannotDropOrderWithNoFreightCarrier" xml:space="preserve">
+    <value>Error: Cannot drop order %1 to customer '%2' because the order has no Freight Carrier specified!</value>
+  </data>
+  <data name="errCannotDropOrderNoDataTransfer" xml:space="preserve">
+    <value>Error: Cannot drop order %1 because no Data Transfer Configuration could be found for location '%2' !</value>
+  </data>
+  <data name="errCannotCreatePickWithNoItems" xml:space="preserve">
+    <value>Error: Cannot create Pick for Order %1 because the order has no lines!</value>
+  </data>
+  <data name="lblDataType" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="bnrCustomerDefaults" xml:space="preserve">
+    <value>Customer Defaults</value>
+  </data>
+  <data name="bnrAddEditCustomerDefaults" xml:space="preserve">
+    <value>Add/Edit Customer Defaults</value>
+  </data>
+  <data name="lblTaxCodeWithNoTaxId" xml:space="preserve">
+    <value>Tax Code if no Tax ID</value>
+  </data>
+  <data name="bnrCustomerOptions" xml:space="preserve">
+    <value>Customer Options</value>
+  </data>
+  <data name="bnrFreightDefaults" xml:space="preserve">
+    <value>Freight Defaults</value>
+  </data>
+  <data name="bnrShippingDefaults" xml:space="preserve">
+    <value>Shipping Defaults</value>
+  </data>
+  <data name="lblEmailAddressBCC" xml:space="preserve">
+    <value>Email Address - BCC</value>
+  </data>
+  <data name="infPicksSuccessfullyCreated" xml:space="preserve">
+    <value>Pick(s) successfully created and sent.</value>
+  </data>
+  <data name="bnrHoldingOrderReAllocations" xml:space="preserve">
+    <value>Holding Order Re-Allocations</value>
+  </data>
+  <data name="bnrPicks" xml:space="preserve">
+    <value>Picks</value>
+  </data>
+  <data name="lblCBMs" xml:space="preserve">
+    <value>CBMs</value>
+  </data>
+  <data name="lblDocument" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="lblInvoiceDate" xml:space="preserve">
+    <value>Invoice Date</value>
+  </data>
+  <data name="lblInvoiceNumber" xml:space="preserve">
+    <value>Invoice Number</value>
+  </data>
+  <data name="lblLines" xml:space="preserve">
+    <value>Lines</value>
+  </data>
+  <data name="lblPickComment" xml:space="preserve">
+    <value>Pick Comment</value>
+  </data>
+  <data name="lblPickNumber" xml:space="preserve">
+    <value>Pick Number</value>
+  </data>
+  <data name="lblSTWDate" xml:space="preserve">
+    <value>STW Date</value>
+  </data>
+  <data name="lblValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="bnrBankingDetails" xml:space="preserve">
+    <value>Banking Details</value>
+  </data>
+  <data name="bnrEMailAddresses" xml:space="preserve">
+    <value>Email Addresses</value>
+  </data>
+  <data name="bnrMisc" xml:space="preserve">
+    <value>Miscellaneous</value>
+  </data>
+  <data name="bnrRegionalSettings" xml:space="preserve">
+    <value>Regional Settings</value>
+  </data>
+  <data name="bnrStatementDetails" xml:space="preserve">
+    <value>Statement Details</value>
+  </data>
+  <data name="bnrTemplates" xml:space="preserve">
+    <value>Templates</value>
+  </data>
+  <data name="lblSendPOtoFreightForwarder" xml:space="preserve">
+    <value>Send PO to Freight Forwarder</value>
+  </data>
+  <data name="lblSendPOtoSupplier" xml:space="preserve">
+    <value>Send PO to Supplier</value>
+  </data>
+  <data name="lblSendPOtoWarehouse" xml:space="preserve">
+    <value>Send PO to Warehouse</value>
+  </data>
+  <data name="lblDefaultImportUser" xml:space="preserve">
+    <value>Default Import User</value>
+  </data>
+  <data name="lblDefaultImportUserTip" xml:space="preserve">
+    <value>This user is assigned as the default Sales Person on all imports for this Company when a Sales person cannot be found</value>
+  </data>
+  <data name="lblCmdParameter" xml:space="preserve">
+    <value>Command Line Parameter</value>
+  </data>
+  <data name="cnfConfirmRunTask" xml:space="preserve">
+    <value>Are you sure you wish to run this Task ?</value>
+  </data>
+  <data name="lblTargetFileNameFormat" xml:space="preserve">
+    <value>Target Filename Format</value>
+  </data>
+  <data name="bnrLocations" xml:space="preserve">
+    <value>Locations</value>
+  </data>
+  <data name="bnrAddEditLocation" xml:space="preserve">
+    <value>Add/Edit Location</value>
+  </data>
+  <data name="lblLocationIdentification" xml:space="preserve">
+    <value>Location Identification</value>
+  </data>
+  <data name="lblLocationName" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
+  <data name="lblCardRecordId" xml:space="preserve">
+    <value>Card Record Id</value>
+  </data>
+  <data name="lblAvailability" xml:space="preserve">
+    <value>Availability</value>
+  </data>
+  <data name="lblAny" xml:space="preserve">
+    <value>(Any)</value>
+  </data>
+  <data name="bnrSupplierAddresses" xml:space="preserve">
+    <value>Supplier Addresses</value>
+  </data>
+  <data name="bnrAddEditSupplierAddress" xml:space="preserve">
+    <value>Add/Edit Supplier Address</value>
+  </data>
+</root>

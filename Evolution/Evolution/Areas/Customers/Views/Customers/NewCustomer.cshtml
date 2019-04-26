@@ -1,0 +1,124 @@
+﻿@model Evolution.Models.ViewModels.NewCustomerViewModel
+@using Evolution.Resources
+
+@using (Html.BeginForm("CreateCustomer", "Customers", FormMethod.Post, new { id = "frmAddCustomer" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header">
+        <button type="button" id="btnCloseDialog" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span id="modalcaption">@Model.PageTitle</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblName
+            </div>
+            <div class="col-sm-5 cellpadding">
+                @Html.EditorFor(m => m.Customer.Name, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "52" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.Name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblTaxId
+            </div>
+            <div class="col-sm-3 cellpadding">
+                @Html.EditorFor(m => m.Customer.TaxId, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.TaxId, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblStreet
+            </div>
+            <div class="col-sm-5 cellpadding">
+                @Html.EditorFor(m => m.Customer.Street, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.Street, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblCity
+            </div>
+            <div class="col-sm-3 cellpadding">
+                @Html.EditorFor(m => m.Customer.City, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.City, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblState
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.Customer.State, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "20" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.State, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblPostCode
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.Customer.Postcode, new { htmlAttributes = new { @class = "form-control", @style = "width:60%", @maxlength = "10" } })
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.ValidationMessageFor(m => m.Customer.Postcode, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblCountryName
+            </div>
+            <div class="col-sm-3 cellpadding">
+                @Html.DropDownListFor(m => m.Customer.CountryId,
+                                           new SelectList(Model.CountryList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblCustomerType
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Customer.CustomerTypeId,
+                                           new SelectList(Model.CustomerTypeList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 labelpadding">
+                @EvolutionResources.lblRegion
+            </div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Customer.RegionId,
+                                           new SelectList(Model.RegionList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-right">
+        <button type="button" id="btnCreate" name="command" value="save" class="btn btn-sm btn-primary" onclick="OnSubmitCreateCustomer()">@EvolutionResources.btnCreate</button>
+        <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    function OnSubmitCreateCustomer() {
+        PostForm($('#btnCreate'), 'modal-content', 'frmAddCustomer', '@Url.Action("CreateCustomer")', null, null, null, null);
+    }
+</script>

@@ -1,0 +1,97 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="orderactioning" class="table-responsive"></div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-default" onclick="OnCreatePicks()">@EvolutionResources.btnCreatePicks</button>
+        <button type="button" class="btn btn-sm btn-default" onclick="OnCombinePicks()">@EvolutionResources.btnCombinePicks</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'orderactioning',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [{ caption: '', type: 'dropdownlist', id: 'ddlLocation', width: '200px', datasourceurl: '@Url.Action("GetLocationList")', defaultvalue: '@Model.CurrentCompany.DefaultLocationID' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlRegion', width: '200px', datasourceurl: '@Url.Action("GetRegionList")', defaultvalue: '@Model.CurrentCompany.DefaultLocationID' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlNextAction', width: '200px', datasourceurl: '@Url.Action("GetNextActionList")', defaultvalue: '' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlBrandCategory', width: '200px', datasourceurl: '@Url.Action("GetBrandcategoryList")', defaultvalue: '' }
+                          ],
+            keyfield: 'Id',
+            sortcolumns: ['CustomerName', 'CustPO', 'OrderNumber', 'OrderDateISO', 'SalesPersonName', 'DeliveryWindowOpenISO', 'DeliveryWindowCloseISO', 'RegionName'],
+            sortcolumn: 'OrderNumber',
+            sortorder: 1,
+            datasourceurl: '@Url.Action("GetOrderActioning")?index={INDEX}&locationid={ddlLocation}&regionid={ddlRegion}&nextactionid={ddlNextAction}&brandcategoryid={ddlBrandCategory}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            //editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblSelect', width: '60px', class: 'text-center', fields: [{ type: 'checkbox', id: 'chkSelect', class: '' }, {type: 'hidden', id: 'hdnId', field: 'Id'}] },
+                { heading: '@EvolutionResources.lblNextAction', width: '', class: '', fields: [{ type: 'field', field: 'NextActionText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblRegion', width: '', class: '', fields: [{ type: 'field', field: 'RegionName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPostCode', width: '', class: '', fields: [{ type: 'field', field: 'Postcode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '120px', class: '', fields: [{ type: 'field', field: 'OrderNumberUrl', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerPO', width: '90px', class: '', fields: [{ type: 'field', field: 'CustPO', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWarehouseInstructions', width: '', class: '', fields: [{ type: 'field', field: 'WarehouseInstructions', width: '', class: '' }] },
+                // Avail Now
+                // Orig Order value
+                // Avail this 1/2 year
+                // Stock amount ex
+                { heading: '@EvolutionResources.lblOrderDate', width: '100px', class: '', fields: [{ type: 'isodate', field: 'OrderDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowOpen', width: '100px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowOpenISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblWindowClose', width: '100px', class: '', fields: [{ type: 'isodate', field: 'DeliveryWindowCloseISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSalesPerson', width: '100px', class: '', fields: [{ type: 'field', field: 'SalesPersonName', width: '', class: '' }] },
+                // Next avail
+                // Extra $ avail
+                // Next date
+                // Credit status
+                // Credit hold
+                { heading: '@EvolutionResources.lblFreightCarrier', width: '', class: '', fields: [{ type: 'field', field: 'FreightCarrier', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function OnCreatePicks() {
+        return Confirm4('@EvolutionResources.errConfirmCreatePicks', '@EvolutionResources.lblApplicationName', 'DoCreatePicks');
+    }
+
+    function DoCreatePicks() {
+        var selectedItems = GetSelectedItems(0, 'chkSelect', 'hdnId');
+        var result = DoAjaxCall('@Url.Action("DoCreatePicks")?sohids=' + selectedItems);
+        if (!result.Error.IsError) {
+            SetSessionError(result.Error.Icon, result.Error.Message, result.Error.FieldName);
+            window.location = '@Url.Action("")';
+        }
+    }
+
+    function OnCombinePicks() {
+        return Confirm4('@EvolutionResources.errConfirmCombinePicks', '@EvolutionResources.lblApplicationName', 'DoCombinePicks');
+    }
+
+    function DoCombinePicks() {
+        var selectedItems = GetSelectedItems(0, 'chkSelect', 'hdnId');
+        var result = DoAjaxCall('@Url.Action("DoCombinePicks")?sohids=' + selectedItems);
+        if (!result.Error.IsError) {
+            SetSessionError(result.Error.Icon, result.Error.Message, result.Error.FieldName);
+            window.location = '@Url.Action("")';
+        }
+    }
+
+</script>

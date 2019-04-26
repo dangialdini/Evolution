@@ -1,0 +1,269 @@
+﻿@model Evolution.Models.ViewModels.EditSupplierViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Suppliers", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Supplier.Id)
+    @Html.HiddenFor(m => m.Supplier.CreatedById)
+    @Html.HiddenFor(m => m.Supplier.CreatedDate)
+    @Html.HiddenFor(m => m.SupplierAddress.Id)
+    @Html.HiddenFor(m => m.SupplierAddress.SupplierId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.PageTitle
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divSupplierDetails" aria-expanded="false" aria-controls="divSupplierDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divSupplierDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.Name, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "52" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrFinanceDetails
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divFinancialDetails" aria-expanded="false" aria-controls="divFinancialDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divFinancialDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCurrency
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Supplier.CurrencyId,
+                                               new SelectList(Model.CurrencyList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTaxCode
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Supplier.TaxCodeId,
+                                               new SelectList(Model.TaxCodeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSupplierTerm
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Supplier.SupplierTermId,
+                                               new SelectList(Model.SupplierTermList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCommercialTerms
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Supplier.CommercialTermsId,
+                                               new SelectList(Model.CommercialTermList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrShippingDetails
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divShippingDetails" aria-expanded="false" aria-controls="divShippingDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divShippingDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    Freight Forwarder AU
+                </div>
+                <div class="col-sm-3 cellpadding">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    Freight Forwarder UK
+                </div>
+                <div class="col-sm-3 cellpadding">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    Freight Forwarder US
+                </div>
+                <div class="col-sm-3 cellpadding">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    Freight Forwarder DTC
+                </div>
+                <div class="col-sm-3 cellpadding">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDeparturePort
+                </div>
+                <div class="col-sm-3 cellpadding">
+                   @Html.DropDownListFor(m => m.Supplier.PortId,
+                                               new SelectList(Model.PortList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblShippingMethod
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Supplier.ShipMethodId,
+                                               new SelectList(Model.ShipMethodList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrMessagesAndNotes
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divMessagesNotes" aria-expanded="false" aria-controls="divMessagesNotes"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divMessagesNotes" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCancelMessage
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Supplier.CancelMessage, new { @class = "form-control", style = "width:100%; height:120px", maxlength = 255 })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblNotes
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.TextAreaFor(m => m.Supplier.Notes, new { @class = "form-control", style = "width:100%; height:120px", maxlength = 255 })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrContactDetails
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divContactDetails" aria-expanded="false" aria-controls="divContactDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divContactDetails" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblContactName
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.ContactName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone1
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.Phone1, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone2
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.Phone2, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmail
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.Email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblURL
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Supplier.URL, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrSettings
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divSettings" aria-expanded="false" aria-controls="divSettings"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divSettings" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductSupplier
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.IsProductSupplier)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblManufacturer
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.IsManufacturer)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblVerticalSupplier
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.IsVerticalSupplier)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTrader
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.IsTrader)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAgent
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.IsAgent)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblActive
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @Html.CheckBoxFor(m => m.Supplier.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+                    <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('Supplier_Name');
+
+    $(document).ready(function () {
+        $('#divSupplierDetails').collapse({ toggle: true });
+    });
+</script>

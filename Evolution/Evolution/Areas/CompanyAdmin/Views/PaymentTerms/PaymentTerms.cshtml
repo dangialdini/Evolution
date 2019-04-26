@@ -1,0 +1,59 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="paymentterms" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'paymentterms',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: false,
+            keyfield: 'Id',
+            datasourceurl: '/CompanyAdmin/PaymentTerms/GetPaymentTerms?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblLatePaymentChargePercent', width: '', class: '', fields: [{ type: 'field', field: 'LatePaymentChargePercent', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEarlyPaymentDiscountPercent', width: '', class: '', fields: [{ type: 'field', field: 'EarlyPaymentDiscountPercent', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblTermsOfPaymentId', width: '', class: '', fields: [{ type: 'field', field: 'TermsOfPaymentId', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblImportPaymentIsDue', width: '', class: '', fields: [{ type: 'field', field: 'ImportPaymentIsDue', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDiscountDays', width: '', class: '', fields: [{ type: 'field', field: 'DiscountDays', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblBalanceDueDays', width: '', class: '', fields: [{ type: 'field', field: 'BalanceDueDays', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDiscountDate', width: '', class: '', fields: [{ type: 'field', field: 'DiscountDate', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblBalanceDueDate', width: '', class: '', fields: [{ type: 'field', field: 'BalanceDueDate', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>
+
+

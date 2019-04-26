@@ -1,0 +1,30 @@
+﻿@model Evolution.Models.ViewModels.OverrideMSQViewModel
+@using Evolution.Resources
+
+@Html.HiddenFor(m => m.SalesOrderHeaderTempId)
+
+<div class="modal-header">
+    <button type="button" id="btnCloseDialog" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title"><span id="modalcaption">@EvolutionResources.bnrSelectApprover</span></h4>
+</div>
+<div class="modal-body">
+    @Html.DropDownListFor(m => m.SelectedUserId,
+                                new SelectList(Model.UserList, "Id", "Text"),
+                                new { @class = "form-control", @style = "width:100%" })
+</div>
+<div class="modal-footer">
+    <button type="button" id="btnOverrideMSQ" name="command" value="override" class="btn btn-sm btn-primary" onclick="OnSubmitOverrideMSQ()">@EvolutionResources.btnOverride</button>
+    <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+</div>
+
+<script type="text/javascript">
+    function OnSubmitOverrideMSQ() {
+        // Save the override approver in the form
+        $('#SaleTemp_IsOverrideMSQ').val(true);
+        $('#SaleTemp_OverrideApproverId').val($('#SelectedUserId').val());
+
+        SaveOrder();
+        DisplayOverrideApproval();
+        HideDialog();
+    }
+</script>

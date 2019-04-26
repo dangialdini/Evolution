@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation Template</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* CELLSPACING */
+        table {
+            border-spacing: 0px;
+        }
+        /* CELLPADDING */
+        td {
+            padding: 0px;
+        }
+
+        .text11pt {
+            font-size: 11pt;
+        }
+
+        .text14pt {
+            font-size: 14pt;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .text-top {
+            vertical-align: top;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .cellpadding {
+            padding-left: 6px;
+            padding-right: 6px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .border-top {
+            border-top: 1px solid #cccccc;
+        }
+
+        .border-left {
+            border-left: 1px solid #cccccc;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .border-right {
+            border-right: 1px solid #cccccc;
+        }
+
+        .border-all {
+            border-top: 1px solid #cccccc;
+            border-left: 1px solid #cccccc;
+            border-bottom: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+        }
+
+        .border-leftright {
+            border-left: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:1024px">
+        <tr class="DocumentHeader" maxitemsonfirstpage="40" maxitemsonsecondpage="40" maxitemsbeforefooter="21">
+        </tr>
+
+        <tr class="PageHeader">
+            <td style="width:100%">
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:33%">
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="cellpadding text-top" style="height:50px"><img src="{LOGOIMAGE}" alt="" style="width:280px;height:auto;" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt">{COMPANYNAME}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt">ABN: {ABN}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:66%">
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="cellpadding text14pt bold">
+                                        ORDER CONFIRMATION<br />
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table style="width:100%">
+                                            <tr>
+                                                <td class="cellpadding text11pt" style="width:50%">
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" colspan="2">
+                                                                {COMPANYADDRESS}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" style="width:15px">T:</td>
+                                                            <td class="cellpadding text11pt">{PHONENUMBER}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" style="width:15px">F:</td>
+                                                            <td class="cellpadding text11pt">{FAXNUMBER}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" style="width:15px">W:</td>
+                                                            <td class="cellpadding text11pt">{WEBSITE}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" style="width:15px">E:</td>
+                                                            <td class="cellpadding text11pt">{EMAILADDRESSSALES}</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="cellpadding text11pt border-top border-left border-right border-bottom" style="width:50%;">
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <td class="cellpadding text11pt" style="width:40%">Order #</td>
+                                                            <td class="cellpadding text11pt text-right" style="width:auto">{ORDERNUMBER}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt">Your PO #</td>
+                                                            <td class="cellpadding text11pt text-right">{CUSTPO}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt">Order Date</td>
+                                                            <td class="cellpadding text11pt text-right">{ORDERDATE}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt">Terms</td>
+                                                            <td class="cellpadding text11pt text-right">{PAYMENTTERMS}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="cellpadding text11pt"></td>
+                                                            <td class="cellpadding text11pt text-right">Page {PAGENO} of {PAGECOUNT}</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="PageHeader">
+            <td style="width:100%">
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td class="cellpadding border-top border-left border-bottom border-right text-top" style="width:60%">
+                            <strong>{CUSTOMERNAME}</strong><br />
+                            <br />
+                            {CUSTOMERCONTACT}<br />
+                            {STREET}<br />
+                            {CITY}<br />
+                            {STATE}<br />
+                            {POSTCODE}<br />
+                            {COUNTRY}<br />
+                            <br />
+                            Tel {PHONENO}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fax {FAXNUMBER}
+                        </td>
+                        <td class="cellpadding border-top border-left border-bottom border-right text-top" style="width:40%">
+                            <strong>Delivery Address:</strong><br />
+                            <br />
+                            {CUSTOMERCONTACT}<br />
+                            {DELIVERYADDRESS}<br />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr class="ItemSection">
+            <td style="width:100%">
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">Qty</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">Item Code</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">Description</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">In Stock</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">Unit Price<br />(ex-{TAXNAME})</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-top border-bottom">Disc %</td>
+                        <td class="cellpadding text11pt bold text-center border-left border-right border-top border-bottom">Total<br />(ex-{TAXNAME})</td>
+                    </tr>
+                    <tr class="lineitem">
+                        <td class="cellpadding text11pt text-center ">{ORDERQTY}</td>
+                        <td class="cellpadding text11pt">{ITEMNUMBER}</td>
+                        <td class="cellpadding text11pt">{DESCRIPTION}</td>
+                        <td class="cellpadding text11pt">{INSTOCK}</td>
+                        <td class="cellpadding text11pt text-right">{UNITPRICEEXTAX}</td>
+                        <td class="cellpadding text11pt text-right">{DISCOUNTPERCENT}%</td>
+                        <td class="cellpadding text11pt text-right">{LINEPRICE}</td>
+                    </tr>
+                    <tr>
+                        <td><br /></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr class="PageFooter" style="page-break-after:always">
+        </tr>
+
+        <tr class="DocumentFooter">
+            <td style="width:100%">
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td class="border-top border-left border-bottom border-right text-top" style="width:60%">
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="cellpadding text11pt bold" colspan="2">Freight will be added to the final invoice</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt" style="width:40%">Delivery Via:</td>
+                                    <td class="cellpadding text11pt" style="width:auto">{DELIVERYVIA}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt">Delivery Window:</td>
+                                    <td class="cellpadding text11pt">{DELIVERYWINDOW}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt">Sales Person:</td>
+                                    <td class="cellpadding text11pt">{SALESPERSON}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="border-top border-left border-bottom border-right" style="width:40%">
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="cellpadding text11pt text-right" style="width:60%">Subtotal</td>
+                                    <td class="cellpadding text11pt text-right" style="width:auto">{CURRENCYSYMBOL}{SALEAMOUNTEX}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt text-right" style="width:60%">Estimated Freight</td>
+                                    <td class="cellpadding text11pt text-right" style="width:auto">{CURRENCYSYMBOL}{ESTIMATEDFREIGHT}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt text-right" style="width:60%">{TAXNAME}</td>
+                                    <td class="cellpadding text11pt text-right" style="width:auto">{CURRENCYSYMBOL}{GST}</td>
+                                </tr>
+                                <tr>
+                                    <td class="cellpadding text11pt text-right bold">Total</td>
+                                    <td class="cellpadding text11pt text-right bold">{CURRENCYSYMBOL}{SALEAMOUNTINC}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td class="cellpadding text11pt border-top border-left border-bottom border-right" style="width:60%">
+                            <span class="bold">This order has been confirmed and is non-cancellable as stock has been allocated</span><br/>
+                            Please notify {COMPANYNAME} within 24 hours if any of the following are not correct:<br/>
+                            1. Products, Pricing and Quantities<br/>
+                            2. Delivery Address and Shipping Method<br/>
+                            3. Estimated Shipping Date
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td class="cellpadding text11pt border-top border-left border-right" style="width:60%">
+                            <span class="bold">THIS SECTION MUST BE COMPLETED BY CUSTOMERS WHO ARE NOT ON ACCOUNT</span><br />
+                            1. I personally guarantee that you will get paid for the goods.<br />
+                            2. If I don't pay on time you can report me to a credit agency.<br />
+                            3. I understand that the goods remain the property of {COMPANYNAME} until paid for.<br/>
+                            4. I agree to {COMPANYNAME}'s Terms of Trade.<br/>
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="cellpadding text11pt border-left border-bottom" style="width:33%">
+                                        ___________________________________________________<br/>
+                                        Name (Please Print)
+                                    </td>
+                                    <td class="cellpadding text11pt border-bottom" style="width:33%">
+                                        ___________________________________________________<br />
+                                        Signature
+                                    </td>
+                                    <td class="cellpadding text11pt border-bottom border-right" style="width:33%">
+                                        ___________________________________________________<br />
+                                        Date
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

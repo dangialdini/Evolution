@@ -1,0 +1,68 @@
+﻿@model Evolution.Models.ViewModels.EditPriceLevelViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "PriceLevels", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.PriceLevel.Id)
+    @Html.HiddenFor(m => m.PriceLevel.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMneumonic
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.PriceLevel.Mneumonic, new { htmlAttributes = new { @class = "form-control", @style = "width:10%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDescription
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.PriceLevel.Description, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblImportPriceLevel
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.PriceLevel.ImportPriceLevel, new { htmlAttributes = new { @class = "form-control", @style = "width:10%", @maxlength = "1" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblImportSalesTaxCalcMethod
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.PriceLevel.ImportSalesTaxCalcMethod, new { htmlAttributes = new { @class = "form-control", @style = "width:10%", @maxlength = "1" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.PriceLevel.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('PriceLevel_Mneumonic');
+</script>
+
+

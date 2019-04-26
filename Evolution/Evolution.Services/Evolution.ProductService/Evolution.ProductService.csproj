@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DE8F542-8705-48E7-874A-39E198D720AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Evolution.ProductService</RootNamespace>
+    <AssemblyName>Evolution.ProductService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BrandBrandCategories.cs" />
+    <Compile Include="BrandCategory.cs" />
+    <Compile Include="Brand.cs" />
+    <Compile Include="Compliance.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="ProductImport.cs" />
+    <Compile Include="ProductIP.cs" />
+    <Compile Include="ProductLocation.cs" />
+    <Compile Include="ProductMedia.cs" />
+    <Compile Include="ProductPrice.cs" />
+    <Compile Include="ProductService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Evolution.DAL\Evolution.DAL.csproj">
+      <Project>{d9a7c74e-0b55-4d67-842d-c3f7c74d4b5d}</Project>
+      <Name>Evolution.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Enumerations\Evolution.Enumerations.csproj">
+      <Project>{9d5a6a83-7759-408d-9a40-6077ea835e4d}</Project>
+      <Name>Evolution.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Extensions\Evolution.Extensions.csproj">
+      <Project>{a2fb972b-17c3-4b84-864e-2c0d155f5240}</Project>
+      <Name>Evolution.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Models\Evolution.Models.csproj">
+      <Project>{731c026b-78b9-43c5-a0c5-4bc9cd5f3fd5}</Project>
+      <Name>Evolution.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Resources\Evolution.Resources.csproj">
+      <Project>{d2a67eb1-5a98-49d7-a1a5-8e2735ea542a}</Project>
+      <Name>Evolution.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.AuditService\Evolution.AuditService.csproj">
+      <Project>{5c538d7d-0171-4c47-a41c-576257813a82}</Project>
+      <Name>Evolution.AuditService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CommonService\Evolution.CommonService.csproj">
+      <Project>{0e3d312d-5e25-4661-82dd-e16a104504ab}</Project>
+      <Name>Evolution.CommonService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.FileCompressionService\Evolution.FileCompressionService.csproj">
+      <Project>{93ee5a78-a5d1-441b-9616-b9419193dd3c}</Project>
+      <Name>Evolution.FileCompressionService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.MediaService\Evolution.MediaService.csproj">
+      <Project>{12bf5c1e-b752-4d96-8b7a-c269b4de09f9}</Project>
+      <Name>Evolution.MediaService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

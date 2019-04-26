@@ -1,0 +1,44 @@
+﻿@model int?
+@using Evolution.Resources
+
+<div class="panel panel-default">
+    <div class="panel-heading">@EvolutionResources.bnrCustomerSearch</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12 cellpadding">
+                @Html.HiddenFor(m => @Model)
+                <div id="customersearch" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'customersearch',
+            widthoffset: 230,
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/Customers/Customers/GetCustomers?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            //prompttext: 'Customer Name',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblName', width: '', class: '', fields: [{ type: 'field', field: 'Name', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblFirstName', width: '', class: '', fields: [{ type: 'field', field: 'FirstName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLastName', width: '', class: '', fields: [{ type: 'field', field: 'LastName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCreatedDate', width: '', class: '', fields: [{ type: 'field', field: 'CreatedDate', format: 'dd/MM/yyyy', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblSelect', width: '', class: '', fields: [{ type: 'checkbox', field: '', format: '', width: '', class: '' },
+                                                                                             { type: 'hidden', field: 'Id', format: '', width: '', class: '' }]
+                },
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

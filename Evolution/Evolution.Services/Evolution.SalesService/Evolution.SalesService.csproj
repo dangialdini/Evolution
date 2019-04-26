@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98DA78AE-45EC-4806-8902-224F034AB1CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Evolution.SalesService</RootNamespace>
+    <AssemblyName>Evolution.SalesService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cancellations.cs" />
+    <Compile Include="CreatePickDocumentPdf.cs" />
+    <Compile Include="CreditClaimHeader.cs" />
+    <Compile Include="CreditClaimReplacementOrder.cs" />
+    <Compile Include="Picks.cs" />
+    <Compile Include="CreateSalesDocumentPdf.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Freight.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MSQOverride.cs" />
+    <Compile Include="OrderActioning.cs" />
+    <Compile Include="SalePrint.cs" />
+    <Compile Include="SalesOrderConfirmationPdf.cs" />
+    <Compile Include="SaleImport.cs" />
+    <Compile Include="SalesOrderPdf.cs" />
+    <Compile Include="SalesOrderDetail.cs" />
+    <Compile Include="SalesOrderDetailTemp.cs" />
+    <Compile Include="SalesOrderHeader.cs" />
+    <Compile Include="SalesOrderHeaderTemp.cs" />
+    <Compile Include="SalesPerson.cs" />
+    <Compile Include="SalesService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionDrillDown.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Evolution.DAL\Evolution.DAL.csproj">
+      <Project>{d9a7c74e-0b55-4d67-842d-c3f7c74d4b5d}</Project>
+      <Name>Evolution.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Enumerations\Evolution.Enumerations.csproj">
+      <Project>{9d5a6a83-7759-408d-9a40-6077ea835e4d}</Project>
+      <Name>Evolution.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Extensions\Evolution.Extensions.csproj">
+      <Project>{a2fb972b-17c3-4b84-864e-2c0d155f5240}</Project>
+      <Name>Evolution.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Models\Evolution.Models.csproj">
+      <Project>{731c026b-78b9-43c5-a0c5-4bc9cd5f3fd5}</Project>
+      <Name>Evolution.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Evolution.Resources\Evolution.Resources.csproj">
+      <Project>{d2a67eb1-5a98-49d7-a1a5-8e2735ea542a}</Project>
+      <Name>Evolution.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.AllocationService\Evolution.AllocationService.csproj">
+      <Project>{d577ec26-43dd-44f7-aadf-c57669887647}</Project>
+      <Name>Evolution.AllocationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.AuditService\Evolution.AuditService.csproj">
+      <Project>{5c538d7d-0171-4c47-a41c-576257813a82}</Project>
+      <Name>Evolution.AuditService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.BarCodeService\Evolution.BarCodeService.csproj">
+      <Project>{f8646414-0c9c-49bb-9da3-3923bf78a398}</Project>
+      <Name>Evolution.BarCodeService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CommonService\Evolution.CommonService.csproj">
+      <Project>{0e3d312d-5e25-4661-82dd-e16a104504ab}</Project>
+      <Name>Evolution.CommonService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CompanyService\Evolution.CompanyService.csproj">
+      <Project>{ef2ea3a6-9171-4b3c-9f39-5939281cb4e4}</Project>
+      <Name>Evolution.CompanyService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.CustomerService\Evolution.CustomerService.csproj">
+      <Project>{8747150d-f0a9-4f72-af25-032fcfec756d}</Project>
+      <Name>Evolution.CustomerService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.DataTransferService\Evolution.DataTransferService.csproj">
+      <Project>{cf795294-e5aa-4e1c-ad0e-2def3ea20393}</Project>
+      <Name>Evolution.DataTransferService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.DocumentService\Evolution.DocumentService.csproj">
+      <Project>{e0510295-3980-4533-a607-23a6220bcfe3}</Project>
+      <Name>Evolution.DocumentService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.EMailService\Evolution.EMailService.csproj">
+      <Project>{aab31b9a-97d6-4899-9ba8-09ada8d7d4ba}</Project>
+      <Name>Evolution.EMailService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.FileManagerService\Evolution.FileManagerService.csproj">
+      <Project>{EE010181-E3ED-4108-A090-6041BF9341C5}</Project>
+      <Name>Evolution.FileManagerService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.FilePackagerService\Evolution.FilePackagerService.csproj">
+      <Project>{a8a97518-d3da-4473-8ead-a2d46f7c44e1}</Project>
+      <Name>Evolution.FilePackagerService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.LookupService\Evolution.LookupService.csproj">
+      <Project>{20d44a28-9bc2-4a58-93e9-98013be3c90a}</Project>
+      <Name>Evolution.LookupService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.MediaService\Evolution.MediaService.csproj">
+      <Project>{12bf5c1e-b752-4d96-8b7a-c269b4de09f9}</Project>
+      <Name>Evolution.MediaService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.MembershipManagementService\Evolution.MembershipManagementService.csproj">
+      <Project>{65acab8c-bd20-486f-9a4c-23b2a6ead4dd}</Project>
+      <Name>Evolution.MembershipManagementService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.NoteService\Evolution.NoteService.csproj">
+      <Project>{ba3e03a1-4661-440d-b663-cc09f92c6ba7}</Project>
+      <Name>Evolution.NoteService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.PickService\Evolution.PickService.csproj">
+      <Project>{4a7b8c74-ba95-44d1-9ea0-aebe1e4dc4cf}</Project>
+      <Name>Evolution.PickService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.ProductService\Evolution.ProductService.csproj">
+      <Project>{1de8f542-8705-48e7-874a-39e198d720ae}</Project>
+      <Name>Evolution.ProductService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.SupplierService\Evolution.SupplierService.csproj">
+      <Project>{ac18b546-45ae-4441-9b47-1d4e83f3df5a}</Project>
+      <Name>Evolution.SupplierService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolution.TaskManagerService\Evolution.TaskManagerService.csproj">
+      <Project>{4c4630ec-938c-43b4-bb5c-b0ca1ae45fce}</Project>
+      <Name>Evolution.TaskManagerService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,13 @@
+﻿@model Evolution.Models.Models.SalesOrderSummaryModel
+@using Evolution.Resources
+
+<div class="row">
+    <div class="col-sm-1 cellpadding">@EvolutionResources.lblSubTotal</div>
+    <div class="col-sm-1 cellpadding">@Model.CurrencySymbol@Model.SubTotal.ToString("N2")</div>
+    <div class="col-sm-1 cellpadding">@Model.TaxName</div>
+    <div class="col-sm-1 cellpadding">@Model.CurrencySymbol@Model.TaxTotal.ToString("N2")</div>
+    <div class="col-sm-1 cellpadding">@EvolutionResources.lblTotal</div>
+    <div class="col-sm-1 cellpadding">@Model.CurrencySymbol@Model.Total.ToString("N2")</div>
+    <div class="col-sm-1 cellpadding">@EvolutionResources.lblTotalCBMs</div>
+    <div class="col-sm-1 cellpadding">@Model.TotalCbms.ToString()</div>
+</div>

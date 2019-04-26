@@ -1,0 +1,172 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerContactViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerContacts", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.CustomerContact.Id)
+    @Html.HiddenFor(m => m.CustomerContact.CompanyId)
+    @Html.HiddenFor(m => m.CustomerContact.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSalutation
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerContact.ContactSalutation,
+                                               new SelectList(Model.SalutationList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:25%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFirstName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactFirstname, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSurname
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactSurname, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "60" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblKnownAs
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactKnownAs, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEmail
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactEmail, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPosition
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.Position, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone1
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone1, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone2
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone2, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPhone3
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhone3, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFax
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactFax, new { htmlAttributes = new { @class = "form-control", @style = "width:50%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblContactPhoneNotes
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactPhoneNotes, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "70" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblContactNotes
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.CustomerContact.ContactNotes, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "70" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendStatement
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.SendStatement)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSendInvoice
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.SendInvoice)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMailingList
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.MailingList)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPrimaryContact
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.PrimaryContact)
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblReceivedCatalog
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.ReceiveCatalog)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-5 labelpadding">
+                    @Html.CheckBoxFor(m => m.CustomerContact.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('CustomerContact_ContactSalutation');
+</script>
+
+
+
+

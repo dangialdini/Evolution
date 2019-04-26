@@ -1,0 +1,31 @@
+﻿@model Evolution.Models.ViewModels.CancellationViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SaveStep", "Cancellation", FormMethod.Post, new { id = "frmCancellation" })) {
+    @Html.AntiForgeryToken()
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        @Html.EditorFor(m => m.Step3.OrderList)
+    </div>
+
+    <div class="panel-footer" style="height:50px;">
+        <div style="float:left;">
+            <button type="submit" id="btnPrev" name="command" value="prevstep2" class="button button-primary" onclick="SelectAllListItems()">
+                <span class="glyphicon glyphicon-backward" data-toggle="tooltip" data-placement="bottom" title="@EvolutionResources.btnPrev" style="font-size:2em;"></span>
+            </button>
+        </div>
+        <div class="text-right" style="float:right;">
+            <button type="submit" id="btnNext" name="command" value="nextstep4" class="button button-primary" onclick="SelectAllListItems()">
+                <span class="glyphicon glyphicon-forward" data-toggle="tooltip" data-placement="bottom" title="@EvolutionResources.btnNext" style="font-size:2em;"></span>
+            </button>
+        </div>
+    </div>
+</div>
+}
+

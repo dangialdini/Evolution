@@ -1,0 +1,106 @@
+﻿@using Evolution.Models.Models
+@model MenuModel
+
+@{
+    int i = 0;
+    bool bGotRight = false;
+}
+
+@if (Model.IsVertical) {
+    <ul class="nav nav-list">
+        @foreach (var menuOption in Model.Options) {
+            @Html.Raw(GetOptionHtml(menuOption))
+        }
+    </ul>
+
+} else {
+    <div class="navbar navbar-default box" role="navigation" style="border-top:0px; margin-top:3px; margin-left:-11px; margin-right:-8px; margin-bottom: 10px; border-radius:0;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @if (Model.Options.Count > 0 && (Model.Options[i].OptionType == MenuOptionModel.BrandImageOption ||
+                                 Model.Options[i].OptionType == MenuOptionModel.BrandTextOption)) {
+                <a class="navbar-brand" href="@(string.IsNullOrEmpty(Model.Options[i].URL) ? "#" : Model.Options[i].URL)">
+                    @if (Model.Options[i].OptionType == MenuOptionModel.BrandImageOption) {
+                        <img src="@Model.Options[0].OptionText" alt="" class="applogo text-middle" style="width:165px; height:31px"/>
+                    } else {
+                        <span class="text-middle">@Model.Options[0].OptionText</span>
+                    }
+                </a>
+                i++;
+            }
+        </div>
+        <div id="navbar-collapse" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @while (i < Model.Options.Count) {
+                    if (Model.Options[i].Alignment == "R") {
+                        bGotRight = true;
+                        i++;
+                    } else {
+                        @Html.Raw(GetOptionHtml(Model.Options[i++]))
+                    }
+                }
+            </ul>
+            @if (bGotRight) {
+                <ul class="nav navbar-nav navbar-right">
+                    @{ i = 0; }
+                    @while (i < Model.Options.Count) {
+                        if (Model.Options[i].Alignment == "R") {
+                            @Html.Raw(GetOptionHtml(Model.Options[i]))
+                        }
+                        i++;
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+}
+
+@functions{
+    int indent = 16;
+    string GetOptionHtml(MenuOptionModel item) {
+        string rc = "\r\n";
+
+        if (item.Options.Count() == 0) {
+            if (item.OptionType == MenuOptionModel.SeparatorOption) {
+                // Separator
+                rc += Spc(indent) + "<li class=\"divider\"></li>\r\n";
+            } else {
+                // Normal item
+                rc += Spc(indent) + "<li";
+
+                if (item.Active) rc += " class=\"active\"";
+                rc += "><a href=\"" + (string.IsNullOrEmpty(item.URL) ? "#" : item.URL) + "\">" + item.OptionText + "</a></li>\r\n";
+            }
+        } else {
+            rc += Spc(indent) + "<li class=\"dropdown";
+            if (item.Active) rc += " active";
+            rc += "\">\r\n";
+
+            indent += 4;
+
+            rc += Spc(indent) + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">" + item.OptionText + " <b class=\"caret\"></b></a>\r\n";
+            rc += Spc(indent) + "<ul class=\"dropdown-menu\">\r\n";
+
+            indent += 4;
+            foreach (MenuOptionModel item2 in item.Options) {
+                rc += GetOptionHtml(item2);
+            }
+            indent -= 4;
+
+            rc += Spc(indent) + "</ul>\r\n";
+            indent -= 4;
+            rc += Spc(indent) + "</li>\r\n";
+        }
+
+        return rc;
+    }
+
+    string Spc(int count) {
+        return "".PadRight(count, ' ');
+    }
+}

@@ -1,0 +1,21 @@
+﻿@model Evolution.Models.ViewModels.EditDataMappingViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Import", "ProductImport", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            @Html.Partial("/Views/Shared/ImportMappings/ImportMappings.cshtml", Model)
+        </div>
+
+        <div class="panel-footer">
+            <button type="submit" name="command" value="import" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnImport</button>
+        </div>
+    </div>
+}

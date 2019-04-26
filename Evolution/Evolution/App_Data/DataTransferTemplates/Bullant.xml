@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PackageDefinition>
+  <Description>Configuration file for sending purchase orders to Bullant</Description>
+  <SiteName>Bullant Purchases</SiteName>
+  <File CompressFile="No" FTPFile="Yes" EMailFile="No">
+    <Formats>
+      <Format DataFieldDelimiter="" DataFieldDelimiterUsage="None" DataFieldSeparator="\t" HeaderFieldDelimiter="" HeaderFieldSeparator=" | ">
+        <Fields>
+          <Field Name="PurchaseID" Type="String"></Field>
+          <Field Name="HeaderLabel" Type="String"></Field>
+          <Field Name="SupplierName" Type="String"></Field>
+          <Field Name="SupplierInvoice" Type="String"></Field>
+          <Field Name="SupplierID" Type="String"></Field>
+          <Field Name="ExpectedDate" Type="String"></Field>
+          <Field Name="CBMs" Type="String"></Field>
+          <Field Name="SKUs" Type="String"></Field>
+        </Fields>
+      </Format>
+      <Format DataFieldDelimiter="" DataFieldDelimiterUsage="None" DataFieldSeparator="\t" HeaderFieldDelimiter="" HeaderFieldSeparator=" | ">
+        <Fields>
+          <Field Name="PurchaseID" Type="String"></Field>
+          <Field Name="DetailLabel" Type="String"></Field>
+          <Field Name="PurchaseQty" Type="String"></Field>
+          <Field Name="ItemNumber" Type="String"></Field>
+          <Field Name="ItemDescription" Type="String"></Field>
+          <Field Name="PurchaseLineID" Type="String"></Field>
+          <Field Name="Barcode" Type="String"></Field>
+          <Field Name="PackSize" Type="String"></Field>
+          <Field Name="ProductDimensions" Type="String"></Field>
+          <Field Name="ProductWeight" Type="String"></Field>
+        </Fields>
+      </Format>
+    </Formats>
+  </File>
+</PackageDefinition>

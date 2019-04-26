@@ -1,0 +1,43 @@
+﻿@using Evolution.Models.Models
+@model MenuModel
+
+@foreach (var menuOption in Model.Options) {
+    if (menuOption.OptionType == MenuOptionModel.SeparatorOption) {
+        <div></div>
+        <div style="width:100%">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <hr class="iconmenuseparator" />
+        </div>
+    } else if (menuOption.Active) {
+
+        <a href="@menuOption.URL" onclick="DisplayProgress()" class="iconmenutileactive" data-toggle="tooltip" data-placement="bottom" title="@menuOption.Tooltip">
+            <p class="iconmenuicon">
+                <img src="/Content/MenuIcons/@menuOption.Image" border="0" style="width:30px;height:auto" />
+            </p>
+            <p class="iconmenutext">
+                @Html.Raw(@menuOption.OptionText)
+            </p>
+        </a>
+    } else {
+        <a href="@menuOption.URL" onclick="DisplayProgress()" class="iconmenutile" data-toggle="tooltip" data-placement="bottom" title="@menuOption.Tooltip">
+            <p class="iconmenuicon">
+                <img src="/Content/MenuIcons/@menuOption.Image" border="0" style="width:30px;height:auto" />
+            </p>
+            <p class="iconmenutext">
+                @Html.Raw(menuOption.OptionText)
+            </p>
+        </a>
+    }
+}

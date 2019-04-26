@@ -1,0 +1,54 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="taxcodes" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'taxcodes',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            //showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/CompanyAdmin/TaxCodes/GetTaxCodes?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblTaxCode', width: '', class: '', fields: [{ type: 'field', field: 'TaxCode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDescription', width: '', class: '', fields: [{ type: 'field', field: 'TaxCodeDescription', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPercentageRate', width: '', class: '', fields: [{ type: 'field', field: 'TaxPercentageRate', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblTaxName', width: '', class: '', fields: [{ type: 'field', field: 'TaxCodeTypeId', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '100px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>
+

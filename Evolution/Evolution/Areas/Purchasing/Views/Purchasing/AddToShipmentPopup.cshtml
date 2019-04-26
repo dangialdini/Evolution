@@ -1,0 +1,39 @@
+﻿@model Evolution.Models.ViewModels.AddToShipmentPopupViewModel
+@using Evolution.Resources
+
+@using (Html.BeginForm("DoAddToShipment", "Purchasing", FormMethod.Post, new { id = "frmAddToShipment" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span id="modalcaption">@EvolutionResources.btnAddToShipment</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12 labelpadding">@EvolutionResources.lblSelectShipment</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 cellpadding">
+                        @Html.DropDownListFor(m => m.ShipmentId,
+                                        new SelectList(Model.ShipmentList, "Id", "Text"),
+                                        new { @class = "form-control", @style = "width:100%" })
+                        @Html.HiddenFor(m => m.SelectedPOs)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" name="command" value="add" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnAddToShipment</button>
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" onclick="">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        var selectedItems = GetSelectedItems(0, 'chkSelect', 'hdnId');
+        $('#SelectedPOs').val(selectedItems);
+    });
+</script>

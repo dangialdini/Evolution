@@ -1,0 +1,180 @@
+﻿@model Evolution.Models.ViewModels.EditSalesOrderDetailTempViewModel
+@using Evolution.Resources
+
+@using (Html.BeginForm("DoAddItem", "Sales", FormMethod.Post, new { id = "frmAddItem" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.Id)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.OriginalRowId)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.SalesOrderHeaderTempId)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.LineNumber)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.TaxCodeId)
+    @Html.HiddenFor(m => m.SalesOrderDetailTemp.LineStatusId)
+    <input type="hidden" id="hdnMinSaleQty">
+
+    <div class="modal-header">
+        <button type="button" id="btnCloseDialog" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span id="modalcaption">@EvolutionResources.bnrAddEditLine</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblProductName
+            </div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.SalesOrderDetailTemp.ProductName, null, new { @class = "form-control", @style = "width:100%", @maxlength = "64" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblProductDescription
+            </div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextAreaFor(m => m.SalesOrderDetailTemp.ProductDescription, new { @class = "form-control", style = "width:100%; height:120px", maxlength = "255" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 cellpadding"></div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.SalesOrderDetailTemp.ProductDescription, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblUnitPriceExTax
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.SalesOrderDetailTemp.UnitPriceExTax, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.SalesOrderDetailTemp.UnitPriceExTax, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblDiscountPercent
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.SalesOrderDetailTemp.DiscountPercent, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.SalesOrderDetailTemp.DiscountPercent, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">
+                @EvolutionResources.lblOrderQty
+            </div>
+            <div class="col-sm-2 cellpadding">
+                @Html.EditorFor(m => m.SalesOrderDetailTemp.OrderQty, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "6" } })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.SalesOrderDetailTemp.OrderQty, null, new { @class = "text-danger" })<br/>
+                <span id="spnQtyError"></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @if(Model.SalesOrderDetailTemp.Id == 0) {
+            <button type="button" id="btnAddItem" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem()">@EvolutionResources.btnAddItem</button>
+        } else {
+            <button type="button" id="btnAddItem" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem()">@EvolutionResources.btnSave</button>
+        }
+        <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#SalesOrderDetailTemp_ProductName').focus();
+        GetUnitDetails(true);
+    });
+
+    $(function () {
+        $('#SalesOrderDetailTemp_ProductName').autocomplete({
+            delay: 500,
+            minLength: 2,
+            source: function (request, response) {
+                var url = '@Url.Action("GetProducts")' + '?brandcategoryid=' + $('#SaleTemp_BrandCategoryId').val() + '&search=' + $('#SalesOrderDetailTemp_ProductName').val();
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: request,
+                    success: function (data) {
+                        response($.map(data, function (d) {
+                            return {
+                                label: d.Id + ' ' + d.Text,
+                                value: d.Id
+                            };
+                        }))
+                    },
+                    error: function (jqXhr, status, error) {
+                        DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                // Prevent value from being put in the input:
+                this.value = ui.item.label;
+                // Set the next input's value to the "value" of the item.
+                var pos = this.value.indexOf(' ');
+                $('#SalesOrderDetailTemp_ProductDescription').val(this.value.substr(pos + 1));
+                event.preventDefault();
+
+                // Get the wholesale unit price of the selected item
+                GetUnitDetails(false);
+            }
+        });
+        // The following is needed so that autocomplete works in a dialog
+        $('#SalesOrderDetailTemp_ProductName').autocomplete("option", "appendTo", '#dialog');
+    });
+
+    function GetUnitDetails(bMSQOnly) {
+        var productName = $('#SalesOrderDetailTemp_ProductName').val();
+        var custId = $('#SaleTemp_CustomerId').val();
+        if (!custId) custId = 0;        // Occurs if customer not yet selected
+        var result = DoAjaxCall('@Url.Action("GetUnitPrice")?pn=' + productName + '&custid=' + custId + '&isoverridemsq=' + $('#SaleTemp_IsOverrideMSQ').val());
+        if (result.Data) {
+            if (!bMSQOnly && result.Data.SellingPrice) $('#SalesOrderDetailTemp_UnitPriceExTax').val(result.Data.SellingPrice);
+            if (result.Data.MinSaleQty) $('#hdnMinSaleQty').val(result.Data.MinSaleQty);
+            $('#spnQtyError').html('Minimum Sale Quantity: ' + result.Data.MinSaleQty);
+        } else {
+            $('#spnQtyError').html('');
+        }
+    }
+
+    function OnSubmitAddItem() {
+        // Check MSQ
+        var bCont = true;
+        var orderQty = $('#SalesOrderDetailTemp_OrderQty').val();
+        var isOverrideMSQ = $('#SaleTemp_IsOverrideMSQ').val().toLowerCase();
+        if (isOverrideMSQ == 'false') {
+            // MSQ not overridden
+            var minSaleQtyMultiple = $('#hdnMinSaleQty').val();
+            var temp = parseInt(orderQty / minSaleQtyMultiple);
+            if (temp * minSaleQtyMultiple != orderQty) {
+                $('#spnQtyError').html('<span class="text-danger">The Order Qty must be a multiple of ' + minSaleQtyMultiple + "</span>");
+                $('#SalesOrderDetailTemp_OrderQty').focus();
+                bCont = false;
+            }
+        }
+
+        if (bCont) PostForm($('#btnAddItem'), 'modal-content', 'frmAddItem', '@Url.Action("DoAddItem")', OnAddItemSuccess, null, null, null);
+    }
+
+    function OnAddItemSuccess(data) {
+        if(!IsErrorSummary(data)) {
+            // Success
+            DisplayGrid(0);
+            DisplayOrderSummary();
+            HideDialog();
+        }
+    }
+
+</script>

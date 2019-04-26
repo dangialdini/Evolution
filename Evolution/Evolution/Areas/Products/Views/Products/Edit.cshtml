@@ -1,0 +1,275 @@
+﻿@model Evolution.Models.ViewModels.EditProductViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Products", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Product.Id)
+    @Html.HiddenFor(m => m.Product.BrandId)
+    @Html.HiddenFor(m => m.Product.Picture)
+    @Html.HiddenFor(m => m.Product.CreatedDate)
+    @Html.HiddenFor(m => m.Product.CreatedById)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.PageTitle
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divProductDetails" aria-expanded="false" aria-controls="divProductDetails"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divProductDetails" class="panel-body collapse">
+            @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            <div class="row">
+                <div class="col-sm-2 labelpadding"></div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.HiddenFor(m => m.Product.PrimaryMediaId)
+                    <img id="imgThumb" src="@Model.Product.Picture" alt="" style="width:100px;height:auto;" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductNumber
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.ItemNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Product.ItemName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAvailability
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.ProductAvailabilityId,
+                                               new SelectList(Model.ProductAvailabilityList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductStatus
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.ProductStatus,
+                                               new SelectList(Model.ProductStatusList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductNameLong
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Product.ItemNameLong, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductNameFormat
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Product.ItemNameFormat, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "40" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductNameStyle
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Product.ItemNameStyle, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "40" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDescription
+                </div>
+                <div class="col-sm-7 cellpadding">
+                    @Html.TextAreaFor(m => m.Product.ItemDescription, new { @class = "form-control", style = "width:100%; height:120px", maxlength = 255 })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAB
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AB,
+                                               new SelectList(Model.ABList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSet
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.Set, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "10" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblWebCategory
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.WebCategoryId,
+                                               new SelectList(Model.WebCategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblWebSubCategory
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.WebSubCategoryId,
+                                               new SelectList(Model.WebSubCategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.lblSpecifications
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divSpecs" aria-expanded="false" aria-controls="divSpecs"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divSpecs" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMaterial
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.MaterialId,
+                                               new SelectList(Model.MaterialList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBarcode
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.BarCode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "31" } })
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @if (!string.IsNullOrEmpty(Model.Product.BarCodeFile1)) {
+                        <img src="@Model.Product.BarCodeFile1" alt="barcode" />
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblInnerBarcode
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerBarCode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "31" } })
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @if (!string.IsNullOrEmpty(Model.Product.BarCodeFile2)) {
+                        <img src="@Model.Product.BarCodeFile2" alt="barcode" />
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMasterBarcode
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterBarCode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "31" } })
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @if (!string.IsNullOrEmpty(Model.Product.BarCodeFile3)) {
+                        <img src="@Model.Product.BarCodeFile3" alt="barcode" />
+                    }
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblHSCode
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.HSCode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "2" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrCreationApproval
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divApproval" aria-expanded="false" aria-controls="divApproval"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divApproval" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCreatedBy
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @Model.Product.CreatedByText
+                </div>
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCreatedDate
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.TextBoxFor(m => m.Product.CreatedDate, "{0:" + Model.DisplayDateFormat + "}", new { @readonly = "readonly", @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.Product.ApprovedById != null) {
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblApprovedBy
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @Model.Product.ApprovedByText
+                    </div>
+                    <div class="col-sm-2 labelpadding">
+                        @EvolutionResources.lblApprovedDate
+                    </div>
+                    <div class="col-sm-1 cellpadding">
+                        @Html.TextBoxFor(m => m.Product.ApprovedDate, "{0:" + Model.DisplayDateFormat + "}", new { @readonly = "readonly", @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                    </div>
+                 } else if(Model.Product.Id != 0) {
+                    <div class="col-sm-1 cellpadding">
+                        @Html.HiddenFor(m => m.Approved)
+                        <button type="button" id="btnApprove" class="btn btn-sm btn-primary" onclick="ApproveProduct()">@EvolutionResources.btnApprove</button>
+                        <button type="submit" id="btnApprove2" name="command" value="approve" style="visibility:hidden"/>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-right" style="margin-right:-10px;">
+        <div class="col-sm-12 cellpadding text-right">
+            <button type="submit" id="btnSave" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" id="btnSaveAndExit" name="command" value="saveandexit" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSaveAndExit</button>
+            <button type="submit" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('Product_ItemNumber');
+
+    $(document).ready(function () {
+        $('#divProductDetails').collapse({ toggle: true });
+    });
+
+    function ApproveProduct() {
+        return Confirm4('@EvolutionResources.cnfConfirmApproveProduct', '@EvolutionResources.lblApplicationName', 'DoApprove' )
+    }
+
+    function DoApprove() {
+        $('#Approved').val('1');
+        $('#btnApprove2').click();
+    }
+
+</script>

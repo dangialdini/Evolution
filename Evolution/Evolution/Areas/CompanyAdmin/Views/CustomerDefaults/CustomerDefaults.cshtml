@@ -1,0 +1,51 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="customerdefaults" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'customerdefaults',
+            tableclass: 'gridStyle',
+            pagesize: 10,
+            pagenumber: 1,
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/CompanyAdmin/CustomerDefaults/GetCustomerDefaults?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCountry', width: '', class: '', fields: [{ type: 'field', field: 'CountryNameText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPostCode', width: '', class: '', fields: [{ type: 'field', field: 'Postcode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerType', width: '', class: '', fields: [{ type: 'field', field: 'CustomerTypeText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAccountManager', width: '', class: '', fields: [{ type: 'field', field: 'SalesPersonText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPaymentTerms', width: '', class: '', fields: [{ type: 'field', field: 'PaymentTermsText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCurrency', width: '', class: '', fields: [{ type: 'field', field: 'CurrencyCodeText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblTaxCode', width: '', class: '', fields: [{ type: 'field', field: 'TaxCodeText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center', fields: [{ type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                                                                         { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                                                                        ]}
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

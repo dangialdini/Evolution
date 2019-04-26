@@ -1,0 +1,176 @@
+﻿@model Evolution.Models.ViewModels.EditProductViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Packing", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Product.Id)
+    @Html.HiddenFor(m => m.Product.ItemNumber)
+    @Html.HiddenFor(m => m.Product.ItemName)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Model.PageTitle
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divPackingInfo" aria-expanded="false" aria-controls="divPackingInfo"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divPackingInfo" class="panel-body collapse">
+            @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            <div class="row">
+                <div class="col-sm-2 cellpadding"></div>
+                <div class="col-sm-5 cellpadding">
+                    <img id="imgThumb" src="@Model.Product.Picture" alt="" style="width:100px;height:auto;" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblInnerQuantity
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerQuantity, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblOuterQuantity
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.OuterQuantity, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMasterQuantity
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterQuantity, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPackPackingType
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.PackingTypeId,
+                                               new SelectList(Model.PackPackingTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            @EvolutionResources.bnrDimensionsAndWeight
+            <button type="button" class="button" style="float:right" data-toggle="collapse" data-target="#divDimensions" aria-expanded="false" aria-controls="divDimensions"><span class="glyphicon glyphicon-chevron-down" style="color:white"></span></button>
+        </div>
+        <div id="divDimensions" class="panel-body collapse">
+            <div class="row">
+                <div class="col-sm-2 cellpadding"></div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblLength (@Model.CurrentCompany.LengthUnit)</div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblWidth (@Model.CurrentCompany.LengthUnit)</div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblHeight (@Model.CurrentCompany.LengthUnit)</div>
+                <div class="col-sm-2 cellpadding">@EvolutionResources.lblWeight (@Model.CurrentCompany.WeightUnit)</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblProduct</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.Length, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.Width, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.Height, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.Weight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblPackedProduct</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.PackedLength, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.PackedWidth, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.PackedHeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.PackedWeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblInner</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerLength, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerWidth, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerHeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.InnerWeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding"></div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblLength (@Model.CurrentCompany.LongLengthUnit)</div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblWidth (@Model.CurrentCompany.LongLengthUnit)</div>
+                <div class="col-sm-1 cellpadding">@EvolutionResources.lblHeight (@Model.CurrentCompany.LongLengthUnit)</div>
+                <div class="col-sm-2 cellpadding">@EvolutionResources.lblWeight (@Model.CurrentCompany.WeightUnit)</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblMaster</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterLength, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterWidth, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterHeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MasterWeight, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblUnitCBM</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.UnitCBM, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">@EvolutionResources.lblWeightPerProduct (@Model.CurrentCompany.WeightUnit)</div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.WeightPerProduct, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-right:-10px;">
+        <div class="col-sm-12 text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="saveandexit" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSaveAndExit</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('Product_InnerQuantity');
+
+    $(document).ready(function () {
+        $('#divPackingInfo').collapse({ toggle: true });
+    });
+</script>
+

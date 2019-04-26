@@ -1,0 +1,202 @@
+﻿@model Evolution.Models.ViewModels.EditFileTransferConfigurationViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "DataTransfers", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.FileTransferConfiguration.Id)
+    @Html.HiddenFor(m => m.FileTransferConfiguration.CreatedById)
+    @Html.HiddenFor(m => m.FileTransferConfiguration.CreatedDate)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTransferName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.TransferName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCompany
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.CompanyId,
+                                               new SelectList(Model.CompanyList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTransferType
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.TransferType,
+                                               new SelectList(Model.TransferTypeList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDataType
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.DataTypeId,
+                                               new SelectList(Model.DataTypeList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFTPHost
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.FTPHost, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "100" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblWarehouse
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.LocationId,
+                                               new SelectList(Model.LocationList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFreightForwarder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.FreightForwarderId,
+                                               new SelectList(Model.FreightForwarderList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblUserId
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.UserId, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPassword
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.Password, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "50" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProtocol
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.Protocol,
+                                               new SelectList(Model.FTPProtocolList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSourceFolder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.SourceFolder, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTargetFolder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.TargetFolder, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTargetFileNameFormat
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.TargetFileNameFormat, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "64" } })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblArchiveFolder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.ArchiveFolder, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblErrorFolder
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.ErrorFolder, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "255" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblConfigurationTemplate
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.FileTransferConfiguration.ConfigurationTemplate,
+                                               new SelectList(Model.ConfigurationTemplateList, "Id", "Text"),
+                                               null,
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPostTransferCommand
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.PostTransferCommand, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "128" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPostTransferParameters
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.FileTransferConfiguration.PostTransferParameters, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "128" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.FileTransferConfiguration.Enabled)
+                </div>
+            </div>
+        </div>
+                <div class="panel-footer text-right">
+                    <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+                    <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+                </div>
+            </div>
+            }
+            <script type="text/javascript">
+                ApplyFocus('FileTransferConfiguration_TransferName');
+            </script>
+

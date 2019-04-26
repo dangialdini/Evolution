@@ -1,0 +1,27 @@
+﻿@using Evolution.Models.Models
+@model MenuBreadCrumbModel
+
+<ul class="breadcrumbs">
+    <li>
+        <a href="/"><span class="glyphicon glyphicon-home"></span></a>
+    </li>
+    @for (var i = 1; i < Model.Items.Count(); i++) {
+        if (i == 0) {
+            <li>
+                @if (!string.IsNullOrEmpty(Model.Items[i].URL)) {
+                    <a href="@Model.Items[i].URL">@Model.Items[i].Tooltip</a>
+                } else {
+                    @Model.Items[i].Tooltip
+                }
+            </li>
+        } else {
+            <li>
+                @if (!string.IsNullOrEmpty(Model.Items[i].URL)) {
+                    <a href="@Model.Items[i].URL">@Model.Items[i].Tooltip</a>
+                } else {
+                    @Model.Items[i].Tooltip
+                }
+            </li>
+        }
+    }
+</ul>

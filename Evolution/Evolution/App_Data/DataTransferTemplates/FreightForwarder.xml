@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PackageDefinition>
+  <Description>Default Configuration file for sending purchase orders to Freight Forwarders</Description>
+  <SiteName>Default Freight Forwarder Purchases</SiteName>
+  <File CompressFile="No" FTPFile="No" EMailFile="Yes">
+    <Formats>
+      <Format DataFieldDelimiter="&quot;" DataFieldDelimiterUsage="StringsOnly" DataFieldSeparator="," HeaderFieldDelimiter="&quot;" HeaderFieldSeparator=",">
+        <Fields>
+          <Field Name="OrderNumber" Type="Numeric"></Field>
+          <Field Name="SupplierID" Type="Numeric"></Field>
+          <Field Name="SupplierName" Type="String"></Field>
+          <Field Name="ItemNumber" Type="String"></Field>
+          <Field Name="OrderQty" Type="Numeric"></Field>
+          <Field Name="ItemUnitPrice" Type="Numeric"></Field>
+          <Field Name="CurrencyCode" Type="String"></Field>
+          <Field Name="OrderDate" Type="DateTime"></Field>
+          <Field Name="RequiredShipDate" Type="DateTime"></Field>
+          <Field Name="ShipMethod" Type="String"></Field>
+          <Field Name="PortName" Type="String"></Field>
+          <Field Name="Destimation" Type="String"></Field>
+          <Field Name="ExchangeRate" Type="Numeric"></Field>
+        </Fields>
+      </Format>
+    </Formats>
+  </File>
+</PackageDefinition>

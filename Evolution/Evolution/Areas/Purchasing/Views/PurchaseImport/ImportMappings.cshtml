@@ -1,0 +1,33 @@
+﻿@model Evolution.Models.ViewModels.EditPurchaseImportDataMappingsViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Import", "PurchaseImport", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-1 cellpadding">
+                    @EvolutionResources.lblWarehouse
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.LocationId,
+                                             new SelectList(Model.LocationList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <p></p>
+
+            @Html.Partial("/Views/Shared/ImportMappings/ImportMappings.cshtml", Model)
+        </div>
+
+        <div class="panel-footer">
+            <button type="submit" name="command" value="import" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnImport</button>
+        </div>
+    </div>
+}

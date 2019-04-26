@@ -1,0 +1,25 @@
+﻿l version="1.0" encoding="utf-8"?>
+<SalesTransaction>
+  <TransactionHeader>
+    <TransactionHeaderFields>
+      <WrntyID>234</WrntyID>
+      <Type>Sales Order</Type>
+      <Status>Submited</Status>
+      <CreationDateTime>2018-02-01T23:27:22Z</CreationDateTime>
+      <ModificationDateTime>2018-02-02T00:20:52Z</ModificationDateTime>
+      <ActionDateTime>2018-02-02T00:20:52Z</ActionDateTime>
+      <DeliveryDate>2018-02-02</DeliveryDate>
+      <Remark />
+    </TransactionHeaderFields>
+    <CatalogFields>
+      <CatalogID>Default Catalog</CatalogID>
+      <CatalogDescription />
+      <CatalogExpirationDate>2016-06-24</CatalogExpirationDate>
+    </CatalogFields>
+    <SalesRepFields>
+      <AgentName>Name</AgentName>
+      <AgentExternalID>9999</AgentExternalID>
+      <AgentEmail>name@email.com.au</AgentEmail>
+    </SalesRepFields>
+  </TransactionHeader>
+</SalesTransaction>

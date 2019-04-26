@@ -1,0 +1,53 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.ParentId)
+                <div id="supplieraddresses" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var gridOptions = {
+                        appname: '@EvolutionResources.lblApplicationName',
+            container: 'supplieraddresses',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/Suppliers/SupplierAddresses/GetSupplierAddresses?index={INDEX}&supplierid={PARENTID}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1&supplierid={PARENTID}',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}&supplierid={PARENTID}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&supplierid={PARENTID}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblStreet', width: '', class: '', fields: [{ type: 'field', field: 'Street', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCity', width: '', class: '', fields: [{ type: 'field', field: 'City', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblState', width: '', class: '', fields: [{ type: 'field', field: 'State', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPostCode', width: '', class: '', fields: [{ type: 'field', field: 'Postcode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAddressType', width: '', class: '', fields: [{ type: 'field', field: 'AddressTypeText', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

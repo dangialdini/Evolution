@@ -1,0 +1,149 @@
+﻿@model Evolution.Models.ViewModels.ProductImageUploadViewModel
+@using Evolution.Resources
+@using Evolution.Extensions
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("DoUpload", "Images", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Product.Id)
+
+        <div class="row">
+            <div class="col-sm-3 cellpadding">
+                @EvolutionResources.lblSelectImageFilesToUpload
+            </div>
+            <div class="col-sm-9 cellpadding">
+                @*<input type="file" id="Images" name="Images" multiple />*@
+                <div id="upload-files">
+                    <div>
+                        <button type="button" class="button" onclick="SelectImageUpload()">
+                            <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="bottom" title="Click to Upload" style="font-size:2em;margin-bottom:10px;"></span>
+                        </button>
+                        <input type="file" id="Images" name="Images" multiple style="display:none;" />
+                    </div>
+                    <span id="image-upload-filename" style='color:green'></span><br />
+                </div>
+                <div style="font-size:0.8em;">
+                    @EvolutionResources.lblMaximumFileSize @Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)<br />
+                    @EvolutionResources.lblValidFileTypes @Model.ValidFileTypes
+                </div>
+            </div>
+            <div class="col-sm-3 cellpadding"></div>
+            <div class="col-sm-9 cellpadding">
+                <button type="submit" id="btnUpload" name="command" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnUpload</button>
+            </div>
+        </div>
+        }
+        <br/>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="productimages" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <a href="/Products/Products/Products?BrandId=@Model.Product.BrandId" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'productimages',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: false,
+            keyfield: 'Id',
+            datasourceurl: '@Url.Action("GetProductMedia")?id=@Model.Product.Id&index={INDEX}',
+            deleteurl: '@Url.Action("DeleteMedia")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            ondisplaycomplete: InitialiseFancyBox,
+            columnDefs: [
+                { heading: '@EvolutionResources.lblImage', width: '', class: '', fields: [{ type: 'html', field: 'MediaHtml', width: '', class: '' }] },
+                //{ heading: '@EvolutionResources.lblMediaType', width: '100px', class: '', fields: [{ type: 'field', field: 'MediaTypeText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPrimary', width: '100px', class: 'text-center', fields: [{ type: 'enabled', field: 'IsPrimary', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '120px', class: 'text-center', fields: [
+                        { type: 'button', text: '@EvolutionResources.btnSetasPrimaryImage', class: '', jsfunc: 'SetPrimaryImage({INDEX},{ROWNUM},{KEYFIELD})', icon: 'ok-sign' },
+                        { type: 'buttondelete', text: '@EvolutionResources.btnDelete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function SetPrimaryImage(idx, rowNum, id) {
+        DoAjaxCall('@Url.Action("SetPrimaryImage")?id=@Model.Product.Id&productmediaid=' + id);
+        DisplayGrid(0);
+    }
+
+    function SelectImageUpload() {
+        var upload = document.getElementById('Images');
+        upload.click();
+    }
+
+    $('#Images').change(function () {
+        // Called when files are selected for upload
+        if (typeof FileReader !== "undefined") {
+            var msg;
+            var validType = true;
+            var uploadFiles = document.getElementById('Images');
+            var size = 0;
+            for (var i = 0; i < uploadFiles.files.length && validType; i++) {
+                size += uploadFiles.files[i].size;
+                $('#image-upload-filename').append('<span id="image-upload-filename" style="color:green">' + uploadFiles.files[i].name + '</span><br />');
+                if (!IsValidFileType(uploadFiles.files[i].name)) {
+                    msg = '@EvolutionResources.errFileIsNotAValidType'.replace('%1', uploadFiles.files[i].name);
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                    validType = false;
+                }
+            }
+            if (validType) {
+                if (size > @Model.MaxUploadFileSize) {
+                    msg = '@EvolutionResources.errMaxFileUploadSizeExceeded'.replace('%1', '' + (size / 1000000).toFixed(2) + 'MB');
+                    msg = msg.replace('%2', '@Model.MaxUploadFileSize.ToBinaryUnit(BinaryUnit.MB)');
+                    DisplayError(1, msg);
+                    EnableButton('btnUpload', false);
+                } else {
+                    EnableButton('btnUpload', true);
+                    HideError();
+                }
+            }
+        }
+    });
+
+    function IsValidFileType(fileName) {
+        var allowed = ',@Model.ValidFileTypes,'.replace(/\s/g, '').toLowerCase();
+        var tempName = fileName.toLowerCase();
+        var pos = tempName.lastIndexOf('.');
+        if (pos != -1) tempName = tempName.substr(pos + 1);
+        pos = allowed.indexOf(',' + tempName + ',');
+        if (pos != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function EnableButton(buttonName, enabled) {
+        if (enabled) {
+            $('#' + buttonName).prop('disabled', false);
+        } else {
+            $('#' + buttonName).prop('disabled', true);
+        }
+    }
+    EnableButton('btnUpload', false);
+
+</script>

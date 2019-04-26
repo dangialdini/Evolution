@@ -1,0 +1,184 @@
+﻿@model Evolution.Models.ViewModels.EditTaskViewModel
+@using Evolution.Resources
+
+@using (Html.BeginForm("DoAddTask", "Home", FormMethod.Post, new { id = "frmAddTask" })) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Task.Id)
+    @Html.HiddenFor(m => m.Task.CompanyId)
+    @Html.HiddenFor(m => m.Task.CreatedDate)
+    @Html.HiddenFor(m => m.Task.CompletionDate)
+    @Html.HiddenFor(m => m.Task.CompletedById)
+    @Html.HiddenFor(m => m.Task.CustomerId)
+    @Html.HiddenFor(m => m.Task.Enabled)
+
+    <div class="modal-header">
+        <button type="button" id="btnCloseDialog" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span id="modalcaption">@EvolutionResources.bnrAddEditTask</span></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblTitle</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.Task.Title, null, new { @class = "form-control", @style = "width:100%", @maxlength = "64" })<br/>
+                @Html.ValidationMessageFor(m => m.Task.Title, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblDescription</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextAreaFor(m => m.Task.Description, new { @class = "form-control", style = "width:100%; height:150px", maxlength = 8192 })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblCustomerName</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.Task.CustomerName, null, new { @class = "form-control", @style = "width:100%", @maxlength = "52" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblBusinessUnit</div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Task.BusinessUnitId,
+                                           new SelectList(Model.BusinessUnitList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblTaskType</div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Task.TaskTypeId,
+                                           new SelectList(Model.TaskTypeList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblStatus</div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Task.StatusId,
+                                           new SelectList(Model.StatusList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblDueDate</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.Task.DueDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+                @Html.ValidationMessageFor(m => m.Task.DueDate, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblAssignee</div>
+            <div class="col-sm-4 cellpadding">
+                @Html.DropDownListFor(m => m.Task.UserId,
+                                           new SelectList(Model.UserList, "Id", "Text"),
+                                           new { @class = "form-control", @style = "width:100%" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblAddFollowUp</div>
+            <div class="col-sm-8 labelpadding">
+                @Html.CheckBoxFor(m => m.Followup.AddFollowup)
+            </div>
+        </div>
+        <div class="row followup">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblFollowUpDate</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.Followup.FollowupDate, "{0:" + Model.DisplayDateFormat + "}", new { @class = "form-control", @style = "width:100px", @maxlength = "10" })
+            </div>
+            <div class="col-sm-6 cellpadding">
+                @Html.ValidationMessageFor(m => m.Followup.FollowupDate, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row followup">
+            <div class="col-sm-3 labelpadding">@EvolutionResources.lblFollowUpNote</div>
+            <div class="col-sm-8 cellpadding">
+                @Html.TextBoxFor(m => m.Followup.FollowupNote, null, new { @class = "form-control", @style = "width:100%", @maxlength = "64" })<br />
+                @Html.ValidationMessageFor(m => m.Followup.FollowupNote, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @if (Model.Task.Id == 0) {
+            <button type="button" id="btnAddTask" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem('btnAddTask')">@EvolutionResources.btnAddItem</button>
+        } else {
+            <button type="button" id="btnAddTask" name="command" value="additem" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem('btnAddTask')">@EvolutionResources.btnSave</button>
+        }
+        <button type="button" id="btnComplete" name="command" value="complete" class="btn btn-sm btn-primary" onclick="OnSubmitAddItem('btnComplete')">@EvolutionResources.btnComplete</button>
+        <button type="button" id="btnCancel" name="command" value="cancel" class="btn btn-sm btn-default" data-dismiss="modal">@EvolutionResources.btnCancel</button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.datepicker.setDefaults({ dateFormat: '@Model.JQDateFormat', altFormat: '' });
+
+        $('#Task_DueDate').datepicker();
+        $('#Followup_FollowupDate').datepicker();
+        $('#Followup_AddFollowup').click(function () {
+            DoFieldHiding();
+        });
+        DoFieldHiding();
+    });
+
+    function DoFieldHiding() {
+        if ($('#Followup_AddFollowup').is(':checked')) {
+            $('.followup').show();
+            $('#Followup_FollowupDate').focus();
+        } else {
+            $('.followup').hide();
+        }
+    }
+
+    $(function () {
+        $('#Task_CustomerName').autocomplete({
+            delay: 500,
+            minLength: 2,
+            source: function (request, response) {
+                var url = '@Url.Action("GetCustomers")' + '?search=' + $('#Task_CustomerName').val();
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: request,
+                    success: function (data) {
+                        response($.map(data, function (d) {
+                            return {
+                                label: d.Text,
+                                value: d.Id
+                            };
+                        }))
+                    },
+                    error: function (jqXhr, status, error) {
+                        DisplayExclamationError('The webservice returned an error: ' + status + ' : ' + error);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                // Prevent value from being put in the input:
+                this.value = ui.item.label;
+                $('#Task_CustomerId').val(ui.item.value);
+                event.preventDefault();
+            }
+        });
+        // The following is needed so that autocomplete works in a dialog
+        $('#Task_CustomerName').autocomplete("option", "appendTo", '#dialog');
+    });
+
+    function OnSubmitAddItem(btn) {
+        if ($('#Task_CustomerName').val() == '') $('#Task_CustomerId').val('');
+        PostForm($('#' + btn), 'modal-content', 'frmAddTask', '@Url.Action("DoAddTask")', OnAddItemSuccess, null, null, null);
+    }
+
+    function OnAddItemSuccess(data) {
+        if (!IsErrorSummary(data)) {
+            // Success
+            DisplayGrid(0);
+            HideDialog();
+        }
+    }
+</script>

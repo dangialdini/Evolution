@@ -1,0 +1,138 @@
+﻿@model Evolution.Models.ViewModels.EditProductViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "AdditionalCategory", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Product.Id)
+    @Html.HiddenFor(m => m.Product.ItemNumber)
+    @Html.HiddenFor(m => m.Product.ItemName)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            <div class="row">
+                <div class="col-sm-2 labelpadding"></div>
+                <div class="col-sm-5 cellpadding">
+                    <img id="imgThumb" src="@Model.Product.Picture" alt="" style="width:100px;height:auto;" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCategory
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.CategoryId,
+                                               new SelectList(Model.CategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFormat
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.FormatId,
+                                               new SelectList(Model.FormatList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFormatType
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.FormatTypeId,
+                                               new SelectList(Model.FormatTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSeason
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.SeasonId,
+                                               new SelectList(Model.SeasonList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPackingType
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.PackingTypeId,
+                                               new SelectList(Model.PackingTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblKidsAdults
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.KidsAdultsId,
+                                               new SelectList(Model.KidsAdultsList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblAgeGroup
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.AgeGroupId,
+                                               new SelectList(Model.AgeGroupList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDvlptType
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.DvlptTypeId,
+                                               new SelectList(Model.DvlptTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPCProduct
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.PCProductId,
+                                               new SelectList(Model.PCProductList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPCDvlpt
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.AdditionalCategory.PCDvlptId,
+                                               new SelectList(Model.PCDvlptList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="saveandexit" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSaveAndExit</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('Product_AdditionalCategory_CategoryId');
+</script>
+

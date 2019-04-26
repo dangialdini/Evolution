@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ce0e90d1c2e4c118343c51f46a9e6c9" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="Evolution.DAL.CarrierVessel" Width="1.5" PointX="37.875" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.ContainerType" Width="1.5" PointX="31.875" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.Country" Width="1.5" PointX="33.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.CountrySubDivision" Width="1.5" PointX="30.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditCardProvider" Width="1.5" PointX="40.75" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditClaimItemCondition" Width="1.5" PointX="25.625" PointY="77.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditClaimReason" Width="1.5" PointX="22.625" PointY="77" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.Currency" Width="1.5" PointX="46.625" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.CustomsDelay" Width="1.5" PointX="17.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.FreightCarrier" Width="1.5" PointX="25" PointY="54.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.FreightForwarder" Width="1.5" PointX="8.625" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.LOV" Width="1.5" PointX="21.5" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.LOVItem" Width="1.5" PointX="18.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.MarketingGroup" Width="1.5" PointX="53.875" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.MethodSigned" Width="1.5" PointX="42.75" PointY="57.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.PaymentTerm" Width="1.5" PointX="14" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.Port" Width="1.5" PointX="37.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.PortTransitTime" Width="1.5" PointX="26.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.ReasonCode" Width="1.5" PointX="58.25" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.Region" Width="1.5" PointX="60.125" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.Supplier" Width="1.5" PointX="10.375" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierTerm" Width="1.5" PointX="65" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.TaxCode" Width="1.5" PointX="28" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Evolution.DAL.User" Width="1.5" PointX="36" PointY="34.25" IsExpanded="true" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomsDelay_ContainerType" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_CountrySubDivision_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimReason_CreditClaimItemCondition" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomsDelay_LOVItem_ShipMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomsDelay_Port" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_FreightForwarder_AU" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_FreightForwarder_DTC" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_FreightForwarder_UK" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_FreightForwarder_US" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_PortTransitTime_LOVItem_ShipMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_LOVItem_CommercialTerms" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_LOVItem_ShipMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_PortTransitTime_Port_Arrival" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_PortTransitTime_Port_Depart" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_SupplierTerm" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_TaxCode" ManuallyRouted="false" />
+        <AssociationConnector Association="Evolution.DAL.FK_LOVItem_LOV" />
+        <EntityTypeShape EntityType="Evolution.DAL.Location" Width="1.5" PointX="30" PointY="34.5" />
+        <EntityTypeShape EntityType="Evolution.DAL.Purchase" Width="1.5" PointX="43.5" PointY="4.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.Shipment" Width="1.5" PointX="37.875" PointY="8.625" />
+        <EntityTypeShape EntityType="Evolution.DAL.ShipmentContent" Width="1.5" PointX="40.625" PointY="4.625" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_CarrierVessel" />
+        <AssociationConnector Association="Evolution.DAL.FK_Purchase_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Currency_CurrencyId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Currency_MainShipCurrencyId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Currency_OtherShipCurrencyId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Currency_SupplierFreightCurrencyId" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_LOVItem_ShippingMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_Port_PortArrivalId" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_Port_PortDepartureId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Shipment" />
+        <EntityTypeShape EntityType="Evolution.DAL.ShipmentPhaseTime" Width="1.5" PointX="29.125" PointY="17.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentPhaseTime_ContainerType" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentPhaseTime_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentPhaseTime_LOVItem_ShippingMethodId" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductLocation" Width="1.5" PointX="63.5" PointY="29" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductPrice" Width="1.5" PointX="73.875" PointY="34.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductLocation_ProductLocation" />
+        <EntityTypeShape EntityType="Evolution.DAL.Sale" Width="1.5" PointX="20.25" PointY="54.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierPayment" Width="1.5" PointX="15" PointY="15.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_Sale_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_Sale_LOVItem" />
+        <AssociationConnector Association="Evolution.DAL.FK_Sale_TaxCode_FreightTaxCode" />
+        <EntityTypeShape EntityType="Evolution.DAL.SaleNextAction" Width="1.5" PointX="38.25" PointY="48.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderHeaderStatu" Width="1.5" PointX="42.75" PointY="54.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderHeaderSubStatu" Width="1.5" PointX="42.75" PointY="51.125" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderLineStatu" Width="1.5" PointX="65" PointY="47.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.PurchaseOrderHeaderStatu" Width="1.5" PointX="33.875" PointY="18.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierPayment_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierPayment_Supplier" />
+        <EntityTypeShape EntityType="Evolution.DAL.Allocation" Width="1.5" PointX="62.125" PointY="36" />
+        <EntityTypeShape EntityType="Evolution.DAL.Permission" Width="1.5" PointX="1.625" PointY="38" />
+        <EntityTypeShape EntityType="Evolution.DAL.UserGroup" Width="1.5" PointX="6.375" PointY="37.875" />
+        <EntityTypeShape EntityType="Evolution.DAL.UserGroupPermission" Width="1.5" PointX="4.125" PointY="37.875" />
+        <EntityTypeShape EntityType="Evolution.DAL.UserGroupUser" Width="1.5" PointX="31.875" PointY="42.625" />
+        <AssociationConnector Association="Evolution.DAL.FK_Allocation_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserGroupPermission_Permission" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserGroupPermission_UserGroup" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserGroupUser_UserGroup" />
+        <EntityTypeShape EntityType="Evolution.DAL.PickDetail" Width="1.5" PointX="69" PointY="28.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.PickDetailStatu" Width="1.5" PointX="68.5" PointY="25" />
+        <EntityTypeShape EntityType="Evolution.DAL.PickHeader" Width="1.5" PointX="52.625" PointY="49.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.PickHeaderStatu" Width="1.5" PointX="50.75" PointY="49.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.PurchaseOrderDetail" Width="1.5" PointX="52.5" PointY="20.625" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderDetail" Width="1.5" PointX="62.25" PointY="45.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_Allocation_PurchaseOrderDetail" />
+        <AssociationConnector Association="Evolution.DAL.FK_Allocation_SalesOrderDetail" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_LOVItem_OrderTypeId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_LOVItem_ShipMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_PickDetailStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_PickHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_PickHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetail_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_SalesOrderLineStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_TaxCode" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditClaimHeader" Width="1.5" PointX="22.5" PointY="64" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditClaimLine" Width="1.5" PointX="19.25" PointY="71.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_CreditClaimReason" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_LOVItem_RejectionReasonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_LOVItem_StatusId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimLine_CreditClaimHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimLine_CreditClaimReason" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimLine_LOVItem_StatusId" />
+        <EntityTypeShape EntityType="Evolution.DAL.Brand" Width="1.5" PointX="66.5" PointY="39" />
+        <EntityTypeShape EntityType="Evolution.DAL.Medium" Width="1.5" PointX="4.625" PointY="20.875" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierAttachment" Width="1.5" PointX="12.25" PointY="32.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierNote" Width="1.5" PointX="14.75" PointY="32.25" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimLine_CreditClaimItemCondition" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAttachment_Media" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAttachment_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierNote_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAttachment_SupplierNote" />
+        <EntityTypeShape EntityType="Evolution.DAL.ScheduledTaskLog" Width="1.5" PointX="6.125" PointY="18" />
+        <EntityTypeShape EntityType="Evolution.DAL.ScheduledTask" Width="1.5" PointX="3.875" PointY="18.25" />
+        <AssociationConnector Association="Evolution.DAL.FK_ScheduledTaskLog_ScheduledTask" />
+        <EntityTypeShape EntityType="Evolution.DAL.EMailQueue" Width="1.5" PointX="1.125" PointY="12.5" />
+        <EntityTypeShape EntityType="Evolution.DAL.Log" Width="1.5" PointX="5.5" PointY="9.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.UserSessionProperty" Width="1.5" PointX="38.875" PointY="34" />
+        <EntityTypeShape EntityType="Evolution.DAL.PriceLevel" Width="1.5" PointX="43.375" PointY="31.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditCard" Width="1.5" PointX="42.625" PointY="34.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.CustomerAddress" Width="1.5" PointX="50.625" PointY="33.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.CustomerConflictSensitivity" Width="1.5" PointX="47.5" PointY="31.875" />
+        <EntityTypeShape EntityType="Evolution.DAL.CustomerContact" Width="1.5" PointX="47.5" PointY="36.25" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_CustomerContact" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerAddress_LOVItem_AddressType" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_User_ApprovedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_User_RaisedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_User_RejectedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_User_PackedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_User_PickedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_User_SalesPersonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_Sale_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_User_ApprovedBy1Id" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_User_ApprovedBy2Id" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_User_CreatedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_User_Purchaser" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierNote_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserGroupUser_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserSessionProperty_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.Lock" Width="1.5" PointX="5.625" PointY="6.625" />
+        <EntityTypeShape EntityType="Evolution.DAL.Customer" Width="1.5" PointX="45.5" PointY="30.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditCard_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimHeader_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_CustomerType" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_MiscGrouping" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_OrderType" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_Potential" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_ShippingMethod" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_PriceLevel" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_Region" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_TaxCode_Freight" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_User_CreatedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerAddress_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerConflictSensitivity_Customer_CustomerId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerConflictSensitivity_Customer_SensitiveWithId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerContact_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_Customer" />
+        <EntityTypeShape EntityType="Evolution.DAL.MarketingGroupSubscription" Width="1.5" PointX="50.125" PointY="40.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem" />
+        <AssociationConnector Association="Evolution.DAL.FK_MarketingGroupSubscription_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_MarketingGroupSubscription_CustomerContact" />
+        <AssociationConnector Association="Evolution.DAL.FK_MarketingGroupSubscription_MarketingGroup" />
+        <EntityTypeShape EntityType="Evolution.DAL.TestFileLog" Width="1.5" PointX="7.5" PointY="6.75" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_LOVItem_SourceId" />
+        <EntityTypeShape EntityType="Evolution.DAL.BrandCategory" Width="1.5" PointX="61" PointY="41" />
+        <EntityTypeShape EntityType="Evolution.DAL.CompanyBrandCategory" Width="1.5" PointX="66.5" PointY="41.625" />
+        <AssociationConnector Association="Evolution.DAL.FK_CompanyBrandCategory_BrandCategory" />
+        <EntityTypeShape EntityType="Evolution.DAL.BrandBrandCategory" Width="1.5" PointX="63.75" PointY="39.625" />
+        <EntityTypeShape EntityType="Evolution.DAL.BrandCategorySalesPerson" Width="1.5" PointX="58.25" PointY="38.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandBrandCategory_Brand" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandBrandCategory_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategorySalesPerson_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategorySalesPerson_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategorySalesPerson_LOVItem_SalePersonTypeId" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategorySalesPerson_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.AuditLog" Width="1.5" PointX="40.75" PointY="34" />
+        <AssociationConnector Association="Evolution.DAL.FK_AuditLog_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.SequenceNumber" Width="1.5" PointX="1" PointY="4.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.PurchaseOrderDetailTemp" Width="1.5" PointX="14.625" PointY="0.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetailTemp_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetailTemp_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.MetadataElement" Width="1.5" PointX="60.375" PointY="57" />
+        <EntityTypeShape EntityType="Evolution.DAL.MetadataTemplate" Width="1.5" PointX="58.125" PointY="53.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.MetadataTemplateElement" Width="1.5" PointX="60.375" PointY="53.75" />
+        <AssociationConnector Association="Evolution.DAL.FK_MetadataTemplateElement_MetadataElement" />
+        <AssociationConnector Association="Evolution.DAL.FK_MetadataTemplateElement_MetadataTemplate" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductData" Width="1.5" PointX="74" PointY="39" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductData_MetadataTemplateElement" />
+        <EntityTypeShape EntityType="Evolution.DAL.OrderPayment" Width="1.5" PointX="58.125" PointY="33.75" />
+        <AssociationConnector Association="Evolution.DAL.FK_OrderPayment_Currency" />
+        <EntityTypeShape EntityType="Evolution.DAL.FileTransferConfiguration" Width="1.5" PointX="8.5" PointY="33.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileTransferConfiguration_FreightForwarder" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileTransferConfiguration_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileTransferConfiguration_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.EMailQueueAttachment" Width="1.5" PointX="3.25" PointY="13.125" />
+        <AssociationConnector Association="Evolution.DAL.FK_EMailQueueAttachment_EMailQueue" />
+        <EntityTypeShape EntityType="Evolution.DAL.Company" Width="1.5" PointX="55.625" PointY="47" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandBrandCategory_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategory_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_BrandCategorySalesPerson_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_CompanyBrandCategory_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditCard_CreditCard" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimReason_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerAddress_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerConflictSensitivity_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerContact_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomsDelay_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_FreightCarrier_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_FreightForwarder_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Location_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_LOVItem_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_MarketingGroup_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_MarketingGroupSubscription_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Media_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_MetadataTemplate_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_OrderPayment_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PaymentTerm_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PortTransitTime_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PriceLevel_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Purchase_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetail_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetailTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_ReasonCode_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Region_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Sale_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Supplier_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierPayment_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierTerm_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_TaxCode_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_User_Details" />
+        <EntityTypeShape EntityType="Evolution.DAL.PurchaseOrderHeader" Width="1.5" PointX="33.875" PointY="25.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.PurchaseOrderHeaderTemp" Width="1.5" PointX="11.25" PointY="2.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_ContainerType" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_ContainerType" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_FreightForwarder" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_FreightForwarder" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_LOVItem_CommercialTermsId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_LOVItem_ShipMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_LOVItem_SourceId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_LOVItem_CommercialTermsId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_LOVItem_ShipMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_PaymentTerm" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_PaymentTerm" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Port_PortArrivelId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Port_PortId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Port_PortArrivalId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Port_PortId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetail_PurchaseOrderHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetailTemp_PurchaseOrderHeaderTemp" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_PurchaseOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_User_EnteredBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_User_SalesPersonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeader_User_UnpackedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_User_EnteredBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_User_SalesPersonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_User_UnpackedById" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderHeaderTemp_User_UserId" />
+        <EntityTypeShape EntityType="Evolution.DAL.Note" Width="1.5" PointX="67.625" PointY="51.25" />
+        <EntityTypeShape EntityType="Evolution.DAL.NoteAttachment" Width="1.5" PointX="64.375" PointY="51.25" />
+        <AssociationConnector Association="Evolution.DAL.FK_Note_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_NoteAttachment_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_NoteAttachment_Media" />
+        <AssociationConnector Association="Evolution.DAL.FK_Note_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_NoteAttachment_Note" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileTransferConfiguration_Company" />
+        <EntityTypeShape EntityType="Evolution.DAL.MessageTemplate" Width="1.5" PointX="57.875" PointY="57.125" />
+        <AssociationConnector Association="Evolution.DAL.FK_MessageTemplate_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductLocation_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Allocation_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Shipment_LOVItem_SeasonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_PurchaseOrderHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShipmentContent_Supplier" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderDetailTemp" Width="1.5" PointX="75.25" PointY="48.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_SalesOrderLineStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_User_ApprovedBy1Id" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_User_ApprovedBy2Id" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_User_UserId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditCard_CreditCardProvider" />
+        <EntityTypeShape EntityType="Evolution.DAL.MediaType" Width="1.5" PointX="2.25" PointY="20.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_Media_MediaType" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_Country" />
+        <EntityTypeShape EntityType="Evolution.DAL.DeliveryWindow" Width="1.5" PointX="3.25" PointY="3.375" />
+        <EntityTypeShape EntityType="Evolution.DAL.FileImportField" Width="1.5" PointX="58.875" PointY="64.75" />
+        <EntityTypeShape EntityType="Evolution.DAL.FileImportRow" Width="1.5" PointX="57.875" PointY="67.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportField_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportRow_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportField_FileImportRow" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportRow_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportRow_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportRow_Customer" />
+        <EntityTypeShape EntityType="Evolution.DAL.FileImportFile" Width="1.5" PointX="53.375" PointY="66" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportFile_FileImportFile" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportFile_User" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerAddress_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_User_BrandCategory" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderHeaderTemp" Width="1.5" PointX="66.25" PointY="19.75" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_CreditCard" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_FreightCarrier" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_LOVItem_FreightTermId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_LOVItem_OrderTypeId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_LOVItem_ShippingMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_LOVItem_Source" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_MethodSigned" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_SaleNextAction" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_SalesOrderHeaderTemp" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_SalesOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_SalesOrderHeaderSubStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_User_SalesPersonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_User_UserId" />
+        <EntityTypeShape EntityType="Evolution.DAL.SalesOrderHeader" Width="1.5" PointX="49.25" PointY="54.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_CreditCard" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_FreightCarrier" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_LOVItem" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_LOVItem_FreightTermId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_LOVItem_OrderTypeId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_LOVItem_ShippingMethodId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_MethodSigned" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_SaleNextAction" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_SalesOrderHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_SalesOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_SalesOrderHeaderSubStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeader_User_SalesPersonId" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderHeaderTemp_User_OverrideApprover" />
+        <AssociationConnector Association="Evolution.DAL.FK_Media_User_CreatedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_Media_User_ModifiedBy" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductMedia" Width="1.5" PointX="68.75" PointY="39.625" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductMedia_Media" />
+        <EntityTypeShape EntityType="Evolution.DAL.Product" Width="1.5" PointX="71.625" PointY="23.125" />
+        <AssociationConnector Association="Evolution.DAL.FK_Allocation_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimLine_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileImportRow_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_ProductMedia" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductData_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductLocation_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductMedia_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductPrice_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetail_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_PurchaseOrderDetailTemp_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetail_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_SalesOrderDetailTemp_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_Brand" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_Supplier" />
+        <EntityTypeShape EntityType="Evolution.DAL.FileLog" Width="1.5" PointX="5.625" PointY="3.875" />
+        <EntityTypeShape EntityType="Evolution.DAL.Task" Width="1.5" PointX="31.375" PointY="48.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_LOVItem_Status" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_User_Assignee" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_User_CompletedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_LOVItem_TaskType" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_Task_LOVItem_BusinessUnit" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_Manufacturer" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_User_ApprovedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_User_CreatedBy" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_AB" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_PackPackingType" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductAdditionalCategory" Width="1.5" PointX="77" PointY="33.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_AgeGroup" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_Category" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_DvlptType" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_Format" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_FormatType" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_PackingType" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_PCDvlpt" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_PCProduct" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_Season" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_Product" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_Material" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_WebCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_WebSubCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductAdditionalCategory_LOVItem_KidsAdults" />
+        <EntityTypeShape EntityType="Evolution.DAL.PepperiImportHeaderTemp" Width="1.5" PointX="57.875" PointY="72.25" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportHeaderTemp_Company" />
+        <EntityTypeShape EntityType="Evolution.DAL.PepperiImportDetailTemp" Width="1.5" PointX="60.125" PointY="76.625" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportDetailTemp_PepperiImportHeaderTemp" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportHeaderTemp_Location_" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportHeaderTemp_MethodSigned_" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportDetailTemp_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportHeaderTemp_SalesOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_PepperiImportHeaderTemp_SalesOrderHeaderSubStatus" />
+        <EntityTypeShape EntityType="Evolution.DAL.CustomerDefault" Width="1.5" PointX="61" PointY="10.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_Country" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductIP" Width="1.5" PointX="68.375" PointY="16.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductIP_LOVItem" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductIP_Product" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductCompliance" Width="2.375" PointX="75.75" PointY="18.375" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductCompliance_LOVItem_ComplianceCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductCompliance_LOVItem_Market" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductCompliance_Product" />
+        <EntityTypeShape EntityType="Evolution.DAL.ProductComplianceAttachment" Width="1.5" PointX="72.75" PointY="16" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductComplianceAttachment_Media" />
+        <AssociationConnector Association="Evolution.DAL.FK_ProductComplianceAttachment_ProductCompliance" />
+        <EntityTypeShape EntityType="Evolution.DAL.UserAlias" Width="1.5" PointX="38.25" PointY="39" />
+        <AssociationConnector Association="Evolution.DAL.FK_UserAlias_User" />
+        <EntityTypeShape EntityType="Evolution.DAL.CreditClaimReplacementOrder" Width="1.5" PointX="52.5" PointY="68.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimReplacementOrder_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimReplacementOrder_CreditClaimHeader" />
+        <AssociationConnector Association="Evolution.DAL.FK_CreditClaimReplacementOrder_SalesOrderHeader" />
+        <EntityTypeShape EntityType="Evolution.DAL.NuOrderImportTemp" Width="1.5" PointX="70.25" PointY="49.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_FreightCarrier" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_LOVItem_FreightTermId" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_MethodSigned" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_SalesOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_SalesOrderHeaderSubStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_SalesOrderLineStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_NuOrderImportTemp_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickHeader_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_FileTransferConfiguration_LOVItem_DataType" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_Currency" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_FreightCarrier" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_PaymentTerm" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_TaxCode_WithoutTaxId" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_User_SalesPerson" />
+        <EntityTypeShape EntityType="Evolution.DAL.MenuOption" Width="1.5" PointX="3.25" PointY="6" />
+        <EntityTypeShape EntityType="Evolution.DAL.ShopifyImportDetailTemp" Width="1.5" PointX="67.25" PointY="55.875" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportDetailTemp_SalesOrderLineStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportDetailTemp_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_PriceLevel" />
+        <EntityTypeShape EntityType="Evolution.DAL.ShopifyImportHeaderTemp" Width="1.5" PointX="63.25" PointY="55.125" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_BrandCategory" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_Customer" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_FreightCarrier" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_Location" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_LOVItem_FreightTermId" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_MethodSigned" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_SalesOrderHeaderStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_SalesOrderHeaderSubStatus" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportDetailTemp_ShopifyImportHeaderTemp" />
+        <AssociationConnector Association="Evolution.DAL.FK_ShopifyImportHeaderTemp_TaxCode" />
+        <EntityTypeShape EntityType="Evolution.DAL.DocumentTemplate" Width="1.5" PointX="61" PointY="7" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_DocumentTemplate" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_DocumentTemplate_FreightForwarder" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_DocumentTemplate_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_DocumentTemplate_Warehouse" />
+        <AssociationConnector Association="Evolution.DAL.FK_Company_User_DefaultImportUser" />
+        <AssociationConnector Association="Evolution.DAL.FK_Customer_MessageTemplate" />
+        <AssociationConnector Association="Evolution.DAL.FK_CustomerDefault_LOVItem_CustomerType" />
+        <AssociationConnector Association="Evolution.DAL.FK_Product_LOVItem_ProductAvailability" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierAddress" Width="1.5" PointX="57.875" PointY="42.5" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAddress_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAddress_Country" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAddress_Supplier" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAddress_LOVItem_AddressType" />
+        <AssociationConnector Association="Evolution.DAL.FK_PickDetail_SalesOrderDetail" />
+        <EntityTypeShape EntityType="Evolution.DAL.SupplierAccountsQueue" Width="1.5" PointX="72.875" PointY="48" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAccountsQueue_Company" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAccountsQueue_LOVItem_CommercialTerms" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAccountsQueue_LOVItem_ShipMethod" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAccountsQueue_TaxCode" />
+        <AssociationConnector Association="Evolution.DAL.FK_SupplierAccountsQueue_User_CreatedBy" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

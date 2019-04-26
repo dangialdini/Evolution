@@ -1,0 +1,16 @@
+﻿
+// This file is used by Code Analysis to maintain SuppressMessage 
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given 
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.createPurchaseOrderDetailTemp(Evolution.Models.Models.PurchaseOrderHeaderTempModel,Evolution.Models.Models.UserModel)~Evolution.Models.Models.PurchaseOrderDetailTempModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.CopyPurchaseOrderToTempTest")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.createPurchaseOrderDetailTemp(Evolution.Models.Models.PurchaseOrderDetailTempListModel)~Evolution.Models.Models.PurchaseOrderDetailTempModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.createAllocation(Evolution.Models.Models.CompanyModel,Evolution.Models.Models.ProductModel)~Evolution.Models.Models.AllocationModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.createPurchaseOrderDetail(Evolution.Models.Models.PurchaseOrderDetailListModel)~Evolution.Models.Models.PurchaseOrderDetailModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.createSplitItemModel(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)~Evolution.Models.Models.SplitPurchaseItemModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.ImportOrdersTest")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.FindPurchaseOrderHeaderTempModelTest")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.DeletePurchaseOrderHeaderTest")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.PurchasingServiceTests.PurchasingServiceTests.FindPurchaseOrderHeaderModelTest")]

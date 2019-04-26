@@ -1,0 +1,49 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.ParentId)
+                <div id="compliance" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'compliance',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            sortcolumns: ['ComplianceCategoryText', 'MarketNameText'],
+            sortcolumn: 'ComplianceCategoryText',
+            sortorder: 1,
+            datasourceurl: '/Products/Compliance/GetCompliance?index={INDEX}&productid={PARENTID}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1&productid={PARENTID}',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}&productid={PARENTID}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&productid={PARENTID}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [{ heading: '@EvolutionResources.lblComplianceCategory', width: '', class: '', fields: [{ type: 'field', field: 'ComplianceCategoryText', width: '', class: '' }] },
+                         { heading: '@EvolutionResources.lblMarketName', width: '', class: '', fields: [{ type: 'field', field: 'MarketNameText' }] },
+                         { heading: '@EvolutionResources.lblDocuments', width: '', class: '', fields: [{ type: 'field', field: 'AttachmentHtml', width: '', class: '' }] },
+                         { heading: '@EvolutionResources.lblAction', width: '120px', class: '', fields: [{ type: 'buttonedit', text: '@EvolutionResources.btnEdit', class: '' },
+                                                                                                         { type: 'buttondelete', text: '@EvolutionResources.btnDelete', class: '' } ]}
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

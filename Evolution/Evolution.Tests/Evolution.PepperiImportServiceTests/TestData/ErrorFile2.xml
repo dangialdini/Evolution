@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SalesTransaction>
+  <TransactionHeader>
+    <TransactionHeaderFields>
+      <WrntyID>4325</WrntyID>
+      <Type>Sales Order</Type>
+      <Status>Submited</Status>
+      <CreationDateTime>2016-11-02T00:27:15Z</CreationDateTime>
+      <ModificationDateTime>2016-11-14T22:10:03Z</ModificationDateTime>
+      <ActionDateTime>2016-11-14T22:10:03Z</ActionDateTime>
+      <DeliveryDate>2016-11-01</DeliveryDate>
+      <Remark />
+    </TransactionHeaderFields>
+    <CatalogFields>
+      <CatalogID>Default Catalog</CatalogID>
+      <CatalogDescription />
+      <CatalogPriceFactor>1</CatalogPriceFactor>
+      <CatalogExpirationDate>2016-06-24</CatalogExpirationDate>
+    </CatalogFields>
+    <SalesRepFields>
+      <AgentName>Fake Name</AgentName>
+      <AgentExternalID>9672</AgentExternalID>
+      <AgentEmail>email@placeholder.com.au</AgentEmail>
+    </SalesRepFields>
+    <AccountFields>
+      <AccountWrntyID>65432</AccountWrntyID>
+      <AccountExternalID>4352</AccountExternalID>
+      <AccountCreationDate>2016-07-28T06:41:39Z</AccountCreationDate>
+      <AccountName># Fake Customer for Testing</AccountName>
+      <AccountPhone>5555 6666</AccountPhone>
+      <AccountMobile />
+      <AccountFax />
+      <AccountEmail>fake@email.com.au</AccountEmail>
+      <AccountStreet>999 Made-up Street Name</AccountStreet>
+      <AccountCity>Fictional Suburb Name</AccountCity>
+      <AccountState>New South Wales</AccountState>
+      <AccountCountry>Australia</AccountCountry>
+      <AccountZipCode>2121</AccountZipCode>
+      <AccountPriceLevelName />
+    </AccountFields>
+    <BillingFields>
+      <BillToName># Fake Customer for Testing</BillToName>
+      <BillToStreet>999 Made-up Street Name</BillToStreet>
+      <BillToCity>Fictional Suburb Name</BillToCity>
+      <BillToState>New South Wales</BillToState>
+      <BillToCountry>Australia</BillToCountry>
+      <BillToZipCode>2121</BillToZipCode>
+      <BillToPhone>5555 6666</BillToPhone>
+    </BillingFields>
+    <ShippingFields>
+      <ShipToExternalID>21988</ShipToExternalID>
+      <ShipToName># Fake Customer for Testing</ShipToName>
+      <ShipToStreet>999 Made-up Street Name</ShipToStreet>
+      <ShipToCity>Fictional Suburb Name</ShipToCity>
+      <ShipToState>New South Wales</ShipToState>
+      <ShipToCountry>Australia</ShipToCountry>
+      <ShipToZipCode>2121</ShipToZipCode>
+      <ShipToPhone>5555 6666</ShipToPhone>
+    </ShippingFields>
+    <Totals>
+      <Currency>AUD</Currency>
+      <TotalItemsCount>70</TotalItemsCount>
+      <SubTotal>1780</SubTotal>
+      <SubTotalAfterItemsDiscount>1780</SubTotalAfterItemsDiscount>
+      <GrandTotal>1958</GrandTotal>
+      <DiscountPercentage>0</DiscountPercentage>
+      <TaxPercentage>10</TaxPercentage>
+    </Totals>
+    <ContactPersonFields />
+    <TransactionCustomFields>
+      <TSAGST>178</TSAGST>
+      <TSADeliveryWindowOpen />
+      <TSADeliveryWindowClose />
+    </TransactionCustomFields>
+  </TransactionHeader>
+  
+  <TransactionLines>
+
+  </TransactionLines>
+</SalesTransaction>

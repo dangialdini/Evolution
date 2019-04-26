@@ -1,0 +1,164 @@
+﻿@model Evolution.Models.ViewModels.EditCustomerAdditionalInfoViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerAdditionalInfo", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.CurrentCompany.Id)
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.CustomerAdditionalInfo.Id)
+    @Html.HiddenFor(m => m.CustomerAdditionalInfo.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDeliveryInstructions
+                </div>
+                <div class="col-sm-9 cellpadding">
+                    @Html.TextAreaFor(m => m.CustomerAdditionalInfo.DeliveryInstructions, new { @class="form-control", style = "width:90%; height:80px", maxlength = 8192 })
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPricingInstructions
+                </div>
+                <div class="col-sm-9 cellpadding">
+                    @Html.TextAreaFor(m => m.CustomerAdditionalInfo.PricingInstructions, new { @class = "form-control", style = "width:90%; height:80px", maxlength = 8192 })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPlacesForwardOrders
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.CustomerAdditionalInfo.PlacesForwardOrders)
+                </div>
+            </div>
+
+            <hr style="width:50%; height:2px" />
+
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblRegion
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAdditionalInfo.RegionId,
+                                               new SelectList(Model.RegionList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblShippingTemplate
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAdditionalInfo.ShippingTemplateId,
+                                               Enumerable.Empty<SelectListItem>(),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+                <div class="col-sm-3 labelpadding">
+                    @EvolutionResources.lblInvoice &nbsp;&nbsp; @Html.RadioButtonFor(m => m.CustomerAdditionalInfo.ShippingTemplateType, 1, new { id = "btnInvoice", onclick= "OnInvoiceClicked()" })
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    @EvolutionResources.lblPackingSlip &nbsp;&nbsp; @Html.RadioButtonFor(m => m.CustomerAdditionalInfo.ShippingTemplateType, 2, new { id = "btnPackslip", onclick = "OnPacklistClicked()" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblProductLabel
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAdditionalInfo.ProductLabelName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDefaultRetailInvoiceNo
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.EditorFor(m => m.CustomerAdditionalInfo.UnassignedRetailInvoiceNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSource
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAdditionalInfo.SourceId,
+                                               new SelectList(Model.SourceList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEDIVendorNumber
+                </div>
+                <div class="col-sm-3 labelpadding">
+                    @Html.EditorFor(m => m.CustomerAdditionalInfo.EDI_VendorNo, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSupplyItemsBy
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAdditionalInfo.OrderTypeId,
+                                               new SelectList(Model.OrderTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    var invoiceTemplates;
+    var packlistTemplates;
+    var shippingTemplateId = 0;
+
+    $(document).ready(function () {
+        shippingTemplateId = parseInt('0' + '@Model.CustomerAdditionalInfo.ShippingTemplateId');
+
+        var temp = '@Model.InvoiceTemplateList';
+        invoiceTemplates = JSON.parse(temp.replace(/&quot;/g, '"'));
+        temp = '@Model.PacklistTemplateList';
+        packlistTemplates = JSON.parse(temp.replace(/&quot;/g, '"'));
+
+        var templateType = @Model.CustomerAdditionalInfo.ShippingTemplateType;
+        $('#CustomerAdditionalInfo_ShippingTemplateType').val(templateType);
+        if (templateType == 1) {
+            OnInvoiceClicked(shippingTemplateId);
+        } else if (templateType == 2) {
+            OnPacklistClicked(shippingTemplateId);
+        }
+    });
+
+    function OnInvoiceClicked(shippingTemplateId) {
+        var ddl = $('#CustomerAdditionalInfo_ShippingTemplateId');
+        $(ddl).empty();
+        $.each(invoiceTemplates, function () {
+            ddl.append($("<option></option>").text(this.Text).val(this.Id));
+        });
+        if (shippingTemplateId) $(ddl).val(shippingTemplateId)
+    }
+    function OnPacklistClicked(shippingTemplateId) {
+        var ddl = $('#CustomerAdditionalInfo_ShippingTemplateId');
+        $(ddl).empty();
+        $.each(packlistTemplates, function () {
+            ddl.append($("<option></option>").text(this.Text).val(this.Id));
+        });
+        if (shippingTemplateId) $(ddl).val(shippingTemplateId)
+    }
+
+    ApplyFocus('CustomerAdditionalInfo_DeliveryInstructions');
+</script>
+

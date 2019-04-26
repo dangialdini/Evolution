@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Evolution.Models.ViewModels.ErrorViewModel
+@using Evolution.Resources
+
+<div class="panel panel-danger">
+    <div class="panel-heading">Error</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12 cellpadding">
+                @EvolutionResources.errTheFollowingErrorHasOccurred<br />
+                <br/>
+                @Html.Raw(Model.Message)<br/>
+                @EvolutionResources.errThisErrorHasBeenLoggedAndNotified
+            </div>
+        </div>
+    </div>
+</div>
+<a href="/" class="btn btn-sm btn-default" onclick="ShowProgress()">Continue</a>

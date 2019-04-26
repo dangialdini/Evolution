@@ -1,0 +1,101 @@
+﻿@model Evolution.Models.ViewModels.EditPaymentTermViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "PaymentTerms", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.PaymentTerm.Id)
+    @Html.HiddenFor(m => m.PaymentTerm.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblLatePaymentChargePercent
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.LatePaymentChargePercent, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEarlyPaymentDiscountPercent
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.EarlyPaymentDiscountPercent, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblTermsOfPaymentId
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.TermsOfPaymentId, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "4" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblImportPaymentIsDue
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.ImportPaymentIsDue, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "4" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDiscountDays
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.DiscountDays, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "4" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBalanceDueDays
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.BalanceDueDays, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "4" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblDiscountDate
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.DiscountDate, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBalanceDueDate
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.PaymentTerm.BalanceDueDate, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-1 labelpadding">
+                    @Html.CheckBoxFor(m => m.PaymentTerm.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('PaymentTerm_LatePaymentChargePercent');
+</script>
+
+
+

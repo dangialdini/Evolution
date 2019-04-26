@@ -1,0 +1,42 @@
+﻿@model Evolution.Models.Models.PurchaseOrderSummaryModel
+@using Evolution.Resources
+
+<div class="row">
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblTotalCBMs</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.TotalCbms</div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblAllocValueEx</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.CurrencySymbol@Model.AllocValueEx.Value.ToString("N2")</div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblOrderValueEx</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.CurrencySymbol@Model.OrderValueEx.Value.ToString("N2")</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 cellpadding"></div>
+    <div class="col-sm-1 cellpadding"></div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblAllocatedPercent</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.AllocatedPercent.Value.ToString("N2")</div>
+    <div class="col-sm-2 cellpadding">@Model.TaxCode</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.CurrencySymbol@Model.Tax.Value.ToString("N2")</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 cellpadding"></div>
+    <div class="col-sm-1 cellpadding"></div>
+    <div class="col-sm-2 cellpadding"></div>
+    <div class="col-sm-1 cellpadding"></div>
+    <div class="col-sm-2 cellpadding" style="border-top:1px solid black; font-weight:bold;">@EvolutionResources.lblTotal</div>
+    <div class="col-sm-1 cellpadding text-right" style="border-top:1px solid black; font-weight:bold;">@Model.Total.Value.ToString("N2")</div>
+</div>
+<hr style="width:100%; height:2px"/>
+<div class="row">
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblOrderStatus</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.POStatusText</div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblLandingDate</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.LandingDate</div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblRealisticETA</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.RealisticRequiredDate</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblAdvUSFinal</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.RequiredDate</div>
+    <div class="col-sm-2 cellpadding">@EvolutionResources.lblCompletedDate</div>
+    <div class="col-sm-1 cellpadding text-right">@Model.CompletedDate</div>
+</div>

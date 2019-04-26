@@ -1,0 +1,66 @@
+﻿@model Evolution.Models.ViewModels.PicksListViewModel
+@using Evolution.Resources
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="picks" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'picks',
+            tableclass: 'gridStyle',
+            jqdateformat: '@Model.JQDateFormat',
+            displaydateformat: '@Model.DisplayDateFormat',
+            pagenumber: 1,
+            // pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [
+                { caption: '', type: 'date', id: 'txtDateFrom', width: '105px', datasourceurl: '' },
+                { caption: '', type: 'date', id: 'txtDateTo', width: '105px', datasourceurl: '' }
+            ],
+            keyfield: 'Id',
+            sortcolumns: ['Id', 'InvoiceNumber', 'CustomerName', 'CustPO', 'Status', 'STWDateISO', 'InvoiceDateISO', 'Location' ],
+            sortcolumn: 'Id',
+            sortorder: 1,
+            datasourceurl: '@Url.Action("GetPicks")?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&datefrom={txtDateFrom}&dateto={txtDateTo}',
+            ondisplaycomplete: InitialiseFancyBox,
+            columnDefs: [
+                //{ heading: 'Priority', width: '100px', class: '', fields: [{ type: 'field', field: 'PickPriority', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPickNumber', width: '100px', class: '', fields: [{ type: 'field', field: 'Id', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblInvoiceNumber', width: '100px', class: '', fields: [{ type: 'field', field: 'InvoiceNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerName', width: '100px', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCustomerPO', width: '100px', class: '', fields: [{ type: 'field', field: 'CustPO', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '100px', class: '', fields: [{ type: 'field', field: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderStatus', width: '100px', class: '', fields: [{ type: 'field', field: 'Status', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDocument', width: '100px', class: '', fields: [{ type: 'field', field: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSTWDate', width: '100px', class: '', fields: [{ type: 'isodate', field: 'STWDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAddress', width: '100px', class: '', fields: [{ type: 'field', field: 'ShipAddress1', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSuburb', width: '100px', class: '', fields: [{ type: 'field', field: 'ShipSuburb', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCountry', width: '100px', class: '', fields: [{ type: 'field', field: 'ShipCountry', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblInvoiceDate', width: '100px', class: '', fields: [{ type: 'isodate', field: 'InvoiceDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLocation', width: '100px', class: '', fields: [{ type: 'field', field: 'LocationName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblValue', width: '100px', class: '', fields: [{ type: 'field', field: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPickComment', width: '100px', class: '', fields: [{ type: 'field', field: 'PickComment', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLines', width: '100px', class: '', fields: [{ type: 'field', field: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCBMs', width: '100px', class: '', fields: [{ type: 'field', field: '', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEndUserName', width: '100px', class: '', fields: [{ type: 'field', field: 'EndUserName', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

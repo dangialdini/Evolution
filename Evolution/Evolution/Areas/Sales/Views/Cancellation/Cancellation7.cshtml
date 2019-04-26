@@ -1,0 +1,70 @@
+﻿@model Evolution.Models.ViewModels.CancellationViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SaveStep", "Cancellation", FormMethod.Post, new { id = "frmCancellation" })) {
+    @Html.AntiForgeryToken()
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="summarylist" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer" style="height:50px;">
+        <div style="float:left;">
+            <button type="submit" id="btnPrev" name="command" value="prevstep6" class="button" onclick="DisplayProgress()">
+                <span class="glyphicon glyphicon-backward" data-toggle="tooltip" data-placement="bottom" title="@EvolutionResources.btnPrev" style="font-size:2em;"></span>
+            </button>
+        </div>
+        <div class="text-right" style="float:right;">
+            <button type="button" id="btnFinish1" name="command" value="nextstep8" class="button" onclick="OnSubmit()">
+                <span class="glyphicon glyphicon-forward" data-toggle="tooltip" data-placement="bottom" title="@EvolutionResources.btnFinish" style="font-size:2em;"></span>
+            </button>
+        </div>
+
+        <button type="submit" id="btnFinish2" name="command" value="nextstep8" class="button invisible" onclick="DisplayProgress()">@EvolutionResources.btnFinish</button>
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'summarylist',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            pagesizes: [10000],
+            keyfield: 'Id',
+            ondisplaycomplete: InitialiseFancyBox,
+            datasourceurl: '@Url.Action("GetCancellationSummaryList")?index={INDEX}',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblCustomerName', width: '', class: '', fields: [{ type: 'field', field: 'CustomerName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '', class: '', fields: [{ type: 'field', field: 'SaleOrderNo', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductNumber', width: '', class: '', fields: [{ type: 'field', field: 'ItemNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductName', width: '', class: '', fields: [{ type: 'field', field: 'ItemName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblLocation', width: '', class: '', fields: [{ type: 'field', field: 'LocationName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblQuantity', width: '', class: '', fields: [{ type: 'field', field: 'OrderQty', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAllocated', width: '', class: '', fields: [{ type: 'field', field: 'AllocQty', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAccountManager', width: '', class: '', fields: [{ type: 'field', field: 'AccountManager', width: '', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+    function OnSubmit() {
+        return Confirm('@EvolutionResources.errConfirmCancellation', '@EvolutionResources.lblApplicationName', 0, 'DoSubmit');
+    }
+    function DoSubmit() {
+        $('#btnFinish2').click();
+    }
+</script>

@@ -1,0 +1,54 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="regions" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'regions',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/CompanyAdmin/Regions/GetRegions?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblRegionName', width: '', class: '', fields: [{ type: 'field', field: 'RegionName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCountryCode', width: '', class: '', fields: [{ type: 'field', field: 'CountryCode', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPostCodeFrom', width: '', class: '', fields: [{ type: 'field', field: 'PostCodeFrom', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPostCodeTo', width: '', class: '', fields: [{ type: 'field', field: 'PostCodeTo', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblFreightRate', width: '', class: '', fields: [{ type: 'field', field: 'FreightRate', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblEnabled', width: '90px', class: 'text-center', fields: [{ type: 'enabled', field: 'Enabled', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                        { type: 'buttonedit', text: 'Edit', class: '', icon: 'edit' },
+                        { type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

@@ -1,0 +1,46 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.ParentId)
+                <div id="outstanding" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'outstanding',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            //showsearch: true,
+            keyfield: 'Id',
+            datasourceurl: '/Sales/Outstanding/GetOutstanding?index={INDEX}&saleid={PARENTID}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            columnDefs: [
+                { heading: 'Number', width: '', class: '', fields: [{ type: 'field', field: 'ItemNumber', width: '', class: '' }] },
+                { heading: 'Name', width: '', class: '', fields: [{ type: 'field', field: 'ItemName', class: '' }] },
+                { heading: 'ECD', width: '', class: '', fields: [{ type: 'isodate', field: 'ExpectedCompletionDateISO', format: '@Model.DisplayDateFormat', class: '' }] },
+                { heading: 'In Stock', width: '', class: '', fields: [{ type: 'field', field: 'NumberInStock', class: '' }] },
+                { heading: '#Ordered', width: '', class: '', fields: [{ type: 'field', field: 'QtyOrdered', class: '' }] },
+                { heading: '#Avail Now', width: '', class: '', fields: [{ type: 'field', field: 'QtyAvailableNow', class: '' }] },
+                { heading: '#Avail at Wished', width: '', class: '', fields: [{ type: 'field', field: 'QtyAvailableAtWished', class: '' }] },
+                { heading: '#Avail Ever', width: '', class: '', fields: [{ type: 'field', field: 'QtyAvailableAtEver', class: '' }] }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>

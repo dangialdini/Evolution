@@ -1,0 +1,28 @@
+﻿@model Evolution.Models.ViewModels.SystemStatusViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        @foreach (var attrib in Model.Attributes) {
+            <div class="row">
+                <div class="col-sm-3">
+                    @if (attrib.Id == "<br/>") {
+                        <br/>
+                    } else if (string.IsNullOrEmpty(attrib.Text)) {
+                        <strong>@attrib.Id</strong>
+                    } else {
+                        @attrib.Id
+                    }
+                </div>
+                <div class="col-sm-8">
+                    @attrib.Text
+                </div>
+            </div>
+        }
+    </div>
+</div>

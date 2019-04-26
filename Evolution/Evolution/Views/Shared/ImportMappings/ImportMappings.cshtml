@@ -1,0 +1,38 @@
+﻿@model Evolution.Models.ViewModels.EditDataMappingViewModel
+@using Evolution.Resources
+
+<div class="row">
+    <div class="col-sm-12 cellpadding">
+        @Html.HiddenFor(m => m.TZ)
+        <table class="table-condensed table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td style="max-width:500px;">
+                        @EvolutionResources.lblMessage
+                    </td>
+                    @for (var i = 0; i < Model.Data.Headings.Count(); i++) {
+                        <td style="width:150px; min-width:150px;">
+                            @Html.DropDownListFor(m => m.Data.Headings[i],
+                                                    new SelectList(Model.HeadingList, "Id", "Text", Model.Data.Headings[i]),
+                                                    new { @class = "form-control", @style = "width:100%" })
+                        </td>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in Model.Data.Lines) {
+                    <tr>
+                        <td style="color:red;max-width:500px;">
+                            @row.ErrorMessage
+                        </td>
+                        @foreach (var field in row.Fields) {
+                            <td style="width:150px">
+                                @field.Value
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

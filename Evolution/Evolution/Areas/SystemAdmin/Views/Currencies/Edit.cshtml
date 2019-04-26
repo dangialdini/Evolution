@@ -1,0 +1,73 @@
+﻿@model Evolution.Models.ViewModels.EditCurrencyViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Currencies", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Currency.Id)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCurrencyCode
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Currency.CurrencyCode, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCurrencyName
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Currency.CurrencyName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblExchangeRate
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Currency.ExchangeRate, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "7" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCurrencySymbol
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Currency.CurrencySymbol, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "4" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFormatTemplate
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.EditorFor(m => m.Currency.FormatTemplate, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "16" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.Currency.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('Currency_CurrencyCode');
+</script>

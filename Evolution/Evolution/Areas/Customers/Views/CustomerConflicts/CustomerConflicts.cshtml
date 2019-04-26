@@ -1,0 +1,46 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.HiddenFor(m => m.ParentId)
+                <div id="customerconflicts" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'customerconflicts',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: false,
+            keyfield: 'Id',
+            datasourceurl: '/Customers/CustomerConflicts/GetCustomerConflicts?index={INDEX}&customerid={PARENTID}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}',
+            addurl: '@Url.Action("Edit")?id=-1&customerid={PARENTID}',
+            deleteurl: '@Url.Action("Delete")?id={KEYFIELD}&index={INDEX}&customerid={PARENTID}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblConflictSensitivity', width: '', class: '', fields: [{ type: 'field', field: 'SensitiveWithCompanyName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center', fields: [{ type: 'buttondelete', text: 'Delete', class: '', icon: 'trash' }
+                                                                        ]}
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+</script>
+
+

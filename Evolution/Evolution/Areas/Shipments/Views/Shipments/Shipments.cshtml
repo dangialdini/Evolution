@@ -1,0 +1,74 @@
+﻿@model Evolution.Models.ViewModels.ViewModelBase
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.PageTitle</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="shipments" class="table-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var gridOptions = {
+            appname: '@EvolutionResources.lblApplicationName',
+            container: 'shipments',
+            tableclass: 'gridStyle',
+            pagenumber: 1,
+            //pagesizes: [ 10, 30, 50, 100 ],
+            showsearch: true,
+            searchfields: [{ caption: '', type: 'dropdownlist', id: 'ddlPurchaser', width: '200px', datasourceurl: '@Url.Action("GetPurchaserList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlBrandCategory', width: '200px', datasourceurl: '@Url.Action("GetBrandCategoryList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlOrderStatus', width: '200px', datasourceurl: '@Url.Action("GetOrderStatusList")', defaultvalue: '0' },
+                           { caption: '', type: 'dropdownlist', id: 'ddlOpenOrder', width: '200px', datasourceurl: '@Url.Action("GetOpenOrderList")', defaultvalue: '0' },
+                          ],
+            keyfield: 'ShipmentId',
+            sortcolumns: ['SalesPerson','Season','SupplierName','OrderNumber','CBMEstimate','ProductBrand','ShipmentId','POStatusText','ShippingMethod','PortDepart','PortArrival','RequiredShipDateISO','DateDepartSupplierISO','Date100ShippedISO','DatePreAlertETAISO','ExpDelDateISO','DateWarehouseAcceptISO'],
+            sortcolumn: 'ShipmentId',
+            sortorder: 1,
+            datasourceurl: '@Url.Action("GetShipments")?index={INDEX}&pageno={PAGENO}&pagesize={PAGESIZE}&search={SEARCH}&purchaserid={ddlPurchaser}&brandcatid={ddlBrandCategory}&openorderid={ddlOpenOrder}&orderstatusid={ddlOrderStatus}',
+            addurl: '@Url.Action("Add")',
+            editurl: '@Url.Action("Edit")?id={KEYFIELD}',
+            deleteurl: '@Url.Action("Delete")?sci=[ShipmentContentId]&si=[ShipmentId]&index={INDEX}',
+            deleteconfirm: '@EvolutionResources.errConfirmDeleteItem',
+            columnDefs: [
+                { heading: '@EvolutionResources.lblSalesPerson', width: '', class: '', fields: [{ type: 'field', field: 'SalesPerson', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSeason', width: '', class: '', fields: [{ type: 'field', field: 'SeasonText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblSupplier', width: '', class: '', fields: [{ type: 'field', field: 'SupplierName', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderNumber', width: '', class: '', fields: [{ type: 'field', field: 'OrderNumber', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblCBMEstimate', width: '', class: '', fields: [{ type: 'field', field: 'CBMEstimate', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblProductBrand', width: '', class: '', fields: [{ type: 'field', field: 'ProductBrand', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblShipment', width: '', class: '', fields: [{ type: 'field', field: 'ShipmentId', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblOrderStatus', width: '', class: '', fields: [{ type: 'field', field: 'POStatusText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblShippingMethod', width: '', class: '', fields: [{ type: 'field', field: 'ShippingMethodText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDeparturePort', width: '', class: '', fields: [{ type: 'field', field: 'PortDepartText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblArrivalPort', width: '', class: '', fields: [{ type: 'field', field: 'PortArrivalText', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblReqShipDate', width: '80px', class: '', fields: [{ type: 'isodate', field: 'RequiredShipDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDateDepartSupplier', width: '80px', class: '', fields: [{ type: 'isodate', field: 'DateDepartSupplierISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDate100Shipped', width: '80px', class: '', fields: [{ type: 'isodate', field: 'Date100ShippedISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblPreAlertETA', width: '80px', class: '', fields: [{ type: 'isodate', field: 'DatePreAlertETAISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblExpectedDeliveryDate', width: '80px', class: '', fields: [{ type: 'isodate', field: 'ExpDelDateISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                { heading: '@EvolutionResources.lblDateWhsAccepted', width: '80px', class: '', fields: [{ type: 'isodate', field: 'DateWarehouseAcceptISO', format: '@Model.DisplayDateFormat', width: '', class: '' }] },
+                {
+                    heading: '@EvolutionResources.lblAction', width: '80px', class: 'text-center',
+                    fields: [
+                                { type: 'buttonedit', text: '@EvolutionResources.btnEdit', class: '', icon: 'edit' },
+                                { type: 'buttondelete', text: '@EvolutionResources.btnDelete', class: '', icon: 'trash' }
+                    ]
+                }
+            ]
+        };
+
+        gridManager.InitialiseGrid(gridOptions);
+    });
+
+</script>

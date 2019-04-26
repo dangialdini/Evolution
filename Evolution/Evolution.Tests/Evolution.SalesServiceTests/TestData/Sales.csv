@@ -1,0 +1,2 @@
+CustomerName,EndUserName,ShipAddress1,ShipSuburb,ShipState,ShipPostcode,ShipCountry,LocationId,WarehouseInstructions,CustPO,DeliveryWindowOpen,DeliveryWindowClose,ManualDWSet,DeliveryInstructions,DeliveryContact,BrandCategory,ItemNumber,UnitPriceExTax,DiscountPercent,Quantity
+

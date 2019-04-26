@@ -1,0 +1,77 @@
+﻿@model Evolution.Models.ViewModels.EditRegionViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Regions", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Region.Id)
+    @Html.HiddenFor(m => m.Region.CompanyId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblRegionName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Region.RegionName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "25" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCountryCode
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Region.CountryCode, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "3" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPostCodeFrom
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Region.PostCodeFrom, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "10" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblPostCodeTo
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Region.PostCodeTo, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "10" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblFreightRate
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Region.FreightRate, new { htmlAttributes = new { @class = "form-control", @style = "width:25%", @maxlength = "8" } })
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblEnabled
+                </div>
+                <div class="col-sm-6 labelpadding">
+                    @Html.CheckBoxFor(m => m.Region.Enabled)
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('Region_RegionName');
+</script>
+

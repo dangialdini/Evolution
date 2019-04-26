@@ -1,0 +1,91 @@
+﻿@model Evolution.Models.ViewModels.EditProductViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "SupplierInfo", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.Product.Id)
+    @Html.HiddenFor(m => m.Product.ItemNumber)
+    @Html.HiddenFor(m => m.Product.ItemName)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            @Html.ValidationSummary("", new { @class = "bg-danger errExcl" })
+            <div class="row">
+                <div class="col-sm-2 cellpadding"></div>
+                <div class="col-sm-5 cellpadding">
+                    <img id="imgThumb" src="@Model.Product.Picture" alt="" style="width:100px;height:auto;" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblCountryOfOrigin
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.CountryOfOriginId,
+                                               new SelectList(Model.CountryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSupplier
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.PrimarySupplierId,
+                                               new SelectList(Model.SupplierList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblManufacturer
+                </div>
+                <div class="col-sm-4 cellpadding">
+                    @Html.DropDownListFor(m => m.Product.ManufacturerId,
+                                               new SelectList(Model.ManufacturerList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSupplierItemNumber
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.EditorFor(m => m.Product.SupplierItemNumber, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSupplierProductName
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.EditorFor(m => m.Product.SupplierItemName, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "30" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblMinimumOrderQuantity
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @Html.EditorFor(m => m.Product.MinOrderQty1, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @maxlength = "5" } })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="saveandexit" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSaveAndExit</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    ApplyFocus('Product_CountryOfOriginId');
+</script>

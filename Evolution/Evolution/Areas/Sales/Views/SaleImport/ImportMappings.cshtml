@@ -1,0 +1,41 @@
+﻿@model Evolution.Models.ViewModels.EditSaleImportDataMappingsViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Import", "SaleImport", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 cellpadding">
+                    @EvolutionResources.lblImportTransactionsAs
+                </div>
+                <div class="col-sm-3 cellpadding">
+                    @Html.DropDownListFor(m => m.SOStatus,
+                                               new SelectList(Model.SOStatusList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+                <div class="col-sm-1 cellpadding">
+                    @EvolutionResources.lblSource
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.SourceId,
+                                             new SelectList(Model.SourceList, "Id", "Text"),
+                                             new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <p></p>
+
+            @Html.Partial("/Views/Shared/ImportMappings/ImportMappings.cshtml", Model)
+        </div>
+
+        <div class="panel-footer">
+            <button type="submit" name="command" value="import" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnImport</button>
+        </div>
+    </div>
+}

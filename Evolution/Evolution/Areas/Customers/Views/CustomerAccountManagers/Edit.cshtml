@@ -1,0 +1,62 @@
+﻿@model Evolution.Models.ViewModels.EditBrandCategorySalesPersonViewModel
+@using Evolution.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "CustomerAccountManagers", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.LGS)
+    @Html.HiddenFor(m => m.ParentId)
+    @Html.HiddenFor(m => m.CustomerAccountManager.Id)
+    @Html.HiddenFor(m => m.CustomerAccountManager.CompanyId)
+    @Html.HiddenFor(m => m.CustomerAccountManager.CustomerId)
+
+    <div class="panel panel-default">
+        <div class="panel-heading">@Model.PageTitle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblBrandCategory
+                </div>
+                <div class="col-sm-2 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAccountManager.BrandCategoryId,
+                                               new SelectList(Model.BrandCategoryList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSalesPerson
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAccountManager.UserId,
+                                               new SelectList(Model.SalesPersonList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 labelpadding">
+                    @EvolutionResources.lblSalesPersonType
+                </div>
+                <div class="col-sm-5 cellpadding">
+                    @Html.DropDownListFor(m => m.CustomerAccountManager.SalesPersonTypeId,
+                                               new SelectList(Model.SalesPersonTypeList, "Id", "Text"),
+                                               new { @class = "form-control", @style = "width:100%" })
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" name="command" value="save" class="btn btn-sm btn-primary" onclick="DisplayProgress()">@EvolutionResources.btnSave</button>
+            <button type="submit" name="command" value="cancel" class="btn btn-sm btn-default" onclick="DisplayProgress()">@EvolutionResources.btnCancel</button>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    ApplyFocus('CustomerAccountManager_BrandCategoryId');
+</script>
+
+
+
+

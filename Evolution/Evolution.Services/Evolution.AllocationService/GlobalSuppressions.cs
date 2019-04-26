@@ -1,0 +1,13 @@
+﻿
+// This file is used by Code Analysis to maintain SuppressMessage 
+// attributes that are applied to this project.
+// Project-level suppressions either have no target or are given 
+// a specific target and scoped to a namespace, type, member, etc.
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.getFreeStock(Evolution.Models.Models.PurchaseOrderDetailModel,System.Collections.Generic.List{Evolution.Models.Models.AllocationModel})~System.Int32")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.mapToModel(Evolution.DAL.FindAllocations_Result)~Evolution.Models.Models.AllocationResultModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.validateModel(Evolution.Models.Models.AllocationModel)~Evolution.Models.Models.Error")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0018:Inline variable declaration", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.FindAllocationsListModel(System.Int32,System.Int32,System.Int32,System.Int32,System.String)~Evolution.Models.Models.AllocationResultListModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.FindAvailabilitydetails(System.Int32,System.Int32,System.Int32,System.Int32)~Evolution.Models.Models.AllocationSOListModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.FindSaleDetails(System.Int32,System.Int32,System.Int32,System.Int32)~Evolution.Models.Models.AllocationPOListModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "member", Target = "~M:Evolution.AllocationService.AllocationService.FindAvailabilityDetails(System.Int32,System.Int32,System.Int32,System.Int32)~Evolution.Models.Models.AllocationSOListModel")]

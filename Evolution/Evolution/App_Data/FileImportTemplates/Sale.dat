@@ -1,0 +1,23 @@
+// List of recognise fields in sale import file
+// DatabaseFieldName,DisplayName
+,(None)
+CustomerName,Customer Name
+EndUserName,End User Name
+ShipAddress1,Ship Address
+ShipSuburb,Suburb
+ShipState,State
+ShipPostcode,Postcode
+ShipCountry,Country
+LocationId,Ship From Location
+WarehouseInstructions,Warehouse Instructions
+CustPO,Customer PO
+DeliveryWindowOpen,Window Open
+DeliveryWindowClose,Window Close
+ManualDWSet,Manual Window
+DeliveryInstructions,Delivery Instructions
+DeliveryContact,Delivery Contact
+BrandCategory,Brand Category
+ItemNumber,Item Number
+UnitPriceExTax,Unit Price Ex Tax
+DiscountPercent,Discount Percent
+Quantity,Order Qty
