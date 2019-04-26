@@ -11,4 +11,4 @@ Front end:  jQuery/JavaScript & CSS/Bootstrap <br />
 The app also uses FTP to transfer files for Warehousing picking/packing slips.
 
 
-Note: Any login, user, FTP details within this code has been spoofed/altered for privacy and demonstration purposes.
+<i>Note: Any login, user, FTP details within this code has been spoofed/altered for privacy and demonstration purposes.</i>
